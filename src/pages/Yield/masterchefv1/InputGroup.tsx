@@ -55,11 +55,12 @@ export default function InputGroup({
     const staked = useStakedBalance(pid, assetDecimals) // kMP depends on decimals of asset, SLP is always 18
     const pending = usePendingSushi(pid)
 
+    console.log(pairAddressChecksum, balance, staked, pending)
     //console.log('pending:', pending, pid)
 
     const [approvalState, approve] = useApproveCallback(
         tryParseAmount(depositValue, new Token(chainId || 1, pairAddressChecksum, balance.decimals, pairSymbol, '')),
-        MASTERCHEF_ADDRESS[1]
+        MASTERCHEF_ADDRESS[chainId || 1]
     )
 
     const { deposit, withdraw, harvest } = useMasterChef()

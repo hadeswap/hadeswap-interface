@@ -121,10 +121,10 @@ export const BORING_HELPER_ADDRESS = {
     [ChainId.MAINNET]: '0x11Ca5375AdAfd6205E41131A4409f182677996E6',
     // [ChainId.ROPSTEN]: '',
     // [ChainId.RINKEBY]: '',
-    [ChainId.SPARTA]: ''
+    [ChainId.SPARTA]: '0xa06Be090fe91e811AA6fE81dFBf2c99AF6EeA90a'
 }
 
-// export const BORING_HELPER_ADDRESS = '0x11Ca5375AdAfd6205E41131A4409f182677996E6'
+// export const BORING_HELPER_ADDRESS = '0xa06Be090fe91e811AA6fE81dFBf2c99AF6EeA90a'
 
 type Currency = { address: string; decimals: number }
 

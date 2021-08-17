@@ -17,15 +17,15 @@ const useFarms = () => {
     const [farms, setFarms] = useState<any | undefined>()
     const { account } = useActiveWeb3React()
     const boringHelperContract = useBoringHelperContract()
-    sushiData.masterchef
-        .pools({block: 55000})
-        .then(pools => console.log(pools))
-    sushiData.exchange
-        .tokens({block: 100000})
-        .then(pools => console.log(pools))
-    sushiData.exchange
-        .observePairs()
-        .subscribe({next: (pairs) => console.log(pairs), error: (err) => console.log(err)})
+    // sushiData.masterchef
+    //     .pools({block: 55000})
+    //     .then(pools => console.log(pools))
+    // sushiData.exchange
+    //     .tokens({block: 100000})
+    //     .then(pools => console.log(pools))
+    // sushiData.exchange
+    //     .observePairs()
+    //     .subscribe({next: (pairs) => console.log(pairs), error: (err) => console.log(err)})
     const fetchAllFarms = useCallback(async () => {
         const results = await Promise.all([
             masterchef.query({
@@ -160,7 +160,8 @@ const useFarms = () => {
                     }
                 })
             setFarms({ farms: sorted, userFarms: userFarms })
-            //console.log('userFarms:', userFarms)
+            console.log('Farms:', sorted)
+            console.log('userFarms:', userFarms)
         } else {
             setFarms({ farms: sorted, userFarms: [] })
         }

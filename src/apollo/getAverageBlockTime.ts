@@ -1,4 +1,4 @@
-import { blockClient, blockClient_matic } from './client'
+import { blockClient } from './client'
 import { blockQuery, blocksQuery } from './queries'
 import { getUnixTime, startOfHour, startOfMinute, startOfSecond, subDays, subHours } from 'date-fns'
 

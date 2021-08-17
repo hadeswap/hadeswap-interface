@@ -38,7 +38,7 @@ export default function Yield(): JSX.Element {
         <>
             <Helmet>
                 <title>{i18n._(t`Yield`)} | Sushi</title>
-                <meta name="description" content="Farm SUSHI by staking LP (Liquidity Provider) tokens" />
+                <meta name="description" content="Farm SOUL by staking LP (Liquidity Provider) tokens" />
             </Helmet>
             <div className="container max-w-2xl mx-auto">
                 <Card
@@ -134,6 +134,7 @@ export default function Yield(): JSX.Element {
 
 const TokenBalance = ({ farm }: any) => {
     const [expand, setExpand] = useState<boolean>(false)
+    console.log(farm)
     return (
         <>
             {farm.type === 'SLP' && (

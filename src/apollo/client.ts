@@ -68,15 +68,3 @@ export const blockClient = new ApolloClient({
     cache: new InMemoryCache()
 })
 
-export const blockClient_matic = new ApolloClient({
-    link: createHttpLink({
-        uri: 'https://api.thegraph.com/subgraphs/name/matthewlilley/polygon-blocks'
-    }),
-    cache: new InMemoryCache(),
-    defaultOptions: {
-        query: {
-            fetchPolicy: 'no-cache',
-            errorPolicy: 'all'
-        }
-    }
-})
