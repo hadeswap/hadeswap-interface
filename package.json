@@ -21,6 +21,7 @@
         "@fullhuman/postcss-purgecss": "^4.0.3",
         "@headlessui/react": "^1.0.0",
         "@hot-loader/react-dom": "^17.0.1",
+        "@lingui/cli": "^3.8.10",
         "@lingui/detect-locale": "^3.8.10",
         "@lingui/loader": "^3.8.10",
         "@lingui/macro": "^3.8.10",
@@ -93,7 +94,6 @@
         "eth-permit": "^0.1.9",
         "ethers": "^5.0.7",
         "fuse.js": "^6.4.6",
-        "hadeswap-beta-data": "^2.0.0-canary.2",
         "husky": "^6.0.0",
         "jazzicon": "^1.5.0",
         "lint-staged": "^10.0.0",
@@ -149,7 +149,6 @@
     "scripts": {
         "analyze": "source-map-explorer 'build/static/js/*.js' --only-mapped --html analysis/index.html",
         "prebuild": "lingui compile",
-        "prestart": "lingui compile",
         "start": "serve -l $PORT -s build",
         "dev": "cross-env PORT=3001 react-app-rewired start",
         "build": "cross-env CI= GENERATE_SOURCEMAP=false react-app-rewired build",
@@ -175,7 +174,6 @@
     "license": "GPL-3.0-or-later",
     "dependencies": {
         "hadeswap-beta-data": "1.1.0",
-        "hadeswap-beta-sdk": "1.2.1",
-        "@lingui/cli": "^3.8.10"
+        "hadeswap-beta-sdk": "1.2.1"
     }
 }
