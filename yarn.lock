@@ -10395,9 +10395,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
+"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
   version "1.0.3"
-  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
@@ -10462,10 +10462,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-hadeswap-beta-data@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/hadeswap-beta-data/-/hadeswap-beta-data-1.1.0.tgz#5f2eb23e9d75c7b438c5d458bf59bbf26e9af4e1"
-  integrity sha512-GSZ/Z9PlGzvCTnkVsQvYXDx/I8Cc2EAorGq/eKxbAnRVa9QfJVVmEomixnmr9/qdcIDaqlY+42/EnFjnqmbZqQ==
+hadeswap-beta-data@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/hadeswap-beta-data/-/hadeswap-beta-data-1.1.1.tgz#de1cfba8396e75b79e0afd869ea399eacf7d91bd"
+  integrity sha512-VO+kaTtc8fMM3An7uDkQ5oSuYZpj3tRKKc/1Bu3xkJzYTE1xAW6PjRnQfAqfxXxOSrr8QTijNarOV2D7zYUP3Q==
   dependencies:
     bluebird "^3.7.2"
     commander "6.1.0"
