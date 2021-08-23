@@ -11,6 +11,7 @@ import range from 'lodash/range'
 import sushiData from 'hadeswap-beta-data'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { useBoringHelperContract } from 'hooks/useContract'
+import { token } from 'hadeswap-beta-data/typings/exchange'
 
 // Todo: Rewrite in terms of web3 as opposed to subgraph
 const useFarms = () => {
@@ -36,7 +37,7 @@ const useFarms = () => {
                 // results[1]
                 query: liquidityPositionSubsetQuery,
                 // Plutus address
-                variables: { user: '0xB11A6cDfE8A4a5c8ab0404430E964C5a76177677' }
+                variables: { user: '0xb4BE34C7430FF011b653166570E211C15a03e4fA' }
             }),
             getAverageBlockTime(), // results[2]
             sushiData.sushi.priceUSD(), // results[3]
@@ -56,32 +57,67 @@ const useFarms = () => {
         const averageBlockTime = results[2]
         const sushiPrice = results[3]
 
-        //console.log('kashiPairs:', kashiPairs)
 
         const pairs = pairsQuery?.data.pairs
-        const KASHI_PAIRS = range(190, 230, 1) // kashiPair pids 189-229
-        //console.log('kashiPairs:', KASHI_PAIRS, kashiPairs, pools)
 
-        const farms = pools
+        const mapi : Map<string, any> = new Map<string, any>()
+
+        const tokens = pools
             .filter((pool: any) => {
-                //console.log(KASHI_PAIRS.includes(Number(pool.id)), pool, Number(pool.id))
-                return (
-                    !POOL_DENY.includes(pool?.id) &&
-                    (pairs.find((pair: any) => pair?.id === pool?.pair) || KASHI_PAIRS.includes(Number(pool?.id)))
+                return !(
+                    // !POOL_DENY.includes(pool?.id) &&
+                    pairs.find((pair: any) => pair?.id === pool?.pair)
                 )
             })
+
+
+        for (const token of tokens) {
+            const tokenData = await boringHelperContract?.getTokenInfo([token.pair])
+            mapi.set(token.pair, tokenData)
+        }
+
+        const farms = pools
+            // .filter((pool: any) => {
+            //     return (
+            //         // !POOL_DENY.includes(pool?.id) &&
+            //         (pairs.find((pair: any) => pair?.id === pool?.pair) )
+            //     )
+            // })
             .map((pool: any) => {
-                    const pair = pairs.find((pair: any) => pair.id === pool.pair)
+                    let isPair = true;
+                    let pair = pairs.find((pair: any) => pair.id === pool.pair)
                     const liquidityPosition = liquidityPositions.find(
                         (liquidityPosition: any) => liquidityPosition.pair.id === pair.id
                     )
+                    if(pair === undefined) {
+                        // CASE: token
+                        const tokenData = mapi.get(pool.pair)
+                        // console.log(Fraction.from(
+                        //     tokenData[0][4],
+                        //     BigNumber.from(10).pow(tokenData[0][4])
+                        // ).toString())
+                        pair = {
+                            totalSupply: tokenData[0][4].toFixed(),
+                            reserveUSD: 0,
+                            token0: {
+                                name: tokenData[0][2],
+                                symbol: tokenData[0][3],
+                            },
+                            token1: {
+                                name: "",
+                                symbol: ''
+                            },
+                            id:pool.pair
+                        }
+                        isPair = false;
+                    }
                     const blocksPerHour = 3600 / Number(averageBlockTime)
                     const balance = Number(pool.balance / 1e18) > 0 ? Number(pool.balance / 1e18) : 0.1
                     const totalSupply = pair.totalSupply > 0 ? pair.totalSupply : 0.1
                     const reserveUSD = pair.reserveUSD > 0 ? pair.reserveUSD : 0.1
                     const balanceUSD = (balance / Number(totalSupply)) * Number(reserveUSD)
                     const rewardPerBlock =
-                        ((pool.allocPoint / pool.owner.totalAllocPoint) * pool.owner.sushiPerBlock) / 1e18
+                        ((pool.allocPoint / pool.owner.totalAllocPoint) * pool.owner.soulPerBlock) / 1e18
                     const roiPerBlock = (rewardPerBlock * sushiPrice) / balanceUSD
                     const roiPerHour = roiPerBlock * blocksPerHour
                     const roiPerDay = roiPerHour * 24
@@ -90,7 +126,7 @@ const useFarms = () => {
 
                     return {
                         ...pool,
-                        type: 'SLP',
+                        type: 'HLP',
                         symbol: pair.token0.symbol + '-' + pair.token1.symbol,
                         name: pair.token0.name + ' ' + pair.token1.name,
                         pid: Number(pool.id),
@@ -105,12 +141,13 @@ const useFarms = () => {
                         rewardPerThousand: 1 * roiPerDay * (1000 / sushiPrice),
                         tvl: liquidityPosition?.liquidityTokenBalance
                             ? (pair.reserveUSD / pair.totalSupply) * liquidityPosition.liquidityTokenBalance
-                            : 0.1
+                            : 0.1,
+                        isPair: isPair
                     }
 
             })
 
-        //console.log('farms:', farms)
+        console.log('farms:', farms)
         const sorted = orderBy(farms, ['pid'], ['desc'])
 
         const pids = sorted.map(pool => {
@@ -119,7 +156,6 @@ const useFarms = () => {
 
         if (account) {
             const userFarmDetails = await boringHelperContract?.pollPools(account, pids)
-            //console.log('userFarmDetails:', userFarmDetails)
             const userFarms = userFarmDetails
                 .filter((farm: any) => {
                     return farm.balance.gt(BigNumber.from(0)) || farm.pending.gt(BigNumber.from(0))
@@ -153,7 +189,7 @@ const useFarms = () => {
 
                     return {
                         ...farmDetails,
-                        type: farmDetails.type, // KMP or SLP
+                        type: farmDetails.type,
                         depositedLP: deposited,
                         depositedUSD: depositedUSD,
                         pendingSushi: pending

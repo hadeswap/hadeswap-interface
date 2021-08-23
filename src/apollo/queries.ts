@@ -29,35 +29,6 @@ export const tokenQuery = gql`
     ${tokenFieldsQuery}
 `
 
-export const miniChefPoolQuery = gql`
-    query poolsQuery(
-        $first: Int! = 1000
-        $skip: Int! = 0
-        $orderBy: String! = "timestamp"
-        $orderDirection: String! = "desc"
-    ) {
-        pools(first: $first, skip: $skip, orderBy: $orderBy, orderDirection: $orderDirection) {
-            id
-            pair
-            rewarder {
-                id
-                rewardToken
-                rewardPerSecond
-            }
-            allocPoint
-            lastRewardTime
-            accSushiPerShare
-            slpBalance
-            userCount
-            miniChef {
-                id
-                sushiPerSecond
-                totalAllocPoint
-            }
-        }
-    }
-`
-
 export const poolsQuery = gql`
     query poolsQuery(
         $first: Int! = 1000
@@ -70,12 +41,12 @@ export const poolsQuery = gql`
             pair
             allocPoint
             lastRewardBlock
-            accSushiPerShare
+            accSoulPerShare
             balance
             userCount
             owner {
                 id
-                sushiPerBlock
+                soulPerBlock
                 totalAllocPoint
             }
         }
@@ -173,18 +144,18 @@ export const pairSubsetQuery = gql`
 `
 
 export const liquidityPositionSubsetQuery = gql`
-    query liquidityPositionSubsetQuery($first: Int! = 1000, $user: Bytes!) {
-        liquidityPositions(first: $first, where: { user: $user }) {
-            id
-            liquidityTokenBalance
-            user {
+        query liquidityPositionSubsetQuery($first: Int! = 1000, $user: Bytes!) {
+            liquidityPositions(first: $first, where: { user: $user }) {
                 id
-            }
-            pair {
-                id
+                liquidityTokenBalance
+                user {
+                    id
+                }
+                pair {
+                    id
+                }
             }
         }
-    }
 `
 
 export const SUSHI_PAIRS = (ids: string[], masterChefAddress: string): DocumentNode => {
@@ -231,17 +202,17 @@ const poolUserFragment = gql`
             id
             pair
             balance
-            accSushiPerShare
+            accSoulPerShare
             lastRewardBlock
         }
         amount
         rewardDebt
         entryUSD
         exitUSD
-        sushiHarvested
-        sushiHarvestedUSD
-        sushiHarvestedSinceLockup
-        sushiHarvestedSinceLockupUSD
+        soulHarvested
+        soulHarvestedUSD
+        soulHarvestedSinceLockup
+        soulHarvestedSinceLockupUSD
     }
 `
 

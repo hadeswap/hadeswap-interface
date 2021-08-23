@@ -9,7 +9,7 @@ export const blocklytics = new ApolloClient({
 
 export const masterchef = new ApolloClient({
     link: createHttpLink({
-        uri: 'http://178.128.159.75:8000/subgraphs/name/hadeswap/plutus'
+        uri: 'http://178.128.159.75:8000/subgraphs/name/aether-eum/plutus3'
     }),
     cache: new InMemoryCache()
 })

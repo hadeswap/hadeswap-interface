@@ -121,7 +121,7 @@ export const BORING_HELPER_ADDRESS = {
     [ChainId.MAINNET]: '0x11Ca5375AdAfd6205E41131A4409f182677996E6',
     // [ChainId.ROPSTEN]: '',
     // [ChainId.RINKEBY]: '',
-    [ChainId.SPARTA]: '0xa06Be090fe91e811AA6fE81dFBf2c99AF6EeA90a'
+    [ChainId.SPARTA]: '0x0A8aAC4F84277775bAA9fE6be58fE402B97b847a'
 }
 
 // export const BORING_HELPER_ADDRESS = '0xa06Be090fe91e811AA6fE81dFBf2c99AF6EeA90a'
@@ -136,7 +136,7 @@ export const USD_CURRENCY: { [chainId in ChainId]?: Currency } = {
     // [ChainId.KOVAN]: { address: '0x07de306FF27a2B630B1141956844eB1552B956B5', decimals: 6 },
     // [ChainId.RINKEBY]: { address: '0xD9BA894E0097f8cC2BBc9D24D308b98e36dc6D02', decimals: 6 },
     // [ChainId.GÖRLI]: { address: '0xD87Ba7A50B2E7E660f678A895E4B72E7CB4CCd9C', decimals: 6 },
-    [ChainId.SPARTA]: { address: '0x808aCc5cF1576B01D28Fd89340174A8973FFA7C0', decimals: 18 }
+    [ChainId.SPARTA]: { address: '0x388ABBB063608924d8033F1B1266B64C93F1a3a3', decimals: 18 }
 }
 
 export function getCurrency(chainId: ChainId | void): Currency {
