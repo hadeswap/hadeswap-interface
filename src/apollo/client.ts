@@ -36,7 +36,7 @@ export const client = new ApolloClient({
 
 export const exchange = new ApolloClient({
     link: createHttpLink({
-        uri: 'http://178.128.159.75:8000/subgraphs/name/hadeswap/exchange'
+        uri: 'https://sparta-graph.polis.tech/subgraphs/name/hadeswap/exchange'
     }),
     cache: new InMemoryCache()
 })
