@@ -38,7 +38,7 @@ export default function NetworkModal(): JSX.Element | null {
     const { chainId, library, account } = useActiveWeb3React()
     const networkModalOpen = useModalOpen(ApplicationModal.NETWORK)
     const toggleNetworkModal = useNetworkModalToggle()
-    
+
     if (!chainId) return null
 
     return (
