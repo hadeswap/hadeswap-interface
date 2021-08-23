@@ -16,6 +16,7 @@ type AsyncSendable = {
     send?: (request: any, callback: (error: any, response: any) => void) => void
 }
 
+
 class RequestError extends Error {
     constructor(message: string, public code: number, public data?: unknown) {
         super(message)

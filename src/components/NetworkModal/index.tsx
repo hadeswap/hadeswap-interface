@@ -21,17 +21,6 @@ const PARAMS: {
         blockExplorerUrls: string[]
     }
 } = {
-    [ChainId.MAINNET]: {
-        chainId: '0x1',
-        chainName: 'Ethereum',
-        nativeCurrency: {
-            name: 'Ethereum',
-            symbol: 'ETH',
-            decimals: 18
-        },
-        rpcUrls: ['https://mainnet.infura.io/v3'],
-        blockExplorerUrls: ['https://etherscan.com']
-    },
     [ChainId.SPARTA]: {
         chainId: '0x51840',
         chainName: 'Polis',
@@ -49,7 +38,7 @@ export default function NetworkModal(): JSX.Element | null {
     const { chainId, library, account } = useActiveWeb3React()
     const networkModalOpen = useModalOpen(ApplicationModal.NETWORK)
     const toggleNetworkModal = useNetworkModalToggle()
-
+    
     if (!chainId) return null
 
     return (
@@ -62,7 +51,6 @@ export default function NetworkModal(): JSX.Element | null {
 
             <div className="flex flex-col space-y-5 overflow-y-auto">
                 {[
-                    ChainId.MAINNET,
                     ChainId.SPARTA
                 ].map((key: ChainId, i: number) => {
                     if (chainId === key) {

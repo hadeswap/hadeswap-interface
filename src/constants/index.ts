@@ -22,13 +22,6 @@ export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LEN
 
 // POLIS
 export const SUSHI: ChainTokenMap = {
-    [ChainId.MAINNET]: new Token(
-        ChainId.MAINNET,
-        '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2',
-        18,
-        'SUSHI',
-        'SushiToken'
-    ),
     // [ChainId.ROPSTEN]: new Token(
     //     ChainId.ROPSTEN,
     //     '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',

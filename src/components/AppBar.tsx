@@ -65,7 +65,7 @@ function AppBar(): JSX.Element {
                                             >
                                                 {i18n._(t`Pool`)}
                                             </NavLink>
-                                            {chainId && [ChainId.MAINNET, ChainId.SPARTA].includes(chainId) && (
+                                            {chainId && [ChainId.SPARTA].includes(chainId) && (
                                                 <NavLink id={`yield-nav-link`} to={'/yield'}>
                                                     {i18n._(t`Yield`)}
                                                 </NavLink>
