@@ -37,7 +37,7 @@ export default function Yield(): JSX.Element {
     return (
         <>
             <Helmet>
-                <title>{i18n._(t`Yield`)} | Sushi</title>
+                <title>{i18n._(t`Yield`)} | Soul</title>
                 <meta name="description" content="Farm SOUL by staking LP (Liquidity Provider) tokens" />
             </Helmet>
             <div className="container max-w-2xl mx-auto">
@@ -221,7 +221,7 @@ const UserBalance = ({ farm }: any) => {
                         <div className="flex justify-end items-center">
                             <div>
                                 <div className="text-right">{formattedNum(farm.pendingSushi)} </div>
-                                <div className="text-secondary text-right">SUSHI</div>
+                                <div className="text-secondary text-right">SOUL</div>
                             </div>
                         </div>
                     </div>
@@ -266,7 +266,7 @@ const UserBalance = ({ farm }: any) => {
                         <div className="flex justify-end items-center">
                             <div>
                                 <div className="text-right">{formattedNum(farm.pendingSushi)} </div>
-                                <div className="text-secondary text-right">SUSHI</div>
+                                <div className="text-secondary text-right">SOUL</div>
                             </div>
                         </div>
                     </div>

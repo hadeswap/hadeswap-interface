@@ -20,7 +20,7 @@ import {
     SUSHISWAP_TWAP_0_ORACLE_ADDRESS,
     SUSHISWAP_TWAP_1_ORACLE_ADDRESS
 } from 'kashi'
-import { MERKLE_DISTRIBUTOR_ADDRESS, SUSHI } from '../constants'
+import { MERKLE_DISTRIBUTOR_ADDRESS, SOUL } from '../constants'
 import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
 import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 // import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'

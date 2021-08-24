@@ -70,11 +70,11 @@ function AppBar(): JSX.Element {
                                                     {i18n._(t`Yield`)}
                                                 </NavLink>
                                             )}
-                                            {chainId === ChainId.MAINNET && (
-                                                <NavLink id={`sushibar-nav-link`} to={'/sushibar'}>
-                                                    {i18n._(t`SushiBar`)}
-                                                </NavLink>
-                                            )}
+                                            {/*{chainId === ChainId.MAINNET && (*/}
+                                            {/*    <NavLink id={`sushibar-nav-link`} to={'/sushibar'}>*/}
+                                            {/*        {i18n._(t`SushiBar`)}*/}
+                                            {/*    </NavLink>*/}
+                                            {/*)}*/}
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +129,7 @@ function AppBar(): JSX.Element {
                                         {/*                                .then(success => {*/}
                                         {/*                                    if (success) {*/}
                                         {/*                                        console.log(*/}
-                                        {/*                                            'Successfully added SUSHI to MetaMask'*/}
+                                        {/*                                            'Successfully added SOUL to MetaMask'*/}
                                         {/*                                        )*/}
                                         {/*                                    } else {*/}
                                         {/*                                        throw new Error('Something went wrong.')*/}
@@ -178,7 +178,7 @@ function AppBar(): JSX.Element {
                                             {account && chainId && userEthBalance && (
                                                 <>
                                                     <div className="py-2 px-3 text-primary text-bold">
-                                                        {userEthBalance?.toSignificant(4)}{' '}
+                                                        {userEthBalance?.toSignificant(6)}{' '}
                                                         {Currency.getNativeCurrencySymbol(chainId)}
                                                     </div>
                                                 </>

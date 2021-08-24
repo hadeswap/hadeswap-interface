@@ -21,21 +21,7 @@ export const PROPOSAL_LENGTH_IN_SECS = AVERAGE_BLOCK_TIME_IN_SECS * PROPOSAL_LEN
 
 
 // POLIS
-export const SUSHI: ChainTokenMap = {
-    // [ChainId.ROPSTEN]: new Token(
-    //     ChainId.ROPSTEN,
-    //     '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',
-    //     18,
-    //     'SUSHI',
-    //     'SushiToken'
-    // ),
-    // [ChainId.RINKEBY]: new Token(
-    //     ChainId.RINKEBY,
-    //     '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',
-    //     18,
-    //     'SUSHI',
-    //     'SushiToken'
-    // ),
+export const SOUL: ChainTokenMap = {
     [ChainId.SPARTA]: new Token(
         ChainId.SPARTA,
         '0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058',
@@ -72,10 +58,10 @@ export const XSUSHI_CALL = new Token(
     '0xada279f9301C01A4eF914127a6C2a493Ad733924',
     18,
     'XSUc25-0531',
-    'XSUSHI 25 Call [31 May 2021]'
+    'XSOUL 25 Call [31 May 2021]'
 )
 
-export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
+export const XSOUL = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
 
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these
@@ -83,7 +69,7 @@ export const XSUSHI = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89
  */
 export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: Token[] } } = {
     [ChainId.MAINNET]: {
-        [XSUSHI_CALL.address]: [XSUSHI, WETH[ChainId.MAINNET]]
+        [XSUSHI_CALL.address]: [XSOUL, WETH[ChainId.MAINNET]]
     }
 }
 
@@ -101,7 +87,16 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
     [ChainId.MAINNET]: [
-        [SUSHI[ChainId.MAINNET] as Token, WETH[ChainId.MAINNET]],
+        [SOUL[ChainId.MAINNET] as Token, WETH[ChainId.MAINNET]],
+        [
+            new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
+            new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
+        ],
+        [USDC, USDT],
+        [DAI, USDT]
+    ],
+    [ChainId.MAINNET]: [
+        [SOUL[ChainId.MAINNET] as Token, WETH[ChainId.MAINNET]],
         [
             new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
             new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')

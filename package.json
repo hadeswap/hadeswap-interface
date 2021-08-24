@@ -1,7 +1,7 @@
 {
-    "name": "@sushiswap/interface",
-    "description": "SushiSwap Interface",
-    "homepage": "https://app.sushi.com",
+    "name": "@hadeswap/interface",
+    "description": "Hadeswap Interface",
+    "homepage": "",
     "private": true,
     "lint-staged": {
         "*.{js,jsx,ts,tsx}": [

@@ -68,7 +68,7 @@ export const walletconnect = new WalletConnectConnector({
 export const lattice = new LatticeConnector({
     chainId: 1,
     url: RPC[ChainId.SPARTA],
-    appName: 'SushiSwap'
+    appName: 'Hadeswap'
 })
 
 // mainnet only
