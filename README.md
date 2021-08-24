@@ -7,11 +7,11 @@ An open source interface for Hadeswap -- a protocol for decentralized exchange o
 - Website: [sushi.com](https://sushi.com/)
 - Interface: [app.sushi.com](https://app.sushi.com)
 - Docs: [sushiswap.gitbook.io](https://sushiswap.gitbook.io)
-- Twitter: [@SushiSwap](https://twitter.com/sushiswap)
-- Reddit: [/r/SushiSwap](https://www.reddit.com/r/SushiSwap)
-- Discord: [SushiSwap](https://discord.gg/Y7TF6QA)
+- Twitter: [@SoulSwap](https://twitter.com/sushiswap)
+- Reddit: [/r/SoulSwap](https://www.reddit.com/r/SoulSwap)
+- Discord: [SoulSwap](https://discord.gg/Y7TF6QA)
 
-## Accessing the SushiSwap Interface
+## Accessing the SoulSwap Interface
 
 To access the Hadeswap Interface, use an IPFS gateway link from the
 [latest release](https://github.com/sushiswap/sushiswap-interface/releases/latest),
@@ -38,7 +38,7 @@ yarn start
 ```
 
 Note that the interface only works on networks where both
-[(Uni|Sushi)swap V2](https://github.com/sushiswap/sushiswap/tree/master/contracts/uniswapv2) and
+[(Uni|Soul)swap V2](https://github.com/sushiswap/sushiswap/tree/master/contracts/uniswapv2) and
 [multicall](https://github.com/makerdao/multicall) are deployed.
 The interface will not work on other networks.
 

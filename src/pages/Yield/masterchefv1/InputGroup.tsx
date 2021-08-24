@@ -7,7 +7,7 @@ import { ApprovalState, useApproveCallback } from '../../../hooks/useApproveCall
 import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import useMasterChef from '../../../hooks/useMasterChef'
-import usePendingSushi from '../../../hooks/usePendingSushi'
+import usePendingSoul from '../../../hooks/usePendingSoul'
 import useStakedBalance from '../../../hooks/useStakedBalance'
 import useTokenBalance from '../../../hooks/useTokenBalance'
 import { formattedNum, isAddressString, isWETH } from 'utils'
@@ -52,8 +52,8 @@ export default function InputGroup({
 
     //const { deposit } = useBentoBox()
     const balance = useTokenBalance(pairAddressChecksum)
-    const staked = useStakedBalance(pid, assetDecimals) // kMP depends on decimals of asset, SLP is always 18
-    const pending = usePendingSushi(pid)
+    const staked = useStakedBalance(pid, assetDecimals) // kMP depends on decimals of asset, HLP is always 18
+    const pending = usePendingSoul(pid)
 
     console.log(pairAddressChecksum, balance, staked, pending)
     //console.log('pending:', pending, pid)

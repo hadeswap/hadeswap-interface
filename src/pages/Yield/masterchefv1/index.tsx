@@ -220,7 +220,7 @@ const UserBalance = ({ farm }: any) => {
                         </div>
                         <div className="flex justify-end items-center">
                             <div>
-                                <div className="text-right">{formattedNum(farm.pendingSushi)} </div>
+                                <div className="text-right">{formattedNum(farm.pendingSoul)} </div>
                                 <div className="text-secondary text-right">SOUL</div>
                             </div>
                         </div>

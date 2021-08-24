@@ -13,8 +13,8 @@ import React, { useEffect, useState } from 'react'
 import {
     useBentoBoxContract,
     usePairContract,
-    useSushiSwapTWAP0Oracle,
-    useSushiSwapTWAP1Oracle
+    useSoulSwapTWAP0Oracle,
+    useSoulSwapTWAP1Oracle
 } from 'hooks/useContract'
 
 import { Button } from 'components'
@@ -45,7 +45,7 @@ interface Oracle {
 
 const oracles = [
     { id: OracleId.CHAINLINK, name: 'Chainlink', unavailable: false },
-    { id: OracleId.SUSHISWAP, name: 'SushiSwap', unavailable: false },
+    { id: OracleId.SUSHISWAP, name: 'Hadeswap', unavailable: false },
     { id: OracleId.PEGGED, name: 'Pegged', unavailable: true }
 ]
 
@@ -53,8 +53,8 @@ const CreatePair = () => {
     const { chainId } = useActiveWeb3React()
     const bentoBoxContract = useBentoBoxContract()
 
-    const sushiSwapTWAP0OracleContract = useSushiSwapTWAP0Oracle()
-    const sushiSwapTWAP1OracleContract = useSushiSwapTWAP1Oracle()
+    const sushiSwapTWAP0OracleContract = useSoulSwapTWAP0Oracle()
+    const sushiSwapTWAP1OracleContract = useSoulSwapTWAP1Oracle()
 
     const [selectedOracle, setSelectedOracle] = useState<Oracle | undefined>(undefined)
 
@@ -75,7 +75,7 @@ const CreatePair = () => {
     // TODO: Low liquidity warning
     const createWarnings = new Warnings().add(
         selectedOracle?.id === OracleId.SUSHISWAP && noLiquidity,
-        'There is no SushiSwap pair or the pair has no liquidity!',
+        'There is no Hadeswap pair or the pair has no liquidity!',
         true
     )
 
@@ -235,7 +235,7 @@ const CreatePair = () => {
             }
         >
             <Helmet>
-                <title>Create Market | Sushi</title>
+                <title>Create Market | Soul</title>
             </Helmet>
             <Card
                 className="h-full bg-dark-900"

@@ -72,7 +72,7 @@ function AppBar(): JSX.Element {
                                             )}
                                             {/*{chainId === ChainId.MAINNET && (*/}
                                             {/*    <NavLink id={`sushibar-nav-link`} to={'/sushibar'}>*/}
-                                            {/*        {i18n._(t`SushiBar`)}*/}
+                                            {/*        {i18n._(t`SoulBar`)}*/}
                                             {/*    </NavLink>*/}
                                             {/*)}*/}
                                         </div>
@@ -86,7 +86,7 @@ function AppBar(): JSX.Element {
                                         {/*    library &&*/}
                                         {/*    library.provider.isMetaMask && (*/}
                                         {/*        <>*/}
-                                        {/*            <QuestionHelper text={i18n._(t`Add Sushi to your Metamask wallet`)}>*/}
+                                        {/*            <QuestionHelper text={i18n._(t`Add Soul to your Metamask wallet`)}>*/}
                                         {/*                <div*/}
                                         {/*                    className="hidden sm:inline-block rounded-md bg-dark-900 hover:bg-dark-800 cursor-pointer"*/}
                                         {/*                    onClick={() => {*/}

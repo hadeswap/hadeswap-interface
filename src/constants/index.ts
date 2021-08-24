@@ -61,7 +61,7 @@ export const XSUSHI_CALL = new Token(
     'XSOUL 25 Call [31 May 2021]'
 )
 
-export const XSOUL = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SushiBar')
+export const XSOUL = new Token(ChainId.MAINNET, '0x8798249c2E607446EfB7Ad49eC89dD1865Ff4272', 18, 'xSUSHI', 'SoulBar')
 
 /**
  * Some tokens can only be swapped via certain pairs, so we override the list of bases that are considered for these

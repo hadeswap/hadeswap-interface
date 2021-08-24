@@ -193,7 +193,7 @@ const useFarms = () => {
                         type: farmDetails.type,
                         depositedLP: deposited,
                         depositedUSD: depositedUSD,
-                        pendingSushi: pending
+                        pendingSoul: pending
                     }
                 })
             setFarms({ farms: sorted, userFarms: userFarms })

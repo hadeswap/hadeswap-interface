@@ -47,7 +47,6 @@ import PENDING_ABI from '../constants/abis/pending.json'
 import ROUTER_ABI from '../constants/abis/router.json'
 import SAAVE_ABI from '../constants/abis/saave.json'
 import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
-import SUSHIROLL_ABI from '@sushiswap/core/abi/SushiRoll.json'
 import SUSHISWAP_MULTISWAPPER_ABI from '../constants/abis/sushiswapmultiswapper.json'
 import SUSHISWAP_TWAP_ORACLE_ABI from '../constants/abis/sushiswap-slp-oracle.json'
 import SUSHI_ABI from '../constants/abis/sushi.json'
@@ -170,10 +169,10 @@ export function useBoringHelperContract(): Contract | null {
     return useContract(chainId && BORING_HELPER_ADDRESS[chainId], BORING_HELPER_ABI, false)
 }
 
-export function useSushiSwapTWAP0Oracle(): Contract | null {
+export function useSoulSwapTWAP0Oracle(): Contract | null {
     return useContract(SUSHISWAP_TWAP_0_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
 }
 
-export function useSushiSwapTWAP1Oracle(): Contract | null {
+export function useSoulSwapTWAP1Oracle(): Contract | null {
     return useContract(SUSHISWAP_TWAP_1_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
 }

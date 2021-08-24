@@ -41,10 +41,10 @@ export class Oracle implements IOracle {
     }
 }
 
-export class SushiSwapTWAPOracle extends Oracle {
+export class SoulSwapTWAPOracle extends Oracle {
     constructor(pair: any, chainId: ChainId, tokens: any) {
         super(pair, chainId, tokens)
-        this.name = 'SushiSwap'
+        this.name = 'Hadeswap'
     }
     get valid(): boolean {
         return true
@@ -134,7 +134,7 @@ export function getOracle(pair: any, chainId: ChainId, tokens: any): IOracle {
     if (lowerEqual(pair.oracle, CHAINLINK_ORACLE_ADDRESS)) {
         return new ChainlinkOracle(pair, chainId, tokens)
     } else if (pair.oracle === SUSHISWAP_TWAP_0_ORACLE_ADDRESS || pair.oracle === SUSHISWAP_TWAP_1_ORACLE_ADDRESS) {
-        return new SushiSwapTWAPOracle(pair, chainId, tokens)
+        return new SoulSwapTWAPOracle(pair, chainId, tokens)
     } else {
         return new Oracle(pair, chainId, tokens)
     }

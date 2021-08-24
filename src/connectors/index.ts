@@ -86,7 +86,7 @@ export const portis = new PortisConnector({
 // mainnet only
 export const walletlink = new WalletLinkConnector({
     url: RPC[ChainId.SPARTA],
-    appName: 'SushiSwap',
+    appName: 'Hadeswap',
     appLogoUrl: 'https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png'
 })
 

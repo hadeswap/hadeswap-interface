@@ -22,9 +22,9 @@ import PoolFinder from './pages/PoolFinder'
 import RemoveLiquidity from './pages/RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './pages/RemoveLiquidity/redirects'
 // import Saave from './pages/Saave'
-// import SushiBar from './pages/SushiBar'
-// import SushiBarTransactions from './pages/SushiBar/SushiBarTransactions'
-// import SushiBarTips from './pages/SushiBar/Tips'
+// import SoulBar from './pages/SoulBar'
+// import SoulBarTransactions from './pages/SoulBar/SoulBarTransactions'
+// import SoulBarTips from './pages/SoulBar/Tips'
 import Trade from './pages/Trade'
 import Swap from './pages/Swap'
 import {
@@ -71,13 +71,13 @@ function Routes(): JSX.Element {
             {/*    <Route exact strict path="/migrate" component={Migrate} />*/}
             {/*)}*/}
 
-            {/*/!* SushiBar Staking *!/*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar" component={SushiBar} />}*/}
+            {/*/!* SoulBar Staking *!/*/}
+            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar" component={SoulBar} />}*/}
             {/*{chainId === ChainId.MAINNET && (*/}
-            {/*    <Route exact strict path="/sushibar/transactions" component={SushiBarTransactions} />*/}
+            {/*    <Route exact strict path="/sushibar/transactions" component={SoulBarTransactions} />*/}
             {/*)}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar/tips" component={SushiBarTips} />}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SushiBar} />}*/}
+            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar/tips" component={SoulBarTips} />}*/}
+            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SoulBar} />}*/}
             {/* Tools */}
             {chainId === ChainId.MAINNET && <Route exact strict path="/tools" component={Tools} />}
             {/*{chainId === ChainId.MAINNET && <Route exact strict path="/saave" component={Saave} />}*/}

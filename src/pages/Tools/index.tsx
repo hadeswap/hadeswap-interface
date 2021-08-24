@@ -86,7 +86,7 @@ export default function Pool() {
     return (
         <>
             <Helmet>
-                <title>{i18n._(t`Tools`)} | Sushi</title>
+                <title>{i18n._(t`Tools`)} | Soul</title>
             </Helmet>
             <PageWrapper>
                 <SwapPoolTabs active={'pool'} />
@@ -95,7 +95,7 @@ export default function Pool() {
                         <AutoColumn gap="md">
                             <RowBetween>
                                 <TYPE.white fontWeight={600} color={theme.text1}>
-                                    {i18n._(t`Helpful Sushi Tools`)}
+                                    {i18n._(t`Helpful Soul Tools`)}
                                 </TYPE.white>
                             </RowBetween>
                             <RowBetween>
