@@ -102,10 +102,11 @@ const useFarms = () => {
                             token0: {
                                 name: tokenData[0][2],
                                 symbol: tokenData[0][3],
+                                id: pool.pair
                             },
                             token1: {
                                 name: "",
-                                symbol: ''
+                                symbol: ""
                             },
                             id:pool.pair
                         }
@@ -127,7 +128,7 @@ const useFarms = () => {
                     return {
                         ...pool,
                         type: 'HLP',
-                        symbol: pair.token0.symbol + '-' + pair.token1.symbol,
+                        symbol: pair.token1.symbol!==""? pair.token0.symbol + '-' + pair.token1.symbol : pair.token0.symbol,
                         name: pair.token0.name + ' ' + pair.token1.name,
                         pid: Number(pool.id),
                         pairAddress: pair.id,

@@ -89,22 +89,6 @@ export default function InputGroup({
                             </Button>
                         </>
                     )}
-                    {type === 'KMP' && assetSymbol && (
-                        <>
-                            <Button
-                                color="default"
-                                onClick={() => history.push(`/bento/kashi/lend/${isWETH(pairAddress)}`)}
-                            >
-                                {i18n._(t`Lend ${assetSymbol}`)}
-                            </Button>
-                            <Button
-                                color="default"
-                                onClick={() => history.push(`/bento/kashi/lend/${isWETH(pairAddress)}`)}
-                            >
-                                {i18n._(t`Withdraw ${assetSymbol}`)}
-                            </Button>
-                        </>
-                    )}
                 </div>
 
                 <div className="grid gap-4 grid-cols-2 px-4">

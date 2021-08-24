@@ -9,6 +9,7 @@ import { isAddress } from 'utils'
 import { useBlockNumber } from '../state/application/hooks'
 import useTransactionStatus from './useTransactionStatus'
 
+
 export interface BalanceProps {
     value: BigNumber
     decimals: number
@@ -27,10 +28,10 @@ function useTokenBalance(tokenAddress: string): BalanceProps {
     const fetchBalance = useCallback(async () => {
         async function getBalance(contract: Contract | null, owner: string | null | undefined): Promise<BalanceProps> {
             try {
-                if (account && chainId && contract?.address === WETH[chainId].address) {
-                    const ethBalance = await library?.getBalance(account)
-                    return { value: BigNumber.from(ethBalance), decimals: 18 }
-                }
+                // if (account && chainId && contract?.address === WETH[chainId].address) {
+                //     const ethBalance = await library?.getBalance(account)
+                //     return { value: BigNumber.from(ethBalance), decimals: 18 }
+                // }
 
                 const balance = await contract?.balanceOf(owner)
                 const decimals = await contract?.decimals()

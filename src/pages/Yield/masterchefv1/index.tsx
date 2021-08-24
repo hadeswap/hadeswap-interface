@@ -12,6 +12,7 @@ import { Helmet } from 'react-helmet'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
+
 export const FixedHeightRow = styled(RowBetween)`
     height: 24px;
 `
@@ -21,8 +22,6 @@ export default function Yield(): JSX.Element {
     const query = useFarms()
     const farms = query?.farms
     const userFarms = query?.userFarms
-
-    console.log(query);
 
     // Search Setup
     const options = { keys: ['symbol', 'name', 'pairAddress'], threshold: 0.4 }
@@ -160,7 +159,7 @@ const TokenBalance = ({ farm }: any) => {
                             <div>
                                 <div className="text-right">{formattedNum(farm.tvl, true)} </div>
                                 <div className="text-secondary text-right">
-                                    {formattedNum(farm.slpBalance / 1e18, false)} HLP
+                                    {formattedNum(farm.slpBalance / 1e18, false)} {farm.isPair? "HLP" : farm.symbol}
                                 </div>
                             </div>
                         </div>
@@ -177,7 +176,7 @@ const TokenBalance = ({ farm }: any) => {
                             pairSymbol={farm.symbol}
                             token0Address={farm.liquidityPair.token0.id}
                             token1Address={farm.liquidityPair.token1.id}
-                            type={farm.isPair? 'LP' : 'TOKEN'}
+                            type={farm.isPair? 'LP' : farm.symbol}
                         />
                     )}
                 </Paper>
@@ -189,6 +188,7 @@ const TokenBalance = ({ farm }: any) => {
 
 const UserBalance = ({ farm }: any) => {
     const [expand, setExpand] = useState<boolean>(false)
+    console.log(farm)
     return (
         <>
             {farm.type === 'HLP' && (
@@ -207,14 +207,14 @@ const UserBalance = ({ farm }: any) => {
                                 />
                             </div>
                             <div className="hidden sm:block">
-                                {farm && farm.liquidityPair.token0.symbol + '-' + farm.liquidityPair.token1.symbol}
+                                {farm && farm.isPair? farm.liquidityPair.token0.symbol + '-' + farm.liquidityPair.token1.symbol : farm.liquidityPair.token0.symbol}
                             </div>
                         </div>
                         <div className="flex justify-end items-center">
                             <div>
                                 <div className="text-right">{formattedNum(farm.depositedUSD, true)} </div>
                                 <div className="text-secondary text-right">
-                                    {formattedNum(farm.depositedLP, false)} HLP
+                                    {formattedNum(farm.depositedLP, false)} {farm.isPair? "HLP" : farm.symbol}
                                 </div>
                             </div>
                         </div>
@@ -232,54 +232,7 @@ const UserBalance = ({ farm }: any) => {
                             pairSymbol={farm.symbol}
                             token0Address={farm.liquidityPair.token0.id}
                             token1Address={farm.liquidityPair.token1.id}
-                            type={farm.isPair? 'LP' : 'TOKEN'}
-                        />
-                    )}
-                </Paper>
-            )}
-            {farm.type === 'KMP' && (
-                <Paper className="bg-dark-800">
-                    <div
-                        className="grid grid-cols-3 py-4 px-4 cursor-pointer select-none rounded text-sm"
-                        onClick={() => setExpand(!expand)}
-                    >
-                        <div className="flex items-center">
-                            <div className="mr-4">
-                                <DoubleLogo
-                                    a0={'kashiLogo'}
-                                    a1={farm.liquidityPair.asset.id}
-                                    size={32}
-                                    margin={true}
-                                    higherRadius={'0px'}
-                                />
-                            </div>
-                            <div className="hidden sm:block">{farm && farm.symbol}</div>
-                        </div>
-                        <div className="flex justify-end items-center">
-                            <div>
-                                <div className="text-right">{formattedNum(farm.depositedUSD, true)} </div>
-                                <div className="text-secondary text-right">
-                                    {formattedNum(farm.depositedLP, false)} KMP
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex justify-end items-center">
-                            <div>
-                                <div className="text-right">{formattedNum(farm.pendingSushi)} </div>
-                                <div className="text-secondary text-right">SOUL</div>
-                            </div>
-                        </div>
-                    </div>
-                    {expand && (
-                        <InputGroup
-                            pid={farm.pid}
-                            pairAddress={farm.pairAddress}
-                            pairSymbol={farm.symbol}
-                            token0Address={farm.liquidityPair.collateral.id}
-                            token1Address={farm.liquidityPair.asset.id}
-                            type={'KMP'}
-                            assetSymbol={farm.liquidityPair.asset.symbol}
-                            assetDecimals={farm.liquidityPair.asset.decimals}
+                            type={farm.isPair? 'LP' : farm.symbol}
                         />
                     )}
                 </Paper>
