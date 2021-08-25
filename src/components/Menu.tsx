@@ -8,31 +8,27 @@ import { t } from '@lingui/macro'
 import { I18n } from '@lingui/core'
 import { useLingui } from '@lingui/react'
 
+// TODO: documentation for users and devs
 const items = (i18n: I18n) => [
     {
         name: i18n._(t`Docs`),
-        description: i18n._(t`Documentation for users of Soul.`),
-        href: 'https://docs.sushi.com'
+        description: i18n._(t`Documentation for users of Polis.`),
+        href: 'https://docs.polispay.org/polis-docs/'
     },
     {
         name: i18n._(t`Dev`),
-        description: i18n._(t`Documentation for developers of Soul.`),
-        href: 'https://dev.sushi.com'
+        description: i18n._(t`Documentation for developers of Polis.`),
+        href: 'https://docs.polispay.org/polis-docs/'
     },
     {
         name: i18n._(t`Open Source`),
-        description: i18n._(t`Soul is a supporter of Open Source.`),
-        href: 'https://github.com/sushiswap'
-    },
-    {
-        name: i18n._(t`Tools`),
-        description: i18n._(t`Tools to optimize your workflow.`),
-        href: '/tools'
+        description: i18n._(t`Hadeswap is a supporter of Open Source.`),
+        href: 'https://github.com/hades-finance'
     },
     {
         name: i18n._(t`Discord`),
         description: i18n._(t`Join the community on Discord.`),
-        href: 'https://discord.gg/NVPXN4e'
+        href: 'https://discord.gg/Q7KeVTxC'
     }
 ]
 

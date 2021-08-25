@@ -9,7 +9,7 @@ An open source interface for Hadeswap -- a protocol for decentralized exchange o
 - Docs: [sushiswap.gitbook.io](https://sushiswap.gitbook.io)
 - Twitter: [@SoulSwap](https://twitter.com/sushiswap)
 - Reddit: [/r/SoulSwap](https://www.reddit.com/r/SoulSwap)
-- Discord: [SoulSwap](https://discord.gg/Y7TF6QA)
+- Discord: [SoulSwap](https://discord.gg/Q7KeVTxC)
 
 ## Accessing the SoulSwap Interface
 
