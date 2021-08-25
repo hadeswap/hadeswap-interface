@@ -12,11 +12,11 @@ import { useCombinedActiveList } from '../../../state/lists/hooks'
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
     if (chainId === ChainId.MAINNET) {
-        imageURL = `https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/${isAddress(
+        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${isAddress(
             address
         )}/logo.png`
     }  else {
-        imageURL = `https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/${isAddress(
+        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${isAddress(
             address
         )}/logo.png`
     }

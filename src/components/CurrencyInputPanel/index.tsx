@@ -17,6 +17,14 @@ import Lottie from 'lottie-react'
 import { useUSDCPrice } from '../../hooks'
 import { formattedNum } from '../../utils'
 import { useLingui } from '@lingui/react'
+import selectCoinImage from '../../assets/svg/select-coinStatic.svg'
+
+const StyledNativeCurrencyLogo = styled.img<{ size: string }>`
+    width: ${({ size }) => size};
+    height: ${({ size }) => size};
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.075);
+    border-radius: 10px;
+`
 
 const InputRow = styled.div<{ selected: boolean }>`
     ${({ theme }) => theme.flexRowNoWrap}
@@ -124,6 +132,8 @@ interface CurrencyInputPanelProps {
     cornerRadiusBottomNone?: boolean
     cornerRadiusTopNone?: boolean
     containerBackground?: string
+    size?: string
+    style?: React.CSSProperties
 }
 
 export default function CurrencyInputPanel({
@@ -144,8 +154,11 @@ export default function CurrencyInputPanel({
     customBalanceText,
     cornerRadiusBottomNone,
     cornerRadiusTopNone,
-    containerBackground
+    containerBackground,
+   size = '54px',
+   style
 }: CurrencyInputPanelProps) {
+
     const { i18n } = useLingui()
     const [modalOpen, setModalOpen] = useState(false)
     const { account, chainId } = useActiveWeb3React()
@@ -219,7 +232,8 @@ export default function CurrencyInputPanel({
                             ) : (
                                 <div className="bg-dark-700 rounded" style={{ maxWidth: 54, maxHeight: 54 }}>
                                     <div style={{ width: 54, height: 54 }}>
-                                        <Lottie animationData={selectCoinAnimation} autoplay loop />
+                                        <StyledNativeCurrencyLogo src={selectCoinImage} size={size} style={{ width: 54, height: 54 }} />
+                                        {/*<Image animationData={selectCoinAnimation} autoplay loop />*/}
                                     </div>
                                 </div>
                             )}

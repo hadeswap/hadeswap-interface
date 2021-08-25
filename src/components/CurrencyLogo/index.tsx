@@ -22,10 +22,10 @@ import PolisLogo from '../../assets/networks/POLIS.svg'
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
     if (chainId === ChainId.MAINNET) {
-        imageURL = `https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/${address}/logo.png`
+        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${address}/logo.png`
     }
     else {
-        imageURL = `https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/${address}/logo.png`
+        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${address}/logo.png`
     }
     return imageURL
 }
