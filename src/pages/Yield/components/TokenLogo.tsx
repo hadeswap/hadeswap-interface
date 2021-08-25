@@ -6,19 +6,21 @@ import styled from 'styled-components'
 //import EthereumLogo from "../../assets/img/eth.png";
 import { ChainId } from 'hadeswap-beta-sdk'
 import { useActiveWeb3React } from '../../../hooks/useActiveWeb3React'
-import { getMaticTokenLogoURL } from '../../../constants/maticTokenMapping'
+import { useCombinedActiveList } from '../../../state/lists/hooks'
+
 
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
     if (chainId === ChainId.MAINNET) {
-        imageURL = `https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/${isAddress(
+        imageURL = `https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/${isAddress(
             address
         )}/logo.png`
     }  else {
-        imageURL = `https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/${isAddress(
+        imageURL = `https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/${isAddress(
             address
         )}/logo.png`
     }
+
     console.log('getTokenLogoURL:', chainId, imageURL)
     return imageURL
 }

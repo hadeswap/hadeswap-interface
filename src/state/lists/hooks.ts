@@ -2,8 +2,8 @@ import { ChainId, Token } from 'hadeswap-beta-sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
 
 import { AppState } from '../index'
-import DEFAULT_TOKEN_LIST from '@sushiswap/default-token-list'
-import { UNSUPPORTED_LIST_URLS } from './../../constants/lists'
+import DEFAULT_TOKEN_LIST from '../../constants/token-lists/hadeswap-tokenlist.json'
+import { UNSUPPORTED_LIST_URLS } from '../../constants/lists'
 import UNSUPPORTED_TOKEN_LIST from '../../constants/token-lists/sushiswap-v2-unsupported.tokenlist.json'
 import sortByListPriority from 'utils/listSort'
 import { useMemo } from 'react'
@@ -95,7 +95,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
         1: { ...map1[1], ...map2[1] }, // mainnet
         // 3: { ...map1[3], ...map2[3] }, // ropsten
         // 4: { ...map1[4], ...map2[4] }, // rinkeby
-        333888: { ...map1[333888], ...map2[333888] } // okex testnet
+        333888: { ...map1[333888], ...map2[333888] }
     }
 }
 
@@ -144,6 +144,7 @@ export function useCombinedActiveList(): TokenAddressMap {
     const activeListUrls = useActiveListUrls()
     const activeTokens = useCombinedTokenMapFromUrls(activeListUrls)
     const defaultTokenMap = listToTokenMap(DEFAULT_TOKEN_LIST)
+    console.log(defaultTokenMap)
     return combineMaps(activeTokens, defaultTokenMap)
 }
 

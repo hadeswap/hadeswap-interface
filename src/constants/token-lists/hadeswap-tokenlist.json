@@ -1,0 +1,41 @@
+{
+  "name": "PolisChain Tokens",
+  "timestamp": "2021-08-25T09:59:51.016Z",
+  "version": {
+    "major": 1,
+    "minor": 1,
+    "patch": 0
+  },
+  "tags": {},
+  "logoURI": "https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png",
+  "keywords": [
+    "hadeswap",
+    "default"
+  ],
+  "tokens": [
+    {
+    "address": "0xC614405267eCDbF01FB5b425e3F2EC657160101A",
+    "chainId": 333888,
+    "name": "Wrapped Polis",
+    "symbol": "WETH",
+    "decimals": 18,
+    "logoURI": "https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/0xC614405267eCDbF01FB5b425e3F2EC657160101A/logo.png"
+    },
+    {
+      "address": "0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058",
+      "chainId": 333888,
+      "name": "Soul Token",
+      "symbol": "SOUL",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058/logo.png"
+    },
+    {
+      "address": "0x388ABBB063608924d8033F1B1266B64C93F1a3a3",
+      "chainId": 333888,
+      "name": "Dai Stablecoin",
+      "symbol": "DAI",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/Aether-eum/assets/master/blockchains/sparta/assets/0x388ABBB063608924d8033F1B1266B64C93F1a3a3/logo.png"
+    }
+  ]
+}
