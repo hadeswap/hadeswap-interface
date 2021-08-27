@@ -10395,9 +10395,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
@@ -10479,10 +10479,10 @@ hadeswap-beta-data@1.1.1:
     subscriptions-transport-ws "0.9.16"
     ws "7.2.0"
 
-hadeswap-beta-sdk@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/hadeswap-beta-sdk/-/hadeswap-beta-sdk-1.2.1.tgz#b72d51d0d8cff1985c354e25f31b9812a630f5d6"
-  integrity sha512-CqGwuJ6bBDmoudFwCr+TpvT38lvKqDFGMVYmCjignbK+4B3AIUs+NRfgIQ432mBVntqeOoYwYXhCk+hQfvPWSQ==
+hadeswap-beta-sdk@1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/hadeswap-beta-sdk/-/hadeswap-beta-sdk-1.2.3.tgz#0694ddd15ef104709d178250e9dead0e96ff8d19"
+  integrity sha512-5O5ufiI31sUd2AZ8a2nBb3k+76DjG6f7WYOm0ey77WToohv9I0P73JuR3nN3BB7ef+OTOl4esZvxGDTnTA6taA==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"

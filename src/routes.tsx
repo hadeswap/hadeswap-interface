@@ -71,13 +71,13 @@ function Routes(): JSX.Element {
             {/*    <Route exact strict path="/migrate" component={Migrate} />*/}
             {/*)}*/}
 
-            {/*/!* SoulBar Staking *!/*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar" component={SoulBar} />}*/}
-            {/*{chainId === ChainId.MAINNET && (*/}
-            {/*    <Route exact strict path="/sushibar/transactions" component={SoulBarTransactions} />*/}
-            {/*)}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar/tips" component={SoulBarTips} />}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SoulBar} />}*/}
+            {/* /!* SoulBar Staking *!/
+            {chainId === ChainId.MAINNET && <Route exact strict path="/soulbar" component={SoulBar} />}
+            {chainId === ChainId.MAINNET && (
+                <Route exact strict path="/soulbar/transactions" component={SoulBarTransactions} />
+            )}
+            {chainId === ChainId.MAINNET && <Route exact strict path="/soulbar/tips" component={SoulBarTips} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SoulBar} />} */}
             {/* Tools */}
             {chainId === ChainId.MAINNET && <Route exact strict path="/tools" component={Tools} />}
             {/*{chainId === ChainId.MAINNET && <Route exact strict path="/saave" component={Saave} />}*/}

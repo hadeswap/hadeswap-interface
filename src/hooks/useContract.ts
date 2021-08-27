@@ -3,10 +3,13 @@ import {
     ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS
 } from '../constants/abis/argent-wallet-detector'
 import {
+    BAR_ADDRESS,
     ChainId,
     FACTORY_ADDRESS,
+    MAKER_ADDRESS,
     MASTERCHEF_ADDRESS,
     ROUTER_ADDRESS,
+    SOUL_ADDRESS,
     TIMELOCK_ADDRESS,
     WETH
 } from 'hadeswap-beta-sdk'
@@ -26,6 +29,7 @@ import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 // import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'
 
 // import BASE_SWAPPER_ABI from '../constants/abis/swapper.json'
+import BAR_ABI from '../constants/abis/bar.json'
 import BENTOBOX_ABI from '../constants/abis/bentobox.json'
 import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
 import CHAINLINK_ORACLE_ABI from '../constants/abis/chainlink-oracle.json'
@@ -125,6 +129,11 @@ export function useMulticallContract(): Contract | null {
     return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
 }
 
+export function useSushiContract(withSignerIfPossible = true): Contract | null {
+    const { chainId } = useActiveWeb3React()
+    return useContract(chainId && SOUL_ADDRESS[chainId], SUSHI_ABI, withSignerIfPossible)
+}
+
 
 export function useMasterChefContract(withSignerIfPossible?: boolean): Contract | null {
     const { chainId } = useActiveWeb3React()
@@ -152,6 +161,17 @@ export function useFactoryContract(): Contract | null {
 export function useRouterContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && ROUTER_ADDRESS[chainId], ROUTER_ABI, false)
+}
+
+export function useSushiBarContract(withSignerIfPossible?: boolean): Contract | null {
+    const { chainId } = useActiveWeb3React()
+    return useContract(chainId && BAR_ADDRESS[chainId], BAR_ABI, withSignerIfPossible)
+}
+
+
+export function useMakerContract(): Contract | null {
+    const { chainId } = useActiveWeb3React()
+    return useContract(chainId && MAKER_ADDRESS[chainId], MAKER_ABI, false)
 }
 
 export function useTimelockContract(): Contract | null {
