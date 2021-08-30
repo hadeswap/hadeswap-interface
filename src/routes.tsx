@@ -22,9 +22,9 @@ import PoolFinder from './pages/PoolFinder'
 import RemoveLiquidity from './pages/RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './pages/RemoveLiquidity/redirects'
 // import Saave from './pages/Saave'
-// import SoulBar from './pages/SoulBar'
-// import SoulBarTransactions from './pages/SoulBar/SoulBarTransactions'
-// import SoulBarTips from './pages/SoulBar/Tips'
+import SoulBar from './pages/SoulBar'
+import SoulBarTransactions from './pages/SoulBar/SoulBarTransactions'
+import SoulBarTips from './pages/SoulBar/Tips'
 import Trade from './pages/Trade'
 import Swap from './pages/Swap'
 import {
@@ -71,8 +71,12 @@ function Routes(): JSX.Element {
             {/*    <Route exact strict path="/migrate" component={Migrate} />*/}
             {/*)}*/}
 
-            {/* /!* SoulBar Staking *!/
-            {chainId === ChainId.MAINNET && <Route exact strict path="/soulbar" component={SoulBar} />}
+            {/* SoulBar Staking */}
+            <Route exact strict path="/soulbar" component={SoulBar} />
+            <Route exact strict path="/soulbar/transactions" component={SoulBarTransactions} />
+            <Route exact strict path="/soulbar/tips" component={SoulBarTips} />
+            <Route exact strict path="/stake" component={SoulBar} />
+            {/* {chainId === ChainId.MAINNET && <Route exact strict path="/soulbar" component={SoulBar} />}
             {chainId === ChainId.MAINNET && (
                 <Route exact strict path="/soulbar/transactions" component={SoulBarTransactions} />
             )}
