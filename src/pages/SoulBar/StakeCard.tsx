@@ -139,10 +139,10 @@ export default function StakeCard({ soulBalance, xSoulBalance }: StakeCardProps)
 
     const [approvalState, approve] = useApproveCallback(
         new TokenAmount(
-            new Token(1, '0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058', 18, 'SOUL', ''),
+            new Token(333888, '0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058', 18, 'SOUL', 'SoulToken'),
             parsedInput.value.toString()
         ),
-        BAR_ADDRESS[1]
+        BAR_ADDRESS[333888]
     )
 
     console.log('approvalState:', approvalState, parsedInput.value.toString())

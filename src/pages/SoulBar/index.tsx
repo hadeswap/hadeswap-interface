@@ -18,7 +18,7 @@ const mockData = {
 export default function XSoul() {
     const { account, chainId } = useActiveWeb3React()
 
-    const soulBalance = useTokenBalance(SOUL[ChainId.MAINNET]?.address ?? '')
+    const soulBalance = useTokenBalance(SOUL[ChainId.SPARTA]?.address ?? '')
     const xSoulBalance = useTokenBalance(XSOUL?.address ?? '')
 
     return (
@@ -35,9 +35,9 @@ export default function XSoul() {
                 </div>
                 <div className="flex justify-center">
                     <div className="flex flex-col max-w-xl w-full">
-                        <div className="mb-4">
+                        {/* <div className="mb-4">
                             <APRCard />
-                        </div>
+                        </div> */}
                         <div>
                             <StakeCard soulBalance={soulBalance} xSoulBalance={xSoulBalance} />
                         </div>

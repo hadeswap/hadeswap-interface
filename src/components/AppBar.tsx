@@ -70,11 +70,11 @@ function AppBar(): JSX.Element {
                                                     {i18n._(t`Yield`)}
                                                 </NavLink>
                                             )}
-                                            {/*{chainId === ChainId.MAINNET && (*/}
-                                            {/*    <NavLink id={`sushibar-nav-link`} to={'/sushibar'}>*/}
-                                            {/*        {i18n._(t`SoulBar`)}*/}
-                                            {/*    </NavLink>*/}
-                                            {/*)}*/}
+                                            {chainId === ChainId.SPARTA && (
+                                               <NavLink id={`soulbar-nav-link`} to={'/soulbar'}>
+                                                   {i18n._(t`SoulBar`)}
+                                               </NavLink>
+                                            )}
                                         </div>
                                     </div>
                                 </div>

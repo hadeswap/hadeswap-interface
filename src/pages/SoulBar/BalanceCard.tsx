@@ -69,7 +69,7 @@ export default function BalanceCard({
                             <p className="text-caption text-primary ml-5 md:ml-0">{`${weightedApr}%`}</p>
                         </div>
                     </div> */}
-                    {account && (
+                    {/* {account && (
                         <a
                             href={`https://analytics.soul.com/users/${account}`}
                             target="_blank"
@@ -84,7 +84,7 @@ export default function BalanceCard({
                         >
                             {i18n._(t`Your SoulBar Stats`)}
                         </a>
-                    )}
+                    )} */}
                 </div>
             </div>
         </div>
