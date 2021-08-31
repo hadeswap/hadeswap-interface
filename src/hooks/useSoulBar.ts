@@ -2,24 +2,24 @@ import { ethers } from 'ethers'
 import { useCallback, useEffect, useState } from 'react'
 import Fraction from '../entities/Fraction'
 import { useActiveWeb3React } from './useActiveWeb3React'
-import { useSushiBarContract, useSushiContract } from '../hooks/useContract'
+import { useSoulBarContract, useSoulContract } from './useContract'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import { BalanceProps } from './useTokenBalance'
 
 const { BigNumber } = ethers
 
-const useSushiBar = () => {
+const useSoulBar = () => {
     const { account } = useActiveWeb3React()
     const addTransaction = useTransactionAdder()
-    const sushiContract = useSushiContract(true) // withSigner
-    const barContract = useSushiBarContract(true) // withSigner
+    const soulContract = useSoulContract(true) // withSigner
+    const barContract = useSoulBarContract(true) // withSigner
 
     const [allowance, setAllowance] = useState('0')
 
     const fetchAllowance = useCallback(async () => {
         if (account) {
             try {
-                const allowance = await sushiContract?.allowance(account, barContract?.address)
+                const allowance = await soulContract?.allowance(account, barContract?.address)
                 const formatted = Fraction.from(BigNumber.from(allowance), BigNumber.from(10).pow(18)).toString()
                 setAllowance(formatted)
             } catch (error) {
@@ -27,24 +27,24 @@ const useSushiBar = () => {
                 throw error
             }
         }
-    }, [account, barContract, sushiContract])
+    }, [account, barContract, soulContract])
 
     useEffect(() => {
-        if (account && barContract && sushiContract) {
+        if (account && barContract && soulContract) {
             fetchAllowance()
         }
         const refreshInterval = setInterval(fetchAllowance, 10000)
         return () => clearInterval(refreshInterval)
-    }, [account, barContract, fetchAllowance, sushiContract])
+    }, [account, barContract, fetchAllowance, soulContract])
 
     const approve = useCallback(async () => {
         try {
-            const tx = await sushiContract?.approve(barContract?.address, ethers.constants.MaxUint256.toString())
+            const tx = await soulContract?.approve(barContract?.address, ethers.constants.MaxUint256.toString())
             return addTransaction(tx, { summary: 'Approve' })
         } catch (e) {
             return e
         }
-    }, [addTransaction, barContract, sushiContract])
+    }, [addTransaction, barContract, soulContract])
 
     const enter = useCallback(
         // todo: this should be updated with BigNumber as opposed to string
@@ -52,7 +52,7 @@ const useSushiBar = () => {
             if (amount?.value) {
                 try {
                     const tx = await barContract?.enter(amount?.value)
-                    return addTransaction(tx, { summary: 'Enter SushiBar' })
+                    return addTransaction(tx, { summary: 'Enter SoulBar' })
                 } catch (e) {
                     return e
                 }
@@ -68,7 +68,7 @@ const useSushiBar = () => {
                 try {
                     const tx = await barContract?.leave(amount?.value)
                     //const tx = await barContract?.leave(ethers.utils.parseUnits(amount)) // where amount is string
-                    return addTransaction(tx, { summary: 'Leave SushiBar' })
+                    return addTransaction(tx, { summary: 'Leave SoulBar' })
                 } catch (e) {
                     return e
                 }
@@ -80,4 +80,4 @@ const useSushiBar = () => {
     return { allowance, approve, enter, leave }
 }
 
-export default useSushiBar
+export default useSoulBar

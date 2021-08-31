@@ -39,7 +39,7 @@ export default function XSoul() {
                             <APRCard />
                         </div>
                         <div>
-                            <StakeCard sushiBalance={soulBalance} xSushiBalance={xSoulBalance} />
+                            <StakeCard soulBalance={soulBalance} xSoulBalance={xSoulBalance} />
                         </div>
                     </div>
                     <div className="hidden md:block w-72 ml-6">

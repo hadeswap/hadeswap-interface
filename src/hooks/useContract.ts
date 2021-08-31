@@ -129,7 +129,7 @@ export function useMulticallContract(): Contract | null {
     return useContract(chainId && MULTICALL_NETWORKS[chainId], MULTICALL_ABI, false)
 }
 
-export function useSushiContract(withSignerIfPossible = true): Contract | null {
+export function useSoulContract(withSignerIfPossible = true): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && SOUL_ADDRESS[chainId], SUSHI_ABI, withSignerIfPossible)
 }
@@ -163,7 +163,7 @@ export function useRouterContract(): Contract | null {
     return useContract(chainId && ROUTER_ADDRESS[chainId], ROUTER_ABI, false)
 }
 
-export function useSushiBarContract(withSignerIfPossible?: boolean): Contract | null {
+export function useSoulBarContract(withSignerIfPossible?: boolean): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && BAR_ADDRESS[chainId], BAR_ABI, withSignerIfPossible)
 }

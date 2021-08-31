@@ -8,7 +8,7 @@ import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { BalanceProps } from '../../hooks/useTokenBalance'
 import { formatFromBalance, formatToBalance } from '../../utils'
-import useSushiBar from '../../hooks/useSushiBar'
+import useSoulBar from '../../hooks/useSoulBar'
 import TransactionFailedModal from './TransactionFailedModal'
 import { Button, Dots } from '../../components'
 import { t } from '@lingui/macro'
@@ -49,15 +49,15 @@ const buttonStyleDisabled = `${buttonStyle} text-secondary bg-dark-700`
 const buttonStyleConnectWallet = `${buttonStyle} text-high-emphesis bg-cyan-blue hover:bg-opacity-90`
 
 interface StakeCardProps {
-    sushiBalance: BalanceProps
-    xSushiBalance: BalanceProps
+    soulBalance: BalanceProps
+    xSoulBalance: BalanceProps
 }
 
-export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProps) {
+export default function StakeCard({ soulBalance, xSoulBalance }: StakeCardProps) {
     const { i18n } = useLingui()
     const { account } = useActiveWeb3React()
 
-    const { allowance, enter, leave } = useSushiBar()
+    const { allowance, enter, leave } = useSoulBar()
 
     const [exchangeRate, setExchangeRate] = useState<any>()
     useEffect(() => {
@@ -68,7 +68,7 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
         fetchData()
     }, [])
 
-    const xSushiPerSushi = parseFloat(exchangeRate)
+    const xSoulPerSoul = parseFloat(exchangeRate)
 
     const walletConnected = !!account
     const toggleWalletModal = useWalletModalToggle()
@@ -76,7 +76,7 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
     const [activeTab, setActiveTab] = useState(0)
     const [modalOpen, setModalOpen] = useState(false)
 
-    const balance: BalanceProps = activeTab === 0 ? sushiBalance : xSushiBalance
+    const balance: BalanceProps = activeTab === 0 ? soulBalance : xSoulBalance
     const formattedBalance = formatFromBalance(balance.value)
 
     const [input, setInput] = useState<string>('')
@@ -93,7 +93,7 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
         setUsingBalance(true)
     }
 
-    const insufficientFunds = (activeTab === 0 ? sushiBalance : xSushiBalance).value.lt(parsedInput.value)
+    const insufficientFunds = (activeTab === 0 ? soulBalance : xSoulBalance).value.lt(parsedInput.value)
     const inputError = insufficientFunds
 
     const [pendingTx, setPendingTx] = useState(false)
@@ -139,7 +139,7 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
 
     const [approvalState, approve] = useApproveCallback(
         new TokenAmount(
-            new Token(1, '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2', 18, 'SUSHI', ''),
+            new Token(1, '0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058', 18, 'SOUL', ''),
             parsedInput.value.toString()
         ),
         BAR_ADDRESS[1]
@@ -160,7 +160,7 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
                         }}
                     >
                         <div className={activeTab === 0 ? activeTabStyle : inactiveTabStyle}>
-                            <p>{i18n._(t`Stake SUSHI`)}</p>
+                            <p>{i18n._(t`Stake SOUL`)}</p>
                         </div>
                     </div>
                     <div
@@ -178,10 +178,10 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
 
                 <div className="flex justify-between items-center w-full mt-6">
                     <p className="text-large md:text-h5 font-bold text-high-emphesis">
-                        {activeTab === 0 ? i18n._(t`Stake SUSHI`) : i18n._(t`Unstake`)}
+                        {activeTab === 0 ? i18n._(t`Stake SOUL`) : i18n._(t`Unstake`)}
                     </p>
                     <div className="border-gradient-r-pink-red-light-brown-dark-pink-red border-transparent border-solid border rounded-3xl px-4 md:px-3.5 py-1.5 md:py-0.5 text-high-emphesis text-xs font-medium md:text-caption md:font-normal">
-                        {`1 xSUSHI = ${xSushiPerSushi.toFixed(4)} SUSHI`}
+                        {`1 xSOUL = ${xSoulPerSoul.toFixed(4)} SOUL`}
                     </div>
                 </div>
 
@@ -207,7 +207,7 @@ export default function StakeCard({ sushiBalance, xSushiBalance }: StakeCardProp
                                     input ? 'text-high-emphesis' : 'text-secondary'
                                 }`}
                             >
-                                {`${input ? input : '0'} ${activeTab === 0 ? '' : 'x'}SUSHI`}
+                                {`${input ? input : '0'} ${activeTab === 0 ? '' : 'x'}SOUL`}
                             </p>
                         </div>
                         <div className="flex items-center text-secondary text-caption2 md:text-caption">
