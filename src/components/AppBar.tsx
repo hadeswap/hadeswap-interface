@@ -186,7 +186,6 @@ function AppBar(): JSX.Element {
                                             <Web3Status />
                                         </div>
                                         <LanguageSwitch />
-                                        <MoreMenu />
                                     </div>
                                 </div>
                                 <div className="-mr-2 flex sm:hidden">

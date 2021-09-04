@@ -19,7 +19,6 @@ import { shortenAddress } from '../../utils'
 import { ButtonSecondary } from '../ButtonLegacy'
 import Loader from '../Loader'
 import WalletModal from '../WalletModal'
-import { ReactComponent as Chef } from '../../assets/images/chef.svg'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
@@ -131,10 +130,7 @@ const SOCK = (
 
 // eslint-disable-next-line react/prop-types
 function StatusIcon({ connector }: { connector: AbstractConnector }) {
-    if (connector === injected) {
-        return <Chef width={20} height={20} />
-        // return <Identicon />
-    } else if (connector === walletconnect) {
+    if (connector === walletconnect) {
         return (
             <IconWrapper size={16}>
                 <img src={WalletConnectIcon} alt={'Wallet Connect'} />
