@@ -1,5 +1,5 @@
 import { exchange, masterchef } from 'apollo/client'
-import { liquidityPositionSubsetQuery, pairSubsetQuery, poolsQuery } from 'apollo/queries'
+import { liquidityPositionSubsetQuery, pairSubsetQuery, poolsQuery, tokenQuery, tokenSubsetQuery } from 'apollo/queries'
 import { useCallback, useEffect, useState } from 'react'
 
 import { BigNumber } from '@ethersproject/bignumber'
@@ -41,6 +41,7 @@ const useFarms = () => {
             }),
             getAverageBlockTime(), // results[2]
             sushiData.sushi.priceUSD(), // results[3]
+            sushiData.exchange.ethPrice() // results[4]
         ])
 
         const pools = results[0]?.data.pools
@@ -49,6 +50,7 @@ const useFarms = () => {
                 return pool.pair
             })
             .sort()
+
         const pairsQuery = await exchange.query({
             query: pairSubsetQuery,
             variables: { pairAddresses }
@@ -57,11 +59,9 @@ const useFarms = () => {
         const liquidityPositions = results[1]?.data.liquidityPositions
         const averageBlockTime = results[2]
         const sushiPrice = results[3]
-
+        const ethPrice = results[4]
 
         const pairs = pairsQuery?.data.pairs
-
-        const mapi : Map<string, any> = new Map<string, any>()
 
         const tokens = pools
             .filter((pool: any) => {
@@ -71,11 +71,33 @@ const useFarms = () => {
                 )
             })
 
+        const tokenPositions : Map<string, any> = new Map<string, any>()
 
-        for (const token of tokens) {
-            const tokenData = await boringHelperContract?.getTokenInfo([token.pair])
-            mapi.set(token.pair, tokenData)
-        }
+        const tokenAddresses = tokens
+            .map((token: any) => {
+                // save balances
+                tokenPositions.set(token.pair, token.balance)
+                return token.pair
+            })
+            .sort()
+
+        const tokensQuery = await exchange.query({
+            query: tokenSubsetQuery,
+            variables: { tokenAddresses }
+        })
+
+        // const tokenData = await boringHelperContract?.getBalances("0xb4be34c7430ff011b653166570e211c15a03e4fa", tokenAddresses)
+        // for (const token of tokenData) {
+        //     tokenPositions.set(token.token.toLowerCase(), Number(token.balance.toFixed()))
+        // }
+        // const tokenP = tokenData
+        //     .map((token: any) => {
+        //         console.log(token.balance.toFixed())
+        //         tokenPositions.set(token.pair, tokenData)
+        //     })
+        //     .sort()
+
+        const tokenExchangeData =  tokensQuery?.data.tokens
 
         const farms = pools
             // .filter((pool: any) => {
@@ -90,24 +112,26 @@ const useFarms = () => {
                     let liquidityPosition;
                     if(pair === undefined) {
                         // CASE: token
-                        const tokenData = mapi.get(pool.pair)
-                        // console.log(Fraction.from(
-                        //     tokenData[0][4],
-                        //     BigNumber.from(10).pow(tokenData[0][4])
-                        // ).toString())
+                        const tokenData = tokenPositions.get(pool.pair)
+                        liquidityPosition = {
+                            liquidityTokenBalance: Number(tokenData / 1e18) > 0 ? Number(tokenData / 1e18) : 0.1
+                        }
+                        const token = tokenExchangeData.find((token: any) => token.id === pool.pair)
+
                         pair = {
-                            totalSupply: tokenData[0][4].toFixed(),
-                            reserveUSD: 0,
+                            totalSupply: token.totalSupply,
+                            reserveUSD: token.volumeUSD,
                             token0: {
-                                name: tokenData[0][2],
-                                symbol: tokenData[0][3],
+                                name: token.name,
+                                symbol: token.symbol,
                                 id: pool.pair
                             },
                             token1: {
                                 name: "",
                                 symbol: ""
                             },
-                            id:pool.pair
+                            id:pool.pair,
+                            derivedETH: token.derivedETH
                         }
                         isPair = false;
                     } else {
@@ -128,6 +152,20 @@ const useFarms = () => {
                     const roiPerMonth = roiPerDay * 30
                     const roiPerYear = roiPerMonth * 12
 
+                    let tvl;
+                    if(isPair) {
+                        tvl = liquidityPosition?.liquidityTokenBalance
+                            ? (pair.reserveUSD / pair.totalSupply) * liquidityPosition.liquidityTokenBalance
+                            : 0.1
+                    }
+
+                   // SUSHIDATA ETHPRICE TIMES DERIVEDETH !!!!!!!!!!!!!!!!
+                    else {
+                        tvl = pair.derivedETH && liquidityPosition?.liquidityTokenBalance
+                            ? pair.derivedETH * ethPrice * liquidityPosition.liquidityTokenBalance
+                            : 0.1
+                    }
+
                     return {
                         ...pool,
                         type: 'HLP',
@@ -143,9 +181,7 @@ const useFarms = () => {
                         roiPerMonth,
                         roiPerYear,
                         rewardPerThousand: 1 * roiPerDay * (1000 / sushiPrice),
-                        tvl: liquidityPosition?.liquidityTokenBalance
-                            ? (pair.reserveUSD / pair.totalSupply) * liquidityPosition.liquidityTokenBalance
-                            : 0.1,
+                        tvl: tvl,
                         isPair: isPair
                     }
 
@@ -169,7 +205,7 @@ const useFarms = () => {
                     const pid = farm.pid.toNumber()
                     const farmDetails = sorted.find((pair: any) => pair.pid === pid)
 
-                    console.log('farmDetails:', farmDetails)
+                    // console.log('farmDetails:', farmDetails)
                     let deposited
                     let depositedUSD
                     if (farmDetails && farmDetails.type === 'KMP') {

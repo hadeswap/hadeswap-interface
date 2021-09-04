@@ -29,6 +29,19 @@ export const tokenQuery = gql`
     ${tokenFieldsQuery}
 `
 
+export const tokenSubsetQuery = gql`
+    query tokenSubsetQuery(
+        $first: Int! = 1000
+        $tokenAddresses: [Bytes]!
+        $orderBy: String! = "volumeUSD"
+        $orderDirection: String! = "desc") {
+        tokens(first: $first, orderBy: $orderBy, orderDirection: $orderDirection, where: { id_in: $tokenAddresses }) {
+            ...tokenFields
+        }
+    }
+    ${tokenFieldsQuery}
+`
+
 export const poolsQuery = gql`
     query poolsQuery(
         $first: Int! = 1000
