@@ -86,17 +86,6 @@ const useFarms = () => {
             variables: { tokenAddresses }
         })
 
-        // const tokenData = await boringHelperContract?.getBalances("0xb4be34c7430ff011b653166570e211c15a03e4fa", tokenAddresses)
-        // for (const token of tokenData) {
-        //     tokenPositions.set(token.token.toLowerCase(), Number(token.balance.toFixed()))
-        // }
-        // const tokenP = tokenData
-        //     .map((token: any) => {
-        //         console.log(token.balance.toFixed())
-        //         tokenPositions.set(token.pair, tokenData)
-        //     })
-        //     .sort()
-
         const tokenExchangeData =  tokensQuery?.data.tokens
 
         const farms = pools
@@ -159,7 +148,6 @@ const useFarms = () => {
                             : 0.1
                     }
 
-                   // SUSHIDATA ETHPRICE TIMES DERIVEDETH !!!!!!!!!!!!!!!!
                     else {
                         tvl = pair.derivedETH && liquidityPosition?.liquidityTokenBalance
                             ? pair.derivedETH * ethPrice * liquidityPosition.liquidityTokenBalance
