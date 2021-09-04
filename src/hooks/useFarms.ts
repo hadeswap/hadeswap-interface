@@ -1,17 +1,14 @@
 import { exchange, masterchef } from 'apollo/client'
-import { liquidityPositionSubsetQuery, pairSubsetQuery, poolsQuery, tokenQuery, tokenSubsetQuery } from 'apollo/queries'
+import { liquidityPositionSubsetQuery, pairSubsetQuery, poolsQuery, tokenSubsetQuery } from 'apollo/queries'
 import { useCallback, useEffect, useState } from 'react'
 
 import { BigNumber } from '@ethersproject/bignumber'
 import Fraction from '../entities/Fraction'
-import { POOL_DENY } from '../constants'
 import { getAverageBlockTime } from 'apollo/getAverageBlockTime'
 import orderBy from 'lodash/orderBy'
-import range from 'lodash/range'
 import sushiData from 'hadeswap-beta-data'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
-import { useBoringHelperContract } from 'hooks/useContract'
-import { token } from 'hadeswap-beta-data/typings/exchange'
+import { useBoringHelperContract } from './useContract'
 
 // Todo: Rewrite in terms of web3 as opposed to subgraph
 const useFarms = () => {

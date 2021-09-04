@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import PlaceHolder from 'assets/images/placeholder.png'
-import KashiLogo from 'assets/kashi/kashi-neon.png'
 import { getAddress } from '@ethersproject/address'
 import styled from 'styled-components'
-//import EthereumLogo from "../../assets/img/eth.png";
 import { ChainId } from 'hadeswap-beta-sdk'
 import { useActiveWeb3React } from '../../../hooks/useActiveWeb3React'
-import { useCombinedActiveList } from '../../../state/lists/hooks'
-
 
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
@@ -67,13 +63,6 @@ export default function TokenLogo({ address, header = false, size, ...rest }: an
         )
     }
 
-    if (address === 'kashiLogo') {
-        return (
-            <Inline>
-                <Image {...rest} alt={''} src={KashiLogo} size={size} />
-            </Inline>
-        )
-    }
     // hard coded fixes for trust wallet api issues
     if (address?.toLowerCase() === '0x5e74c9036fb86bd7ecdcb084a0673efc32ea31cb') {
         address = '0x42456d7084eacf4083f1140d3229471bba2949a8'

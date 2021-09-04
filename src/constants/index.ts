@@ -3,7 +3,10 @@ import { fortmatic, injected, lattice, portis, torus, walletconnect, walletlink 
 
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
-export const POOL_DENY = []
+export const BORING_HELPER_ADDRESS = {
+    [ChainId.MAINNET]: '0x11Ca5375AdAfd6205E41131A4409f182677996E6',
+    [ChainId.SPARTA]: '0x0A8aAC4F84277775bAA9fE6be58fE402B97b847a'
+}
 
 // a list of tokens by chain
 type ChainTokenList = {

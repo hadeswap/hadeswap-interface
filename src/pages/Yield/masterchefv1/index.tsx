@@ -7,7 +7,6 @@ import { RowBetween } from '../../../components/Row'
 import { formattedNum, formattedPercent } from '../../../utils'
 import { Card, CardHeader, DoubleLogo, Paper, Search } from '../components'
 import InputGroup from './InputGroup'
-import { SimpleDots as Dots } from 'kashi/components'
 import { Helmet } from 'react-helmet'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -119,7 +118,7 @@ export default function Yield(): JSX.Element {
                                     <div className="w-full text-center py-6">{i18n._(t`No Results`)}</div>
                                 ) : (
                                     <div className="w-full text-center py-6">
-                                        <Dots>{i18n._(t`Fetching Instruments`)}</Dots>
+                                        {i18n._(t`Fetching Instruments`)}
                                     </div>
                                 )}
                             </>

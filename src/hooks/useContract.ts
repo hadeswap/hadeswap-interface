@@ -10,54 +10,26 @@ import {
     TIMELOCK_ADDRESS,
     WETH
 } from 'hadeswap-beta-sdk'
-import {
-    BENTOBOX_ADDRESS,
-    BORING_HELPER_ADDRESS,
-    CHAINLINK_ORACLE_ADDRESS,
-    KASHI_ADDRESS,
-    SUSHISWAP_MULTISWAPPER_ADDRESS,
-    SUSHISWAP_SWAPPER_ADDRESS,
-    SUSHISWAP_TWAP_0_ORACLE_ADDRESS,
-    SUSHISWAP_TWAP_1_ORACLE_ADDRESS
-} from 'kashi'
-import { MERKLE_DISTRIBUTOR_ADDRESS, SOUL } from '../constants'
-import { MIGRATOR_ABI, MIGRATOR_ADDRESS } from '../constants/abis/migrator'
-import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
-// import { V1_EXCHANGE_ABI, V1_FACTORY_ABI, V1_FACTORY_ADDRESSES } from '../constants/v1'
 
-// import BASE_SWAPPER_ABI from '../constants/abis/swapper.json'
-import BENTOBOX_ABI from '../constants/abis/bentobox.json'
-import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
-import CHAINLINK_ORACLE_ABI from '../constants/abis/chainlink-oracle.json'
+import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
+
 import { Contract } from '@ethersproject/contracts'
-import DASHBOARD2_ABI from '../constants/abis/dashboard2.json'
-import DASHBOARD_ABI from '../constants/abis/dashboard.json'
+import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
 import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import ERC20_ABI from '../constants/abis/erc20.json'
 import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
 import FACTORY_ABI from '../constants/abis/factory.json'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
-import KASHIPAIR_ABI from '../constants/abis/kashipair.json'
-import MAKER_ABI from '../constants/abis/maker.json'
 import MASTERCHEF_ABI from '../constants/abis/masterchef.json'
-import { abi as MERKLE_DISTRIBUTOR_ABI } from '@uniswap/merkle-distributor/build/MerkleDistributor.json'
 import MINICHEFV2_ABI from '../constants/abis/miniChefV2.json'
-import PENDING_ABI from '../constants/abis/pending.json'
 import ROUTER_ABI from '../constants/abis/router.json'
-import SAAVE_ABI from '../constants/abis/saave.json'
-import { abi as STAKING_REWARDS_ABI } from '@uniswap/liquidity-staker/build/StakingRewards.json'
-import SUSHISWAP_MULTISWAPPER_ABI from '../constants/abis/sushiswapmultiswapper.json'
-import SUSHISWAP_TWAP_ORACLE_ABI from '../constants/abis/sushiswap-slp-oracle.json'
-import SUSHI_ABI from '../constants/abis/sushi.json'
 import TIMELOCK_ABI from '../constants/abis/timelock.json'
-import { abi as UNI_ABI } from '@uniswap/governance/build/Uni.json'
-import { abi as UNI_FACTORY_ABI } from '@uniswap/v2-core/build/UniswapV2Factory.json'
-import { FACTORY_ADDRESS as UNI_FACTORY_ADDRESS } from '@uniswap/sdk'
 import WETH_ABI from '../constants/abis/weth.json'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './useActiveWeb3React'
 import { useMemo } from 'react'
+import { BORING_HELPER_ADDRESS } from '../constants'
 
 // returns null on errors
 export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -99,8 +71,6 @@ export function useENSRegistrarContract(withSignerIfPossible?: boolean): Contrac
     if (chainId) {
         switch (chainId) {
             case ChainId.MAINNET:
-            // case ChainId.GÖRLI:
-            // case ChainId.ROPSTEN:
                 break;
         }
     }
@@ -159,20 +129,7 @@ export function useTimelockContract(): Contract | null {
     return useContract(chainId && TIMELOCK_ADDRESS[chainId], TIMELOCK_ABI, false)
 }
 
-export function useBentoBoxContract(withSignerIfPossible?: boolean): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    return useContract(chainId && BENTOBOX_ADDRESS[chainId], BENTOBOX_ABI, withSignerIfPossible)
-}
-
 export function useBoringHelperContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && BORING_HELPER_ADDRESS[chainId], BORING_HELPER_ABI, false)
-}
-
-export function useSoulSwapTWAP0Oracle(): Contract | null {
-    return useContract(SUSHISWAP_TWAP_0_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
-}
-
-export function useSoulSwapTWAP1Oracle(): Contract | null {
-    return useContract(SUSHISWAP_TWAP_1_ORACLE_ADDRESS, SUSHISWAP_TWAP_ORACLE_ABI)
 }
