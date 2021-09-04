@@ -37,11 +37,12 @@ const useFarms = () => {
                 // results[1]
                 query: liquidityPositionSubsetQuery,
                 // Plutus address
-                variables: { user: '0xb4BE34C7430FF011b653166570E211C15a03e4fA' }
+                variables: { user: '0xb4be34c7430ff011b653166570e211c15a03e4fa' }
             }),
             getAverageBlockTime(), // results[2]
             sushiData.sushi.priceUSD(), // results[3]
         ])
+
         const pools = results[0]?.data.pools
         const pairAddresses = pools
             .map((pool: any) => {
@@ -86,9 +87,7 @@ const useFarms = () => {
             .map((pool: any) => {
                     let isPair = true;
                     let pair = pairs.find((pair: any) => pair.id === pool.pair)
-                    const liquidityPosition = liquidityPositions.find(
-                        (liquidityPosition: any) => liquidityPosition.pair.id === pair.id
-                    )
+                    let liquidityPosition;
                     if(pair === undefined) {
                         // CASE: token
                         const tokenData = mapi.get(pool.pair)
@@ -111,6 +110,10 @@ const useFarms = () => {
                             id:pool.pair
                         }
                         isPair = false;
+                    } else {
+                        liquidityPosition = liquidityPositions.find(
+                            (liquidityPosition: any) => liquidityPosition.pair.id === pair.id
+                        )
                     }
                     const blocksPerHour = 3600 / Number(averageBlockTime)
                     const balance = Number(pool.balance / 1e18) > 0 ? Number(pool.balance / 1e18) : 0.1
@@ -132,7 +135,7 @@ const useFarms = () => {
                         name: pair.token0.name + ' ' + pair.token1.name,
                         pid: Number(pool.id),
                         pairAddress: pair.id,
-                        slpBalance: pool.balance,
+                        hlpBalance: pool.balance,
                         liquidityPair: pair,
                         roiPerBlock,
                         roiPerHour,
@@ -148,7 +151,6 @@ const useFarms = () => {
 
             })
 
-        console.log('farms:', farms)
         const sorted = orderBy(farms, ['pid'], ['desc'])
 
         const pids = sorted.map(pool => {
@@ -182,8 +184,8 @@ const useFarms = () => {
                     } else {
                         deposited = Fraction.from(farm.balance, BigNumber.from(10).pow(18)).toString(18)
                         depositedUSD =
-                            farmDetails.slpBalance && Number(farmDetails.slpBalance / 1e18) > 0
-                                ? (Number(deposited) * Number(farmDetails.tvl)) / (farmDetails.slpBalance / 1e18)
+                            farmDetails.hlpBalance && Number(farmDetails.hlpBalance / 1e18) > 0
+                                ? (Number(deposited) * Number(farmDetails.tvl)) / (farmDetails.hlpBalance / 1e18)
                                 : 0
                     }
                     const pending = Fraction.from(farm.pending, BigNumber.from(10).pow(18)).toString(18)

@@ -159,7 +159,7 @@ const TokenBalance = ({ farm }: any) => {
                             <div>
                                 <div className="text-right">{formattedNum(farm.tvl, true)} </div>
                                 <div className="text-secondary text-right">
-                                    {formattedNum(farm.slpBalance / 1e18, false)} {farm.isPair? "HLP" : farm.symbol}
+                                    {formattedNum(farm.hlpBalance / 1e18, false)} {farm.isPair? "HLP" : farm.symbol}
                                 </div>
                             </div>
                         </div>
