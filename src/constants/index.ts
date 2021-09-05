@@ -187,7 +187,7 @@ export const BLOCKED_ADDRESSES: string[] = [
 ]
 
 export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
-    [ChainId.MAINNET]: 'https://analytics.sushi.com',
+    [ChainId.SPARTA]: 'https://analytics.hadeswap.finance/',
 }
 
 
