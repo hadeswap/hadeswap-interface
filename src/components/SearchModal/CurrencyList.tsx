@@ -7,7 +7,6 @@ import { FixedSizeList } from 'react-window'
 import { Text } from 'rebass'
 import styled from 'styled-components'
 import { wrappedCurrency } from 'utils/wrappedCurrency'
-import TokenListLogo from '../../assets/svg/tokenlist.svg'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useAllInactiveTokens, useIsUserAddedToken } from '../../hooks/Tokens'
 import { useCombinedActiveList, WrappedTokenInfo } from '../../state/lists/hooks'
@@ -62,10 +61,6 @@ function Balance({ balance }: { balance: CurrencyAmount }) {
 const TagContainer = styled.div`
     display: flex;
     justify-content: flex-end;
-`
-
-const TokenListLogoWrapper = styled.img`
-    height: 20px;
 `
 
 function TokenTags({ currency }: { currency: Currency }) {
@@ -198,7 +193,6 @@ export default function CurrencyList({
                         <LightGreyCard padding="8px 12px" borderRadius="8px">
                             <RowBetween>
                                 <RowFixed>
-                                    <TokenListLogoWrapper src={TokenListLogo} />
                                     <TYPE.main ml="6px" fontSize="12px" color={theme.text1}>
                                         Expanded results from inactive Token Lists
                                     </TYPE.main>

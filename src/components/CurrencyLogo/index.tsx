@@ -1,28 +1,17 @@
 import { ChainId, Currency, ETHER, Token } from 'hadeswap-beta-sdk'
 import React, { useMemo } from 'react'
-
-import AvalancheLogo from '../../assets/images/avalanche-logo.png'
-import BinanceCoinLogo from '../../assets/images/binance-coin-logo.png'
-import EthereumLogo from '../../assets/images/ethereum-logo.png'
-import FantomLogo from '../../assets/images/fantom-logo.png'
-import HarmonyLogo from '../../assets/images/harmony-logo.png'
-import HecoLogo from '../../assets/images/heco-logo.png'
 import Logo from '../Logo'
-import MaticLogo from '../../assets/images/matic-logo.png'
-import MoonbeamLogo from '../../assets/images/moonbeam-logo.png'
-import OKExLogo from '../../assets/images/okex-logo.png'
+
 import { WrappedTokenInfo } from '../../state/lists/hooks'
-import { getMaticTokenLogoURL } from '../../constants/maticTokenMapping'
 import styled from 'styled-components'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import useHttpLocations from '../../hooks/useHttpLocations'
-import xDaiLogo from '../../assets/images/xdai-logo.png'
-import PolisLogo from '../../assets/networks/POLIS.svg'
+import polis from '../../assets/networks/polis.svg'
 
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
     if (chainId === ChainId.MAINNET) {
-        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${address}/logo.png`
+        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/olympus/assets/${address}/logo.png`
     }
     else {
         imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${address}/logo.png`
@@ -47,8 +36,8 @@ const StyledLogo = styled(Logo)<{ size: string }>`
 `
 
 const logo: { readonly [chainId in ChainId]?: string } = {
-    [ChainId.MAINNET]: EthereumLogo,
-    [ChainId.SPARTA]: PolisLogo
+    [ChainId.MAINNET]: polis,
+    [ChainId.SPARTA]: polis
 }
 
 export default function CurrencyLogo({

@@ -17,7 +17,7 @@ import Lottie from 'lottie-react'
 import { useUSDCPrice } from '../../hooks'
 import { formattedNum } from '../../utils'
 import { useLingui } from '@lingui/react'
-import selectCoinImage from '../../assets/svg/select-coinStatic.svg'
+import selectCoinImage from '../../assets/svg/select-coin.svg'
 
 const StyledNativeCurrencyLogo = styled.img<{ size: string }>`
     width: ${({ size }) => size};
