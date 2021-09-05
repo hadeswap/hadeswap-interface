@@ -6,20 +6,20 @@ const FILLED = {
     default: 'bg-dark-800 border-2  border-solid	border-gray-700 w-full rounded text-base text-high-emphesis px-4 py-3',
     blue: 'bg-blue w-full rounded text-base text-high-emphesis px-4 py-3',
     pink: 'bg-pink w-full rounded text-base text-high-emphesis px-4 py-3',
-    gradient: 'bg-gradient-to-r from-blue to-pink'
+    gradient: 'bg-gradient-to-r from-blue to-blue-dark'
 }
 
 const OUTLINED = {
     default: 'bg-dark-800 bg-opacity-20 outline-blue rounded text-xs text-blue px-2 py-1',
     blue: 'bg-blue bg-opacity-20 outline-blue rounded text-xs text-blue px-2 py-1',
     pink: 'bg-pink bg-opacity-20 outline-pink rounded text-xs text-pink px-2 py-1',
-    gradient: 'bg-gradient-to-r from-blue to-pink'
+    gradient: 'bg-gradient-to-r from-blue to-blue-dark'
 }
 
 const VARIANT = {
     outlined: OUTLINED,
     filled: FILLED
-    // gradient: 'bg-gradient-to-r from-blue to-pink'
+    // gradient: 'bg-gradient-to-r from-blue to-blue-dark'
 }
 
 export type ButtonColor = 'blue' | 'pink' | 'gradient' | 'default'

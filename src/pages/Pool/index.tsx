@@ -26,7 +26,7 @@ import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
 const DataCard = styled(AutoColumn)<{ disabled?: boolean }>`
-    background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ff007a 0%, #0094ec 100%);
+    background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ff007a 0%, #23AAE2 100%);
     border-radius: ${({ theme }) => theme.borderRadius};
     width: 100%;
     position: relative;
@@ -155,7 +155,7 @@ export default function Pool() {
             <Helmet>
                 <title>{i18n._(t`Pool`)} | Soul</title>
             </Helmet>
-            <div className="bg-dark-900 w-full max-w-2xl rounded shadow-liquidity-purple-glow">
+            <div className="bg-dark-900 w-full max-w-2xl rounded shadow-blue-glow">
                 <ExchangeHeader />
                 <div id="pool-page" className="p-4">
                     <SwapPoolTabs active={'pool'} />

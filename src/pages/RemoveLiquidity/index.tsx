@@ -527,7 +527,7 @@ export default function RemoveLiquidity({
                     {currencies[Field.CURRENCY_B]?.getSymbol(chainId)} POOL
                 </button> */}
             </div>
-            <div className="bg-dark-900 w-full max-w-2xl rounded  shadow-liquidity-purple-glow">
+            <div className="bg-dark-900 w-full max-w-2xl rounded  shadow-blue-glow">
                 <Header input={currencyA} output={currencyB} />
                 <Wrapper>
                     <TransactionConfirmationModal

@@ -46,18 +46,18 @@ const sheen = keyframes`{
 export const ButtonPrimary = styled(Base)`
   /* background-color: ${({ theme }) => theme.primary1}; */
   overflow:hidden;
-  background: linear-gradient(to right, #0094ec , #f537c3);
+  background: linear-gradient(to right, #23AAE2 , #254A9F);
   background-origin: border-box;
   color: white;
   &:focus {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.05, theme.primary1)};
     /*background: ${({ theme }) => darken(0.05, theme.primary1)};*/
-    background: linear-gradient(to right, #0094ec , #f537c3);
+    background: linear-gradient(to right, #23AAE2 , #254A9F);
   }
   &:active {
     box-shadow: 0 0 0 1pt ${({ theme }) => darken(0.1, theme.primary1)};
     /*background: ${({ theme }) => darken(0.1, theme.primary1)};*/
-    background: linear-gradient(to right, #0094ec , #f537c3);
+    background: linear-gradient(to right, #23AAE2 , #254A9F);
   }
   &:disabled {
     pointer-events: none;
@@ -73,7 +73,7 @@ export const ButtonPrimary = styled(Base)`
   }
   &:hover {
     /*background: ${({ theme }) => darken(0.05, theme.primary1)};*/
-    background: linear-gradient(to right, #0094ec , #f537c3);
+    background: linear-gradient(to right, #23AAE2 , #254A9F);
     background-origin: border-box;
     &::after {
       animation: ${sheen} 0.5s forwards;
@@ -219,7 +219,7 @@ export const ButtonUNIGradient = styled(ButtonPrimary)`
     height: 36px;
     font-weight: 500;
     background-color: ${({ theme }) => theme.bg3};
-    background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ff007a 0%, #0094ec 100%), #edeef2;
+    background: radial-gradient(174.47% 188.91% at 1.84% 0%, #ff007a 0%, #23AAE2 100%), #edeef2;
     width: fit-content;
     position: relative;
     cursor: pointer;

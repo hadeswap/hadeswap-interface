@@ -137,7 +137,7 @@ export default function Modal({
                                 maxHeight={maxHeight}
                                 mobile={isMobile}
                             >
-                                <div className="bg-gradient-to-r from-blue to-pink w-full rounded p-px">
+                                <div className="bg-gradient-to-r from-blue to-blue-dark w-full rounded p-px">
                                     <div
                                         className={`flex flex-col h-full w-full bg-dark-900 rounded p-6 overflow-y-auto`}
                                     >
