@@ -15,6 +15,7 @@ import { ANALYTICS_URL } from '../../constants'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
+// TODO: manually change this to the chain that currently has the analytics
 function TradeSummary({ trade, allowedSlippage }: { trade: Trade; allowedSlippage: number }) {
     const { i18n } = useLingui()
 
@@ -116,7 +117,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
 
                     {!showRoute &&
                         chainId &&
-                        [ChainId.MAINNET].includes(
+                        [ChainId.SPARTA].includes(
                             chainId
                         ) && (
                             <div className="flex justify-center pt-3 px-4">
@@ -124,7 +125,7 @@ export function AdvancedSwapDetails({ trade }: AdvancedSwapDetailsProps) {
                                     href={`${
                                         chainId && ANALYTICS_URL[chainId]
                                             ? ANALYTICS_URL[chainId]
-                                            : 'https://analytics.sushi.com'
+                                            : 'https://analytics.hadeswap.finance'
                                     }/pairs/${trade.route.pairs[0].liquidityToken.address}`}
                                 >
                                     {i18n._(t`View pair analytics`)}
