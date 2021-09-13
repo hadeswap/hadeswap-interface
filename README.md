@@ -11,7 +11,7 @@ An open source interface for Hadeswap -- a protocol for decentralized exchange o
 - Reddit: [/r/SoulSwap](https://www.reddit.com/r/SoulSwap)
 - Discord: [SoulSwap](https://discord.gg/Q7KeVTxC)
 
-## Accessing the SoulSwap Interface
+## Accessing the Hadeswap Interface
 
 To access the Hadeswap Interface, use an IPFS gateway link from the
 [latest release](https://github.com/sushiswap/sushiswap-interface/releases/latest),
