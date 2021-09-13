@@ -4,12 +4,6 @@
 
 An open source interface for Hadeswap -- a protocol for decentralized exchange of Ethereum tokens.
 
-- Website: [sushi.com](https://sushi.com/)
-- Interface: [app.sushi.com](https://app.sushi.com)
-- Docs: [sushiswap.gitbook.io](https://sushiswap.gitbook.io)
-- Twitter: [@SoulSwap](https://twitter.com/sushiswap)
-- Reddit: [/r/SoulSwap](https://www.reddit.com/r/SoulSwap)
-- Discord: [SoulSwap](https://discord.gg/Q7KeVTxC)
 
 ## Accessing the Hadeswap Interface
 
