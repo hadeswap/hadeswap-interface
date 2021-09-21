@@ -166,20 +166,20 @@ function AppBar(): JSX.Element {
                                         {/*            </QuestionHelper>*/}
                                         {/*        </>*/}
                                         {/*    )}*/}
-                                        {/*{chainId && chainId === ChainId.MATIC && (*/}
-                                        {/*    <div className="hidden sm:inline-block">*/}
-                                        {/*        <a*/}
-                                        {/*            className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"*/}
-                                        {/*            href="https://wallet.matic.network/bridge/"*/}
-                                        {/*            target="_blank"*/}
-                                        {/*            rel="noopener noreferrer"*/}
-                                        {/*        >*/}
-                                        {/*            <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">*/}
-                                        {/*                <div className="text-primary">{i18n._(t`Bridge Assets`)}</div>*/}
-                                        {/*            </div>*/}
-                                        {/*        </a>*/}
-                                        {/*    </div>*/}
-                                        {/*)}*/}
+                                        {chainId && chainId === ChainId.MAINNET && (
+                                            <div className="hidden sm:inline-block">
+                                                <a
+                                                    className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"
+                                                    href="https://bridge.polis.tech"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
+                                                        <div className="text-primary">{i18n._(t`Bridge Assets`)}</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        )}
                                         {library && library.provider.isMetaMask && (
                                             <div className="hidden sm:inline-block">
                                                 <Web3Network />

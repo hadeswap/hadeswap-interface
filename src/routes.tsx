@@ -79,7 +79,7 @@ function Routes(): JSX.Element {
             {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar/tips" component={SoulBarTips} />}*/}
             {/*{chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SoulBar} />}*/}
             {/* Tools */}
-            {chainId === ChainId.MAINNET && <Route exact strict path="/tools" component={Tools} />}
+            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/tools" component={Tools} />}*/}
             {/*{chainId === ChainId.MAINNET && <Route exact strict path="/saave" component={Saave} />}*/}
 
             {/* Pages */}

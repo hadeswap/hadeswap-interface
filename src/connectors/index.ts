@@ -11,14 +11,14 @@ import { Web3Provider } from '@ethersproject/providers'
 // import { BscConnector } from '@binance-chain/bsc-connector'
 
 const RPC = {
-    //[ChainId.MAINNET]: 'https://eth-mainnet.alchemyapi.io/v2/q1gSNoSMEzJms47Qn93f9-9Xg5clkmEC',
+    [ChainId.MAINNET]: 'https://rpc.polis.tech/',
     // [ChainId.ROPSTEN]: 'https://eth-ropsten.alchemyapi.io/v2/cidKix2Xr-snU3f6f6Zjq_rYdalKKHmW',
     // [ChainId.RINKEBY]: 'https://eth-rinkeby.alchemyapi.io/v2/XVLwDlhGP6ApBXFz_lfv0aZ6VmurWhYD',
     [ChainId.SPARTA]: 'https://sparta-rpc.polis.tech'
 }
 
 export const network = new NetworkConnector({
-    defaultChainId: 333888,
+    defaultChainId: 333999,
     urls: RPC
 })
 
@@ -29,7 +29,7 @@ export function getNetworkLibrary(): Web3Provider {
 
 export const injected = new InjectedConnector({
     supportedChainIds: [
-        1, // mainnet
+        333999, // mainnet
         333888 //sparta
     ]
 })
@@ -37,7 +37,7 @@ export const injected = new InjectedConnector({
 // mainnet only
 export const walletconnect = new WalletConnectConnector({
     rpc: {
-        [ChainId.SPARTA]: RPC[ChainId.SPARTA]
+        [ChainId.MAINNET]: RPC[ChainId.MAINNET]
     },
     bridge: 'https://bridge.walletconnect.org',
     qrcode: true,
@@ -47,7 +47,7 @@ export const walletconnect = new WalletConnectConnector({
 // mainnet only
 export const lattice = new LatticeConnector({
     chainId: 1,
-    url: RPC[ChainId.SPARTA],
+    url: RPC[ChainId.MAINNET],
     appName: 'Hadeswap'
 })
 

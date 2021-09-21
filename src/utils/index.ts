@@ -27,7 +27,7 @@ export const formatToBalance = (value: string | undefined, decimals = 18) => {
 }
 
 export function isWETH(value: any): string {
-    if (value.toLowerCase() === '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2') {
+    if (value.toLowerCase() === '0x6fc851b8d66116627fb1137b9d5fe4e2e1bea978') {
         return 'ETH'
     }
     return value
@@ -363,6 +363,20 @@ const builders = {
                 return `${prefix}/${type}/${data}`
         }
     }
+    ,
+    olympus: (chainName = '', data: string, type: 'transaction' | 'token' | 'address' | 'block') => {
+        const prefix = '  https://explorer.polis.tech'
+        switch (type) {
+            case 'transaction':
+                return `${prefix}/tx/${data}`
+            case 'block':
+                return `${prefix}/blocks/${data}`
+            case 'token':
+                return `${prefix}/address/${data}`
+            default:
+                return `${prefix}/${type}/${data}`
+        }
+    }
 }
 
 interface ChainObject {
@@ -375,7 +389,7 @@ interface ChainObject {
 const chains: ChainObject = {
     [ChainId.MAINNET]: {
         chainName: '',
-        builder: builders.etherscan
+        builder: builders.olympus
     },
     // [ChainId.ROPSTEN]: {
     //     chainName: 'ropsten',

@@ -319,9 +319,9 @@ export default function CurrencyInputPanel({
                                               selectedCurrencyBalance?.toSignificant(6)
                                             : ' -'}
                                     </div>
-                                    {chainId === ChainId.MAINNET && (
-                                        <div className="font-medium text-xs text-secondary">≈ {valueUSDC} USDC</div>
-                                    )}
+                                    {/*{chainId === ChainId.MAINNET && (*/}
+                                    {/*    <div className="font-medium text-xs text-secondary">≈ {valueUSDC} DAI</div>*/}
+                                    {/*)}*/}
                                 </div>
                             )}
                         </>

@@ -5,7 +5,9 @@ import { AbstractConnector } from '@web3-react/abstract-connector'
 
 export const BORING_HELPER_ADDRESS = {
     [ChainId.MAINNET]: '0x11Ca5375AdAfd6205E41131A4409f182677996E6',
-    [ChainId.SPARTA]: '0x0A8aAC4F84277775bAA9fE6be58fE402B97b847a'
+    [ChainId.SPARTA]: '0x0A8aAC4F84277775bAA9fE6be58fE402B97b847a',
+    [ChainId.BSC]: '',
+    [ChainId.MUMBAI]: ''
 }
 
 // a list of tokens by chain
@@ -38,22 +40,18 @@ export const SOUL: ChainTokenMap = {
 // TODO: SDK should have two maps, WETH map and WNATIVE map.
 const WRAPPED_NATIVE_ONLY: ChainTokenList = {
     [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
-    // [ChainId.ROPSTEN]: [WETH[ChainId.ROPSTEN]],
-    // [ChainId.RINKEBY]: [WETH[ChainId.RINKEBY]],
+    [ChainId.BSC]: [WETH[ChainId.BSC]],
+    [ChainId.MUMBAI]: [WETH[ChainId.MUMBAI]],
     [ChainId.SPARTA]: [WETH[ChainId.SPARTA]]
 }
 
 // Default Ethereum chain tokens
 export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
-export const USDC = new Token(ChainId.MAINNET, '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', 6, 'USDC', 'USD Coin')
-export const USDT = new Token(ChainId.MAINNET, '0xdAC17F958D2ee523a2206206994597C13D831ec7', 6, 'USDT', 'Tether USD')
-export const WBTC = new Token(ChainId.MAINNET, '0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599', 8, 'WBTC', 'Wrapped BTC')
-
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI],
 }
 
 export const XSUSHI_CALL = new Token(
@@ -79,33 +77,20 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 // used for display in the default list when adding liquidity
 export const SUGGESTED_BASES: ChainTokenList = {
     ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     ...WRAPPED_NATIVE_ONLY,
-    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI, USDC, USDT, WBTC],
+    [ChainId.MAINNET]: [...WRAPPED_NATIVE_ONLY[ChainId.MAINNET], DAI],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
     [ChainId.MAINNET]: [
         [SOUL[ChainId.MAINNET] as Token, WETH[ChainId.MAINNET]],
-        [
-            new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
-            new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
-        ],
-        [USDC, USDT],
-        [DAI, USDT]
-    ],
-    [ChainId.MAINNET]: [
-        [SOUL[ChainId.MAINNET] as Token, WETH[ChainId.MAINNET]],
-        [
-            new Token(ChainId.MAINNET, '0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643', 8, 'cDAI', 'Compound Dai'),
-            new Token(ChainId.MAINNET, '0x39AA39c021dfbaE8faC545936693aC917d5E7563', 8, 'cUSDC', 'Compound USD Coin')
-        ],
-        [USDC, USDT],
-        [DAI, USDT]
+        [SOUL[ChainId.MAINNET] as Token, DAI],
+        [DAI, WETH[ChainId.MAINNET]]
     ]
 }
 
@@ -188,6 +173,8 @@ export const BLOCKED_ADDRESSES: string[] = [
 
 export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
     [ChainId.SPARTA]: 'https://analytics.hadeswap.finance/',
+    [ChainId.MAINNET]: 'https://analytics.hadeswap.finance/',
+
 }
 
 

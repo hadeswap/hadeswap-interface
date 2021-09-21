@@ -30,7 +30,18 @@ const PARAMS: {
             decimals: 18
         },
         rpcUrls: ['https://sparta-rpc.polis.tech'],
-        blockExplorerUrls: ['sparta-explorer.polis.tech']
+        blockExplorerUrls: ['https://sparta-explorer.polis.tech']
+    },
+    [ChainId.MAINNET]: {
+        chainId: '0x518AF',
+        chainName: 'Polis',
+        nativeCurrency: {
+            name: 'Polis Token',
+            symbol: 'POLIS',
+            decimals: 18
+        },
+        rpcUrls: ['https://rpc.polis.tech'],
+        blockExplorerUrls: ['https://explorer.polis.tech']
     }
 }
 
@@ -51,7 +62,8 @@ export default function NetworkModal(): JSX.Element | null {
 
             <div className="flex flex-col space-y-5 overflow-y-auto">
                 {[
-                    ChainId.SPARTA
+                    ChainId.SPARTA,
+                    ChainId.MAINNET
                 ].map((key: ChainId, i: number) => {
                     if (chainId === key) {
                         return (
