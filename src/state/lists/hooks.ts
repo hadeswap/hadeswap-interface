@@ -95,7 +95,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
     return {
         333999: { ...map1[333999], ...map2[333999] }, // mainnet
         80001: { ...map1[80001], ...map2[80001] },
-        56: { ...map1[56], ...map2[56] }, // rinkeby
+        56: { ...map1[56], ...map2[56] },
         333888: { ...map1[333888], ...map2[333888] }
     }
 }

@@ -20,12 +20,6 @@ export const STAKING_REWARDS_INFO: {
         stakingRewardAddress: string
     }[]
 } = {
-    [ChainId.MAINNET]: [
-        {
-            tokens: [WETH[ChainId.MAINNET], DAI],
-            stakingRewardAddress: '0xa1484C3aa22a66C62b77E0AE78E15258bd0cB711'
-        }
-    ]
 }
 
 export interface StakingInfo {

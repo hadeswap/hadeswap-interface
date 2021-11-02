@@ -150,6 +150,7 @@
         "analyze": "source-map-explorer 'build/static/js/*.js' --only-mapped --html analysis/index.html",
         "prebuild": "lingui compile",
         "start": "cross-env react-app-rewired start",
+        "dev": "cross-env PORT=3001 react-app-rewired start",
         "build": "cross-env CI= GENERATE_SOURCEMAP=false react-app-rewired build",
         "build:sourcemap": "GENERATE_SOURCEMAP=true react-app-rewired build",
         "eject": "react-app-rewired eject",
@@ -172,7 +173,7 @@
     },
     "license": "GPL-3.0-or-later",
     "dependencies": {
-        "hadeswap-beta-data": "1.1.3",
-        "hadeswap-beta-sdk": "1.4.1"
+        "hadeswap-beta-data": "1.2.0",
+        "hadeswap-beta-sdk": "1.4.3"
     }
 }

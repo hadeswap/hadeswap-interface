@@ -4,7 +4,7 @@ import { injected, walletconnect } from '../connectors'
 import { AbstractConnector } from '@web3-react/abstract-connector'
 
 export const BORING_HELPER_ADDRESS = {
-    [ChainId.MAINNET]: '0x11Ca5375AdAfd6205E41131A4409f182677996E6',
+    [ChainId.MAINNET]: '0x583196C63539173851DAd3A02424c9fEB5bF9dD4',
     [ChainId.SPARTA]: '0x0A8aAC4F84277775bAA9fE6be58fE402B97b847a',
     [ChainId.BSC]: '',
     [ChainId.MUMBAI]: ''
@@ -34,6 +34,13 @@ export const SOUL: ChainTokenMap = {
         'SOUL',
         'SoulToken'
     ),
+    [ChainId.MAINNET]: new Token(
+        ChainId.MAINNET,
+        '0xf1498e8103359fD96c5E08fb34b4C249B619025a',
+        18,
+        'SOUL',
+        'SoulToken'
+    ),
 }
 
 
@@ -46,7 +53,7 @@ const WRAPPED_NATIVE_ONLY: ChainTokenList = {
 }
 
 // Default Ethereum chain tokens
-export const DAI = new Token(ChainId.MAINNET, '0x6B175474E89094C44Da98b954EedeAC495271d0F', 18, 'DAI', 'Dai Stablecoin')
+export const DAI = new Token(ChainId.MAINNET, '0x247123e806a27Ea322bFd93e0273D04602dC942D', 18, 'DAI', 'Dai Stablecoin')
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {

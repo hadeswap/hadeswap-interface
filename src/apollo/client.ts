@@ -2,14 +2,14 @@ import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client'
 
 export const blocklytics = new ApolloClient({
     link: createHttpLink({
-        uri: 'https://sparta-graph.polis.tech/subgraphs/name/blocklytics/ethereum-blocks'
+        uri: 'https://graph.polis.tech/subgraphs/name/blocklytics/ethereum-blocks'
     }),
     cache: new InMemoryCache()
 })
 
 export const masterchef = new ApolloClient({
     link: createHttpLink({
-        uri: 'https://sparta-graph.polis.tech/subgraphs/name/aether-eum/plutus3'
+        uri: 'https:/graph.polis.tech/subgraphs/name/hadeswap/plutus'
     }),
     cache: new InMemoryCache()
 })
@@ -36,7 +36,7 @@ export const client = new ApolloClient({
 
 export const exchange = new ApolloClient({
     link: createHttpLink({
-        uri: 'https://sparta-graph.polis.tech/subgraphs/name/hadeswap/exchange'
+        uri: 'https://graph.polis.tech/subgraphs/name/hadeswap/exchange'
     }),
     cache: new InMemoryCache()
 })

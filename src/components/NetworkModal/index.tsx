@@ -36,7 +36,7 @@ const PARAMS: {
         chainId: '0x518AF',
         chainName: 'Polis',
         nativeCurrency: {
-            name: 'Polis Token',
+            name: 'Polis',
             symbol: 'POLIS',
             decimals: 18
         },

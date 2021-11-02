@@ -11,10 +11,10 @@ import polis from '../../assets/networks/polis.svg'
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
     if (chainId === ChainId.MAINNET) {
-        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/olympus/assets/${address}/logo.png`
+        imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/${address}/logo.png`
     }
     else {
-        imageURL = `https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/${address}/logo.png`
+        imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/${address}/logo.png`
     }
     return imageURL
 }

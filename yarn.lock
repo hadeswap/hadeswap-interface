@@ -10395,9 +10395,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
-"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
+"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
   version "1.0.3"
-  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
@@ -10462,10 +10462,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-hadeswap-beta-data@1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/hadeswap-beta-data/-/hadeswap-beta-data-1.1.3.tgz#3dfee22a8529a61560fa4c24d1d65fc690d57193"
-  integrity sha512-Rcf/tXdtVcqjWzi1MhQM1E2R8THyRcbAVDatzB2Y9fEYlBzOqN4k8kpmSECV+VU4cgTWA+KRvJM8C+q6wLCXYQ==
+hadeswap-beta-data@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/hadeswap-beta-data/-/hadeswap-beta-data-1.2.0.tgz#e65a4091d4032c4dfcc4b23590ba5ede154a0d70"
+  integrity sha512-/dWk5dcQXKz1tZpHa0ssm4j/mV9AqCq4Oh9dD2iuoG4/G+P+/wPrvubK/loZyF3+gs9gRSPgy1AcYr0rB7jlNg==
   dependencies:
     bluebird "^3.7.2"
     commander "6.1.0"
@@ -10479,10 +10479,10 @@ hadeswap-beta-data@1.1.3:
     subscriptions-transport-ws "0.9.16"
     ws "7.2.0"
 
-hadeswap-beta-sdk@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/hadeswap-beta-sdk/-/hadeswap-beta-sdk-1.4.1.tgz#a92551370be2ac773447aab39f57e54d5522549a"
-  integrity sha512-QOkintPSQ9ZKu4MXZPc2o6j3fui46TB8tq3N/r+AVfmOn/TY4c0UhcV88dc/jsr/pc1U7gaAk759nOcUbZy0JA==
+hadeswap-beta-sdk@1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/hadeswap-beta-sdk/-/hadeswap-beta-sdk-1.4.3.tgz#64ff20aa2b73c18bc8ca23dd5fc8f394f8645292"
+  integrity sha512-+poS225wl5+mCVIhaUBTJYmm+pZKQ+cBGELhcBHNC7CQC4y1hnZLeRTRI+yPbOA/SOeF60FsfoOKybfvqfC/5Q==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"

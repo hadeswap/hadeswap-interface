@@ -63,7 +63,7 @@ function Routes(): JSX.Element {
             {chainId === ChainId.MAINNET && (
                 <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
             )}
-            {chainId === ChainId.MAINNET || chainId === ChainId.SPARTA && <Route exact strict path="/yield" component={MasterChefV1} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path="/yield" component={MasterChefV1} />}
             {/*{chainId === ChainId.MAINNET && <Route exact strict path="/vesting" component={Vesting} />}*/}
 
             {/*/!* Migrate *!/*/}

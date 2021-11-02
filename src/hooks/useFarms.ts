@@ -9,6 +9,7 @@ import orderBy from 'lodash/orderBy'
 import sushiData from 'hadeswap-beta-data'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { useBoringHelperContract } from './useContract'
+import { pair } from 'hadeswap-beta-data/typings/exchange'
 
 // Todo: Rewrite in terms of web3 as opposed to subgraph
 const useFarms = () => {
@@ -34,7 +35,7 @@ const useFarms = () => {
                 // results[1]
                 query: liquidityPositionSubsetQuery,
                 // Plutus address
-                variables: { user: '0xb4be34c7430ff011b653166570e211c15a03e4fa' }
+                variables: { user: '0x342bffa41d7120c2c3ed746f80286ecd025272c5' }
             }),
             getAverageBlockTime(), // results[2]
             sushiData.sushi.priceUSD(), // results[3]
@@ -42,6 +43,7 @@ const useFarms = () => {
         ])
 
         const pools = results[0]?.data.pools
+        console.log("pools", pools)
         const pairAddresses = pools
             .map((pool: any) => {
                 return pool.pair
@@ -52,6 +54,8 @@ const useFarms = () => {
             query: pairSubsetQuery,
             variables: { pairAddresses }
         })
+
+        console.log("pairsQuery", pairsQuery)
 
         const liquidityPositions = results[1]?.data.liquidityPositions
         const averageBlockTime = results[2]
@@ -67,6 +71,9 @@ const useFarms = () => {
                     pairs.find((pair: any) => pair?.id === pool?.pair)
                 )
             })
+
+        console.log("tokens", tokens)
+
 
         const tokenPositions : Map<string, any> = new Map<string, any>()
 
@@ -105,11 +112,11 @@ const useFarms = () => {
                         const token = tokenExchangeData.find((token: any) => token.id === pool.pair)
 
                         pair = {
-                            totalSupply: token.totalSupply,
-                            reserveUSD: token.volumeUSD,
+                            totalSupply: token?.totalSupply??0,
+                            reserveUSD: token?.volumeUSD??0,
                             token0: {
-                                name: token.name,
-                                symbol: token.symbol,
+                                name: token?.name??"SoulToken",
+                                symbol: token?.symbol??"SOUL",
                                 id: pool.pair
                             },
                             token1: {
@@ -117,7 +124,7 @@ const useFarms = () => {
                                 symbol: ""
                             },
                             id:pool.pair,
-                            derivedETH: token.derivedETH
+                            derivedETH: token?.derivedETH??0
                         }
                         isPair = false;
                     } else {

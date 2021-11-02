@@ -65,7 +65,7 @@ function AppBar(): JSX.Element {
                                             >
                                                 {i18n._(t`Pool`)}
                                             </NavLink>
-                                            {chainId && [ChainId.SPARTA].includes(chainId) && (
+                                            {chainId && [ChainId.MAINNET].includes(chainId) && (
                                                 <NavLink id={`yield-nav-link`} to={'/yield'}>
                                                     {i18n._(t`Yield`)}
                                                 </NavLink>
@@ -94,7 +94,7 @@ function AppBar(): JSX.Element {
                                 <div className="flex flex-row items-center justify-center w-full lg:w-auto p-4 fixed left-0 bottom-0 bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
                                     <div className="flex items-center justify-between sm:justify-end space-x-2 w-full">
                                         {/*{chainId &&*/}
-                                        {/*    [ChainId.MAINNET, ChainId.BSC, ChainId.MATIC].includes(chainId) &&*/}
+                                        {/*    [ChainId.MAINNET].includes(chainId) &&*/}
                                         {/*    library &&*/}
                                         {/*    library.provider.isMetaMask && (*/}
                                         {/*        <>*/}
@@ -102,29 +102,15 @@ function AppBar(): JSX.Element {
                                         {/*                <div*/}
                                         {/*                    className="hidden sm:inline-block rounded-md bg-dark-900 hover:bg-dark-800 cursor-pointer"*/}
                                         {/*                    onClick={() => {*/}
-                                        {/*                        let address: string | undefined*/}
-                                        {/*                        switch (chainId) {*/}
-                                        {/*                            case ChainId.MAINNET:*/}
-                                        {/*                                address =*/}
-                                        {/*                                    '0x6B3595068778DD592e39A122f4f5a5cF09C90fE2'*/}
-                                        {/*                                break*/}
-                                        {/*                            case ChainId.BSC:*/}
-                                        {/*                                address =*/}
-                                        {/*                                    '0x947950BcC74888a40Ffa2593C5798F11Fc9124C4'*/}
-                                        {/*                                break*/}
-                                        {/*                            case ChainId.MATIC:*/}
-                                        {/*                                address =*/}
-                                        {/*                                    '0x0b3F868E0BE5597D5DB7fEB59E1CADBb0fdDa50a'*/}
-                                        {/*                                break*/}
-                                        {/*                        }*/}
+                                        {/*                        let address = '0xf1498e8103359fD96c5E08fb34b4C249B619025a'*/}
                                         {/*                        const params: any = {*/}
                                         {/*                            type: 'ERC20',*/}
                                         {/*                            options: {*/}
                                         {/*                                address: address,*/}
-                                        {/*                                symbol: 'SUSHI',*/}
+                                        {/*                                symbol: 'SOUL',*/}
                                         {/*                                decimals: 18,*/}
                                         {/*                                image:*/}
-                                        {/*                                    'https://raw.githubusercontent.com/sushiswap/assets/master/blockchains/ethereum/assets/0x6B3595068778DD592e39A122f4f5a5cF09C90fE2/logo.png'*/}
+                                        {/*                                    'https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0xf1498e8103359fD96c5E08fb34b4C249B619025a/logo.png'*/}
                                         {/*                            }*/}
                                         {/*                        }*/}
 
@@ -151,17 +137,6 @@ function AppBar(): JSX.Element {
                                         {/*                        }*/}
                                         {/*                    }}*/}
                                         {/*                >*/}
-                                        {/*                    <img*/}
-                                        {/*                        src={`${process.env.PUBLIC_URL}/images/tokens/sushi-square.jpg`}*/}
-                                        {/*                        alt="Switch Network"*/}
-                                        {/*                        style={{*/}
-                                        {/*                            minWidth: 36,*/}
-                                        {/*                            minHeight: 36,*/}
-                                        {/*                            maxWidth: 36,*/}
-                                        {/*                            maxHeight: 36*/}
-                                        {/*                        }}*/}
-                                        {/*                        className="rounded-md object-contain"*/}
-                                        {/*                    />*/}
                                         {/*                </div>*/}
                                         {/*            </QuestionHelper>*/}
                                         {/*        </>*/}
@@ -216,14 +191,6 @@ function AppBar(): JSX.Element {
 
                         <Disclosure.Panel className="sm:hidden">
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
-                                {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
-                                {/* <a
-                                href="#"
-                                className="bg-gray-1000 text-white block px-3 py-2 rounded-md text-base font-medium"
-                            >
-                                Dashboard
-                            </a> */}
-
                                 <NavLink id={`swap-nav-link`} to={'/swap'}>
                                     {i18n._(t`Swap`)}
                                 </NavLink>

@@ -7,19 +7,19 @@
     "patch": 0
   },
   "tags": {},
-  "logoURI": "https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058/logo.png",
+  "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058/logo.png",
   "keywords": [
     "hadeswap",
     "default"
   ],
   "tokens": [
     {
-    "address": "0xC614405267eCDbF01FB5b425e3F2EC657160101A",
-    "chainId": 333888,
-    "name": "Wrapped Polis",
-    "symbol": "WETH",
-    "decimals": 18,
-    "logoURI": "https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/0xC614405267eCDbF01FB5b425e3F2EC657160101A/logo.png"
+      "address": "0xC614405267eCDbF01FB5b425e3F2EC657160101A",
+      "chainId": 333888,
+      "name": "Wrapped Polis",
+      "symbol": "WETH",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/0xC614405267eCDbF01FB5b425e3F2EC657160101A/logo.png"
     },
     {
       "address": "0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058",
@@ -27,7 +27,7 @@
       "name": "Soul Token",
       "symbol": "SOUL",
       "decimals": 18,
-      "logoURI": "https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058/logo.png"
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/0xc9Ec2EDD1BA38918a55B5ab637dd0Ac02e6e4058/logo.png"
     },
     {
       "address": "0x388ABBB063608924d8033F1B1266B64C93F1a3a3",
@@ -35,7 +35,7 @@
       "name": "Dai Stablecoin",
       "symbol": "DAI",
       "decimals": 18,
-      "logoURI": "https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/sparta/assets/0x388ABBB063608924d8033F1B1266B64C93F1a3a3/logo.png"
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/0x388ABBB063608924d8033F1B1266B64C93F1a3a3/logo.png"
     },
     {
       "address": "0x6FC851B8D66116627Fb1137b9D5FE4E2e1BeA978",
@@ -43,7 +43,23 @@
       "name": "Wrapped Polis",
       "symbol": "WPOLIS",
       "decimals": 18,
-      "logoURI": "https://raw.githubusercontent.com/hades-finance/assets/master/blockchains/olympus/assets/0x6FC851B8D66116627Fb1137b9D5FE4E2e1BeA978/logo.png"
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0x6FC851B8D66116627Fb1137b9D5FE4E2e1BeA978/logo.png"
+    },
+    {
+      "address": "0x247123e806a27Ea322bFd93e0273D04602dC942D",
+      "chainId": 333999,
+      "name": "Binance Pegged DAI from BSC wrapped by passport.meter.io",
+      "symbol": "DAI.BSC",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0x247123e806a27Ea322bFd93e0273D04602dC942D/logo.png"
+    },
+    {
+      "address": "0xf1498e8103359fD96c5E08fb34b4C249B619025a",
+      "chainId": 333999,
+      "name": "SoulToken",
+      "symbol": "SOUL",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0xf1498e8103359fD96c5E08fb34b4C249B619025a/logo.png"
     }
   ]
 }

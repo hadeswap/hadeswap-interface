@@ -391,14 +391,6 @@ const chains: ChainObject = {
         chainName: '',
         builder: builders.olympus
     },
-    // [ChainId.ROPSTEN]: {
-    //     chainName: 'ropsten',
-    //     builder: builders.etherscan
-    // },
-    // [ChainId.RINKEBY]: {
-    //     chainName: 'rinkeby',
-    //     builder: builders.etherscan
-    // },
     [ChainId.SPARTA]: {
         chainName: '',
         builder: builders.sparta

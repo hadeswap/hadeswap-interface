@@ -23,7 +23,7 @@ const items = (i18n: I18n) => [
     {
         name: i18n._(t`Open Source`),
         description: i18n._(t`Hadeswap is a supporter of Open Source.`),
-        href: 'https://github.com/hades-finance'
+        href: 'https://github.com/hadeswap'
     },
     {
         name: i18n._(t`Discord`),
