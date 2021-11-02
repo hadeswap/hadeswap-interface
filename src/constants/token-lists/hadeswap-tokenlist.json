@@ -48,7 +48,7 @@
     {
       "address": "0x247123e806a27Ea322bFd93e0273D04602dC942D",
       "chainId": 333999,
-      "name": "Binance Pegged DAI from BSC wrapped by passport.meter.io",
+      "name": "DAI",
       "symbol": "DAI.BSC",
       "decimals": 18,
       "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0x247123e806a27Ea322bFd93e0273D04602dC942D/logo.png"
