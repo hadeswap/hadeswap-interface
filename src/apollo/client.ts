@@ -9,7 +9,7 @@ export const blocklytics = new ApolloClient({
 
 export const masterchef = new ApolloClient({
     link: createHttpLink({
-        uri: 'https:/graph.polis.tech/subgraphs/name/hadeswap/plutus'
+        uri: 'https://graph.polis.tech/subgraphs/name/hadeswap/plutus'
     }),
     cache: new InMemoryCache()
 })

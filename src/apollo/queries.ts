@@ -1,7 +1,7 @@
 import { DocumentNode } from 'graphql/language/ast'
 import gql from 'graphql-tag'
 //import { FACTORY_ADDRESS, BUNDLE_ID } from '../constants'
-const FACTORY_ADDRESS = '0xC0AEe478e3658e2610c5F7A4A2E1777cE9e4f2Ac'
+const FACTORY_ADDRESS = '0x4523Ad2e05c455d0043910c84c83236a6c98B40B'
 const BUNDLE_ID = '1'
 
 export const tokenFieldsQuery = gql`
