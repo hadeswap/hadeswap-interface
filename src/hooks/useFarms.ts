@@ -6,7 +6,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import Fraction from '../entities/Fraction'
 import { getAverageBlockTime } from 'apollo/getAverageBlockTime'
 import orderBy from 'lodash/orderBy'
-import sushiData from 'hadeswap-beta-data'
+import hadesData from 'hadeswap-beta-data'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
 import { useBoringHelperContract } from './useContract'
 import { pair } from 'hadeswap-beta-data/typings/exchange'
@@ -16,13 +16,13 @@ const useFarms = () => {
     const [farms, setFarms] = useState<any | undefined>()
     const { account } = useActiveWeb3React()
     const boringHelperContract = useBoringHelperContract()
-    // sushiData.masterchef
+    // hadesData.masterchef
     //     .pools({block: 55000})
     //     .then(pools => console.log(pools))
-    // sushiData.exchange
+    // hadesData.exchange
     //     .tokens({block: 100000})
     //     .then(pools => console.log(pools))
-    // sushiData.exchange
+    // hadesData.exchange
     //     .observePairs()
     //     .subscribe({next: (pairs) => console.log(pairs), error: (err) => console.log(err)})
     const fetchAllFarms = useCallback(async () => {
@@ -38,8 +38,8 @@ const useFarms = () => {
                 variables: { user: '0x342bffa41d7120c2c3ed746f80286ecd025272c5' }
             }),
             getAverageBlockTime(), // results[2]
-            sushiData.sushi.priceUSD(), // results[3]
-            sushiData.exchange.ethPrice() // results[4]
+            hadesData.sushi.priceUSD(), // results[3]
+            hadesData.exchange.ethPrice() // results[4]
         ])
 
         const pools = results[0]?.data.pools
@@ -59,7 +59,7 @@ const useFarms = () => {
 
         const liquidityPositions = results[1]?.data.liquidityPositions
         const averageBlockTime = results[2]
-        const sushiPrice = results[3]
+        const soulPrice = results[3]
         const ethPrice = results[4]
 
         const pairs = pairsQuery?.data.pairs
@@ -139,7 +139,7 @@ const useFarms = () => {
                     const balanceUSD = (balance / Number(totalSupply)) * Number(reserveUSD)
                     const rewardPerBlock =
                         ((pool.allocPoint / pool.owner.totalAllocPoint) * pool.owner.soulPerBlock) / 1e18
-                    const roiPerBlock = (rewardPerBlock * sushiPrice) / balanceUSD
+                    const roiPerBlock = (rewardPerBlock * soulPrice) / balanceUSD
                     const roiPerHour = roiPerBlock * blocksPerHour
                     const roiPerDay = roiPerHour * 24
                     const roiPerMonth = roiPerDay * 30
@@ -172,7 +172,7 @@ const useFarms = () => {
                         roiPerDay,
                         roiPerMonth,
                         roiPerYear,
-                        rewardPerThousand: 1 * roiPerDay * (1000 / sushiPrice),
+                        rewardPerThousand: 1 * roiPerDay * (1000 / soulPrice),
                         tvl: tvl,
                         isPair: isPair
                     }

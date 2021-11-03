@@ -22,7 +22,6 @@ import { ERC20_BYTES32_ABI } from '../constants/abis/erc20'
 import FACTORY_ABI from '../constants/abis/factory.json'
 import { abi as IUniswapV2PairABI } from '@uniswap/v2-core/build/IUniswapV2Pair.json'
 import MASTERCHEF_ABI from '../constants/abis/masterchef.json'
-import MINICHEFV2_ABI from '../constants/abis/miniChefV2.json'
 import ROUTER_ABI from '../constants/abis/router.json'
 import TIMELOCK_ABI from '../constants/abis/timelock.json'
 import WETH_ABI from '../constants/abis/weth.json'
@@ -101,18 +100,6 @@ export function useMasterChefContract(withSignerIfPossible?: boolean): Contract 
     return useContract(chainId && MASTERCHEF_ADDRESS[chainId], MASTERCHEF_ABI, withSignerIfPossible)
 }
 
-export function useMiniChefV2Contract(withSignerIfPossible?: boolean): Contract | null {
-    const { chainId } = useActiveWeb3React()
-    let address: string | undefined
-    if (chainId) {
-        switch (chainId) {
-            case ChainId.MAINNET:
-                address = '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F'
-                break
-        }
-    }
-    return useContract(address, MINICHEFV2_ABI, withSignerIfPossible)
-}
 
 export function useFactoryContract(): Contract | null {
     const { chainId } = useActiveWeb3React()

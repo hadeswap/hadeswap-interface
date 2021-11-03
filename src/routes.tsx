@@ -2,29 +2,16 @@ import { ChainId } from 'hadeswap-beta-sdk'
 import React from 'react'
 import { Redirect, Route, RouteComponentProps, Switch, useLocation } from 'react-router-dom'
 import { useActiveWeb3React } from 'hooks/useActiveWeb3React'
-// import Connect from './kashi/pages/Connect'
-// import BorrowMarkets from './kashi/pages/Markets/Borrow'
-// import CreateMarkets from './kashi/pages/Markets/Create'
-// import LendMarkets from './kashi/pages/Markets/Lending'
-// import BorrowPair from './kashi/pages/Pair/Borrow'
-// import LendPair from './kashi/pages/Pair/Lend'
 import AddLiquidity from './pages/AddLiquidity'
 import {
     RedirectDuplicateTokenIds,
     RedirectOldAddLiquidityPathStructure,
     RedirectToAddLiquidity
 } from './pages/AddLiquidity/redirects'
-// import Bento from './pages/BentoBox'
-// import BentoBalances from './pages/BentoBox/Balances'
-// import Migrate from './pages/Migrate'
 import Pool from './pages/Pool'
 import PoolFinder from './pages/PoolFinder'
 import RemoveLiquidity from './pages/RemoveLiquidity'
 import { RedirectOldRemoveLiquidityPathStructure } from './pages/RemoveLiquidity/redirects'
-// import Saave from './pages/Saave'
-// import SoulBar from './pages/SoulBar'
-// import SoulBarTransactions from './pages/SoulBar/SoulBarTransactions'
-// import SoulBarTips from './pages/SoulBar/Tips'
 import Trade from './pages/Trade'
 import Swap from './pages/Swap'
 import {
@@ -34,7 +21,6 @@ import {
     RedirectToSwap
 } from './pages/Swap/redirects'
 import Tools from './pages/Tools'
-// import Vesting from './pages/Vesting'
 import MasterChefV1 from './pages/Yield/masterchefv1'
 import Transactions from './pages/Transactions'
 
@@ -42,45 +28,10 @@ function Routes(): JSX.Element {
     const { chainId } = useActiveWeb3React()
     return (
         <Switch>
-            {/*<PublicRoute exact path="/connect" component={Connect} />*/}
-            {/* BentoApps */}
-            {/*<Route exact strict path="/bento" component={Bento} />*/}
-            {/*<WalletRoute exact strict path="/bento/balances" component={BentoBalances} />*/}
-
-            {/* Kashi */}
-            {/*<Route*/}
-            {/*    exact*/}
-            {/*    strict*/}
-            {/*    path="/bento/kashi"*/}
-            {/*    render={props => <Redirect to="/bento/kashi/borrow" {...props} />}*/}
-            {/*/>*/}
-            {/*<WalletRoute exact strict path="/bento/kashi/lend" component={LendMarkets} />*/}
-            {/*<WalletRoute exact strict path="/bento/kashi/borrow" component={BorrowMarkets} />*/}
-            {/*<WalletRoute exact strict path="/bento/kashi/create" component={CreateMarkets} />*/}
-            {/*<WalletRoute exact strict path="/bento/kashi/lend/:pairAddress" component={LendPair} />*/}
-            {/*<WalletRoute exact strict path="/bento/kashi/borrow/:pairAddress" component={BorrowPair} />*/}
-
             {chainId === ChainId.MAINNET && (
                 <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
             )}
             {chainId === ChainId.MAINNET && <Route exact strict path="/yield" component={MasterChefV1} />}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/vesting" component={Vesting} />}*/}
-
-            {/*/!* Migrate *!/*/}
-            {/*{(chainId === ChainId.MAINNET || chainId === ChainId.BSC || chainId === ChainId.MATIC) && (*/}
-            {/*    <Route exact strict path="/migrate" component={Migrate} />*/}
-            {/*)}*/}
-
-            {/*/!* SoulBar Staking *!/*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar" component={SoulBar} />}*/}
-            {/*{chainId === ChainId.MAINNET && (*/}
-            {/*    <Route exact strict path="/sushibar/transactions" component={SoulBarTransactions} />*/}
-            {/*)}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/sushibar/tips" component={SoulBarTips} />}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/stake" component={SoulBar} />}*/}
-            {/* Tools */}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/tools" component={Tools} />}*/}
-            {/*{chainId === ChainId.MAINNET && <Route exact strict path="/saave" component={Saave} />}*/}
 
             {/* Pages */}
             <Route exact strict path="/tradingview" component={Trade} />

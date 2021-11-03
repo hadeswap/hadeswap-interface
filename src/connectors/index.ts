@@ -41,14 +41,13 @@ export const walletconnect = new WalletConnectConnector({
     },
     bridge: 'https://bridge.walletconnect.org',
     qrcode: true,
-    pollingInterval: 15000
 })
 
 // mainnet only
 export const lattice = new LatticeConnector({
     chainId: 1,
     url: RPC[ChainId.MAINNET],
-    appName: 'Hadeswap'
+    appName: 'Hades Swap'
 })
 
 // mainnet only
@@ -65,9 +64,9 @@ export const portis = new PortisConnector({
 
 // mainnet only
 export const walletlink = new WalletLinkConnector({
-    url: RPC[ChainId.SPARTA],
-    appName: 'Hadeswap',
-    appLogoUrl: 'https://raw.githubusercontent.com/sushiswap/art/master/sushi/logo-256x256.png'
+    url: RPC[ChainId.MAINNET],
+    appName: 'Hades Swap',
+    appLogoUrl: 'https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0xf1498e8103359fD96c5E08fb34b4C249B619025a/logo.png'
 })
 
 // mainnet only
