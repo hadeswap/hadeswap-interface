@@ -70,11 +70,6 @@ function AppBar(): JSX.Element {
                                                     {i18n._(t`Yield`)}
                                                 </NavLink>
                                             )}
-                                            {/*{chainId === ChainId.MAINNET && (*/}
-                                            {/*    <NavLink id={`sushibar-nav-link`} to={'/sushibar'}>*/}
-                                            {/*        {i18n._(t`SoulBar`)}*/}
-                                            {/*    </NavLink>*/}
-                                            {/*)}*/}
                                             {chainId &&
                                             [
                                                 ChainId.MAINNET,
@@ -173,6 +168,7 @@ function AppBar(): JSX.Element {
                                             <Web3Status />
                                         </div>
                                         <LanguageSwitch />
+                                        <MoreMenu />
                                     </div>
                                 </div>
                                 <div className="-mr-2 flex sm:hidden">

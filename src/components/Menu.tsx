@@ -11,24 +11,29 @@ import { useLingui } from '@lingui/react'
 // TODO: documentation for users and devs
 const items = (i18n: I18n) => [
     {
-        name: i18n._(t`Docs`),
-        description: i18n._(t`Documentation for users of Polis.`),
-        href: 'https://docs.polispay.org/polis-docs/'
+        name: i18n._(t`Discord`),
+        description: i18n._(t`Join the community on Discord.`),
+        href: 'https://discord.gg/NKVC6bEtn5'
     },
     {
-        name: i18n._(t`Dev`),
-        description: i18n._(t`Documentation for developers of Polis.`),
-        href: 'https://docs.polispay.org/polis-docs/'
+        name: i18n._(t`Telegram`),
+        description: i18n._(t`Join the community on Telegram.`),
+        href: 'https://t.me/hadesswap'
+    },
+    {
+        name: i18n._(t`Twitter`),
+        description: i18n._(t`Join the community on Twitter.`),
+        href: 'https://twitter.com/hadesswap'
+    },
+    {
+        name: i18n._(t`Docs`),
+        description: i18n._(t`Documentation for users of Hades Swap.`),
+        href: 'https://doc.hadesswap.finance'
     },
     {
         name: i18n._(t`Open Source`),
         description: i18n._(t`Hades Swap is a supporter of Open Source.`),
         href: 'https://github.com/hadeswap'
-    },
-    {
-        name: i18n._(t`Discord`),
-        description: i18n._(t`Join the community on Discord.`),
-        href: 'https://discord.gg/Q7KeVTxC'
     }
 ]
 
