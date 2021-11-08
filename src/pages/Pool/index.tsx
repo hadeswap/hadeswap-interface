@@ -17,7 +17,7 @@ import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useStakingInfo } from '../../state/stake/hooks'
 import { toV2LiquidityToken, useTrackedTokenPairs } from '../../state/user/hooks'
 import { useTokenBalancesWithLoadingIndicator } from '../../state/wallet/hooks'
-import { StyledInternalLink, TYPE } from '../../theme'
+import { StyledLink, TYPE } from '../../theme'
 import Alert from '../../components/Alert'
 import { Helmet } from 'react-helmet'
 import ExchangeHeader from '../../components/ExchangeHeader'
@@ -94,7 +94,7 @@ const EmptyProposals = styled.div`
 `
 
 const migrateFrom: { [chainId in ChainId]?: string } = {
-    [ChainId.MAINNET]: 'Uniswap',
+    [ChainId.MAINNET]: 'PancakeSwap',
 }
 
 export default function Pool() {
@@ -196,7 +196,7 @@ export default function Pool() {
                             <>
                                 {/* <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://uniswap.info/account/' + account}>
+                    <ExternalLink href={'https://analytics.hadeswap.finance/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
                     <span> ↗</span>
@@ -227,13 +227,13 @@ export default function Pool() {
                         {chainId && [ChainId.MAINNET].includes(chainId) && (
                             <Text textAlign="center" fontSize={14} style={{ padding: '.5rem 0 .5rem 0' }}>
                                 {i18n._(t`Have Liquidity on ${(chainId && migrateFrom[chainId]) ?? ''}?`)}{' '}
-                                <StyledInternalLink id="migrate-pool-link" to={'/migrate'}>
+                                <StyledLink href="https://bridge.polis.tech" target="_blank" rel="noopener noreferrer" >
                                     {i18n._(t`Migrate Now`)}
-                                </StyledInternalLink>
+                                </StyledLink>
                             </Text>
                         )}
                         <div className="grid grid-cols-2 gap-4">
-                            <Button id="join-pool-button" color="gradient" onClick={() => history.push('/add/ETH')}>
+                            <Button id="join-pool-button" color="gradient" onClick={() => history.push('/add/ETH')} style={{ color: 'blue' }}>
                                 {i18n._(t`Add Liquidity`)}
                             </Button>
                             <Button
