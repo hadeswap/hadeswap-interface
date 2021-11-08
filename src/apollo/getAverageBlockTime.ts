@@ -40,22 +40,13 @@ export async function getOneDayBlock(chainId: ChainId = 1): Promise<{ number: nu
     return { number: Number(blocksData?.data?.blocks[0].number) }
 }
 
-export async function getAverageBlockTime(chainId: ChainId = 1): Promise<{ timestamp: null; difference: number }> {
+export async function getAverageBlockTime(chainId: ChainId = 333999): Promise<{ timestamp: null; difference: number }> {
     // Course timestamps used to make better use of the cache (startOfHour + startOfMinuite + startOfSecond)
     const now = startOfSecond(startOfMinute(startOfHour(Date.now())))
     const start = getUnixTime(subHours(now, 6))
     const end = getUnixTime(now)
 
     let query
-    // if (chainId === ChainId.MATIC) {
-    //     query = await blockClient_matic.query({
-    //         query: blocksQuery,
-    //         variables: {
-    //             start,
-    //             end
-    //         }
-    //     })
-    // } else {
         query = await blockClient.query({
             query: blocksQuery,
             variables: {
@@ -63,7 +54,6 @@ export async function getAverageBlockTime(chainId: ChainId = 1): Promise<{ times
                 end
             }
         })
-    //}
     const blocks = query?.data.blocks
 
     const averageBlockTime = blocks.reduce(
@@ -80,5 +70,7 @@ export async function getAverageBlockTime(chainId: ChainId = 1): Promise<{ times
         },
         { timestamp: null, difference: 0 }
     )
+
+    console.log('avg', averageBlockTime)
     return averageBlockTime
 }
