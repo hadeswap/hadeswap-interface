@@ -77,7 +77,7 @@ function AppBar(): JSX.Element {
                                             ].includes(chainId) && (
                                                 <ExternalLink
                                                     id={`analytics-nav-link`}
-                                                    href={ANALYTICS_URL[chainId] || 'https://analytics.hadeswap.finance/'}
+                                                    href={ANALYTICS_URL[chainId] || 'https://analytics.hadesswap.finance/'}
                                                 >
                                                     {i18n._(t`Analytics`)}
                                                 </ExternalLink>

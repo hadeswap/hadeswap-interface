@@ -9,7 +9,7 @@ An open source interface for Hades Swap -- a protocol for decentralized exchange
 
 To access the Hades Swap Interface, use an IPFS gateway link from the
 [latest release](https://github.com/hadeswap/hadeswap-interface/releases/latest),
-or visit [hadeswap.finance](https://hadeswap.finance).
+or visit [hadesswap.finance](https://hadesswap.finance).
 
 ## Listing a token
 

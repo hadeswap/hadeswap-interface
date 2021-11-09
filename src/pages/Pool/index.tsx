@@ -196,7 +196,7 @@ export default function Pool() {
                             <>
                                 {/* <ButtonSecondary>
                   <RowBetween>
-                    <ExternalLink href={'https://analytics.hadeswap.finance/account/' + account}>
+                    <ExternalLink href={'https://analytics.hadesswap.finance/account/' + account}>
                       Account analytics and accrued fees
                     </ExternalLink>
                     <span> ↗</span>
