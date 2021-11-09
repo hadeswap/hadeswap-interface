@@ -43,7 +43,7 @@ const useFarms = () => {
         ])
 
         const pools = results[0]?.data.pools
-        console.log("pools", pools)
+        // console.log("pools", pools)
         const pairAddresses = pools
             .map((pool: any) => {
                 return pool.pair
@@ -55,7 +55,7 @@ const useFarms = () => {
             variables: { pairAddresses }
         })
 
-        console.log("pairsQuery", pairsQuery)
+        // console.log("pairsQuery", pairsQuery)
 
         const liquidityPositions = results[1]?.data.liquidityPositions
         const averageBlockTime = results[2]
@@ -72,7 +72,7 @@ const useFarms = () => {
                 )
             })
 
-        console.log("tokens", tokens)
+        // console.log("tokens", tokens)
 
 
         const tokenPositions : Map<string, any> = new Map<string, any>()
@@ -227,8 +227,8 @@ const useFarms = () => {
                     }
                 })
             setFarms({ farms: sorted, userFarms: userFarms })
-            console.log('Farms:', sorted)
-            console.log('userFarms:', userFarms)
+            // console.log('Farms:', sorted)
+            // console.log('userFarms:', userFarms)
         } else {
             setFarms({ farms: sorted, userFarms: [] })
         }

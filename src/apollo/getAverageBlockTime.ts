@@ -71,6 +71,5 @@ export async function getAverageBlockTime(chainId: ChainId = 333999): Promise<{ 
         { timestamp: null, difference: 0 }
     )
 
-    console.log('avg', averageBlockTime)
     return averageBlockTime
 }
