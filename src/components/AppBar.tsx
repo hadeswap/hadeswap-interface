@@ -12,10 +12,9 @@ import MoreMenu from './Menu'
 import { ExternalLink, NavLink } from './Link'
 import { Disclosure } from '@headlessui/react'
 import { ANALYTICS_URL } from '../constants'
-import QuestionHelper from './QuestionHelper'
 import { t } from '@lingui/macro'
-import LanguageSwitch from './LanguageSwitch'
 import { useLingui } from '@lingui/react'
+import NetworkSwitch from './NetworkSwitch'
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
@@ -47,6 +46,7 @@ function AppBar(): JSX.Element {
                                     <div className="flex-shrink-0">
                                         <img src={Logo} alt="Polis" className="h-10 w-auto" />
                                     </div>
+                                    {chainId && chainId === ChainId.MAINNET &&
                                     <div className="hidden sm:block sm:ml-4">
                                         <div className="flex space-x-2">
                                             <NavLink id={`swap-nav-link`} to={'/swap'}>
@@ -73,7 +73,6 @@ function AppBar(): JSX.Element {
                                             {chainId &&
                                             [
                                                 ChainId.MAINNET,
-                                                ChainId.SPARTA
                                             ].includes(chainId) && (
                                                 <ExternalLink
                                                     id={`analytics-nav-link`}
@@ -84,6 +83,7 @@ function AppBar(): JSX.Element {
                                             )}
                                         </div>
                                     </div>
+                                    }
                                 </div>
 
                                 <div className="flex flex-row items-center justify-center w-full lg:w-auto p-4 fixed left-0 bottom-0 bg-dark-1000 lg:relative lg:p-0 lg:bg-transparent">
@@ -145,19 +145,33 @@ function AppBar(): JSX.Element {
                                                     rel="noopener noreferrer"
                                                 >
                                                     <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
-                                                        <div className="text-primary">{i18n._(t`Bridge Assets`)}</div>
+                                                        <div className="text-primary">{i18n._(t`Bridge POLIS`)}</div>
                                                     </div>
                                                 </a>
                                             </div>
                                         )}
-                                        {library && library.provider.isMetaMask && (
+                                        {chainId && chainId === ChainId.MAINNET && (
+                                            <div className="hidden sm:inline-block">
+                                                <a
+                                                    className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"
+                                                    href="https://passport.meter.io/"
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                >
+                                                    <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
+                                                        <div className="text-primary">{i18n._(t`Bridge DAI`)}</div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        )}
+                                        {chainId && chainId === ChainId.MAINNET && library && library.provider.isMetaMask && (
                                             <div className="hidden sm:inline-block">
                                                 <Web3Network />
                                             </div>
                                         )}
 
                                         <div className="w-auto flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
-                                            {account && chainId && userEthBalance && (
+                                            {account && chainId && chainId === ChainId.MAINNET && userEthBalance && (
                                                 <>
                                                     <div className="py-2 px-3 text-primary text-bold">
                                                         {userEthBalance?.toSignificant(6)}{' '}
@@ -167,7 +181,7 @@ function AppBar(): JSX.Element {
                                             )}
                                             <Web3Status />
                                         </div>
-                                        <LanguageSwitch />
+                                        {chainId && chainId !==ChainId.MAINNET && <NetworkSwitch />}
                                         <MoreMenu />
                                     </div>
                                 </div>

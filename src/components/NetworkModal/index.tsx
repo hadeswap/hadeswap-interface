@@ -62,7 +62,6 @@ export default function NetworkModal(): JSX.Element | null {
 
             <div className="flex flex-col space-y-5 overflow-y-auto">
                 {[
-                    ChainId.SPARTA,
                     ChainId.MAINNET
                 ].map((key: ChainId, i: number) => {
                     if (chainId === key) {

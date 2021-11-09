@@ -6,7 +6,9 @@ export const NETWORK_ICON = {
     [ChainId.SPARTA]: Polis,
     [ChainId.BSC]: Polis,
     [ChainId.MUMBAI]: Polis,
-
+    [ChainId.FANTOM]: Polis,
+    [ChainId.ETHEREUM]: Polis,
+    [ChainId.MATIC]: Polis,
 }
 
 export const NETWORK_LABEL: { [chainId in ChainId]?: string } = {

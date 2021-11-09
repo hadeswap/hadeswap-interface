@@ -12,8 +12,6 @@ import { Web3Provider } from '@ethersproject/providers'
 
 const RPC = {
     [ChainId.MAINNET]: 'https://rpc.polis.tech/',
-    // [ChainId.ROPSTEN]: 'https://eth-ropsten.alchemyapi.io/v2/cidKix2Xr-snU3f6f6Zjq_rYdalKKHmW',
-    // [ChainId.RINKEBY]: 'https://eth-rinkeby.alchemyapi.io/v2/XVLwDlhGP6ApBXFz_lfv0aZ6VmurWhYD',
     [ChainId.SPARTA]: 'https://sparta-rpc.polis.tech'
 }
 
@@ -30,7 +28,11 @@ export function getNetworkLibrary(): Web3Provider {
 export const injected = new InjectedConnector({
     supportedChainIds: [
         333999, // mainnet
-        333888 //sparta
+        333888,
+        1,
+        56,
+        137,
+        250
     ]
 })
 

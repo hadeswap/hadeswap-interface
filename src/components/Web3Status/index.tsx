@@ -166,7 +166,7 @@ function StatusIcon({ connector }: { connector: AbstractConnector }) {
 
 function Web3StatusInner() {
     const { i18n } = useLingui()
-    const { account, connector, error } = useWeb3React()
+    const { account, connector, error, chainId } = useWeb3React()
 
     const { ENSName } = useENSName(account ?? undefined)
 
@@ -182,6 +182,26 @@ function Web3StatusInner() {
     const hasPendingTransactions = !!pending.length
 
     const toggleWalletModal = useWalletModalToggle()
+
+    if (chainId && chainId !== 333999) {
+        try{
+            throw new UnsupportedChainIdError(chainId, [333999])
+
+        }
+        catch (error){
+            return (
+                <Web3StatusError onClick={toggleWalletModal}>
+                    <NetworkIcon />
+                    <Text>
+                        {error instanceof UnsupportedChainIdError
+                            ? i18n._(t`You are on the wrong network`)
+                            : i18n._(t`Error`)}
+                    </Text>
+                </Web3StatusError>
+            )
+        }
+
+    }
 
     if (account) {
         return (

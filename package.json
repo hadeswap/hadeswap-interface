@@ -172,6 +172,6 @@
     "license": "GPL-3.0-or-later",
     "dependencies": {
         "hadeswap-beta-data": "1.2.0",
-        "hadeswap-beta-sdk": "1.4.3"
+        "hadeswap-beta-sdk": "1.4.4"
     }
 }

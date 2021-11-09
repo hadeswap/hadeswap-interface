@@ -33,7 +33,7 @@ export const exchange = new ApolloClient({
 
 export const blockClient = new ApolloClient({
     link: createHttpLink({
-        uri: 'https://graph.polis.tech/subgraphs/name/blocklytics/ethereum-blocks2'
+        uri: 'https://graph.polis.tech/subgraphs/name/blocklytics/ethereum-blocks'
     }),
     cache: new InMemoryCache()
 })

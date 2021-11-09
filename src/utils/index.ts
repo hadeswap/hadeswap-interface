@@ -394,6 +394,18 @@ const chains: ChainObject = {
     [ChainId.SPARTA]: {
         chainName: '',
         builder: builders.sparta
+    },
+    [ChainId.ETHEREUM]: {
+        chainName: '',
+        builder: builders.etherscan
+    },
+    [ChainId.MATIC]: {
+        chainName: '',
+        builder: builders.matic
+    },
+    [ChainId.BSC]: {
+        chainName: '',
+        builder: builders.bscscan
     }
 }
 

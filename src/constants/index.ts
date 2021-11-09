@@ -7,7 +7,10 @@ export const BORING_HELPER_ADDRESS = {
     [ChainId.MAINNET]: '0x583196C63539173851DAd3A02424c9fEB5bF9dD4',
     [ChainId.SPARTA]: '0x0A8aAC4F84277775bAA9fE6be58fE402B97b847a',
     [ChainId.BSC]: '',
-    [ChainId.MUMBAI]: ''
+    [ChainId.MUMBAI]: '',
+    [ChainId.ETHEREUM]: '',
+    [ChainId.MATIC]: '',
+    [ChainId.FANTOM]: ''
 }
 
 // a list of tokens by chain
@@ -49,7 +52,10 @@ const WRAPPED_NATIVE_ONLY: ChainTokenList = {
     [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
     [ChainId.BSC]: [WETH[ChainId.BSC]],
     [ChainId.MUMBAI]: [WETH[ChainId.MUMBAI]],
-    [ChainId.SPARTA]: [WETH[ChainId.SPARTA]]
+    [ChainId.SPARTA]: [WETH[ChainId.SPARTA]],
+    [ChainId.FANTOM]: [WETH[ChainId.FANTOM]],
+    [ChainId.ETHEREUM]: [WETH[ChainId.ETHEREUM]],
+    [ChainId.MATIC]: [WETH[ChainId.MATIC]],
 }
 
 // Default Ethereum chain tokens
