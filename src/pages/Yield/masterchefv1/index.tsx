@@ -132,7 +132,6 @@ export default function Yield(): JSX.Element {
 
 const TokenBalance = ({ farm }: any) => {
     const [expand, setExpand] = useState<boolean>(false)
-    console.log(farm)
     return (
         <>
             {farm.type === 'HLP' && (
@@ -187,7 +186,6 @@ const TokenBalance = ({ farm }: any) => {
 
 const UserBalance = ({ farm }: any) => {
     const [expand, setExpand] = useState<boolean>(false)
-    console.log(farm)
     return (
         <>
             {farm.type === 'HLP' && (

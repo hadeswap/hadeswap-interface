@@ -42,7 +42,6 @@ export default function SwapHeader({ input = undefined, output = undefined }: an
                         output && output.address ? `/${output.address}` : ''
                     }`}
                     isActive={(match, location) => {
-                        console.log({ match, location })
                         return (
                             location.pathname === '/pool' ||
                             location.pathname.includes('/add') ||

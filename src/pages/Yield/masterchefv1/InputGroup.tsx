@@ -55,7 +55,6 @@ export default function InputGroup({
     const staked = useStakedBalance(pid, assetDecimals) // kMP depends on decimals of asset, HLP is always 18
     const pending = usePendingSoul(pid)
 
-    console.log(pairAddressChecksum, balance, staked, pending)
     //console.log('pending:', pending, pid)
 
     const [approvalState, approve] = useApproveCallback(
