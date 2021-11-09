@@ -179,8 +179,8 @@ export const BLOCKED_ADDRESSES: string[] = [
 ]
 
 export const ANALYTICS_URL: { [chainId in ChainId]?: string } = {
-    [ChainId.SPARTA]: 'https://analytics.hadeswap.finance/',
-    [ChainId.MAINNET]: 'https://analytics.hadeswap.finance/',
+    [ChainId.SPARTA]: 'https://analytics.hadesswap.finance/',
+    [ChainId.MAINNET]: 'https://analytics.hadesswap.finance/',
 
 }
 
