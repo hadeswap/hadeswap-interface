@@ -21,6 +21,7 @@ import Loader from '../Loader'
 import WalletModal from '../WalletModal'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import NetworkSwitch from '../NetworkSwitch'
 
 const IconWrapper = styled.div<{ size?: number }>`
     ${({ theme }) => theme.flexColumnNoWrap};
@@ -260,7 +261,11 @@ export default function Web3Status() {
     const confirmed = sortedRecentTransactions.filter(tx => tx.receipt).map(tx => tx.hash)
 
     if (!contextNetwork.active && !active) {
-        return null
+        return (
+            <>
+                <NetworkSwitch />
+            </>
+        )
     }
 
     return (

@@ -17,7 +17,9 @@ function useTokensFromMap(tokenMap: TokenAddressMap, includeUserAdded: boolean):
     const userAddedTokens = useUserAddedTokens()
 
     return useMemo(() => {
-        if (!chainId) return {}
+        if (!chainId || !tokenMap || !tokenMap[chainId]) return {}
+
+
 
         // reduce to just tokens
         const mapWithoutUrls = Object.keys(tokenMap[chainId]).reduce<{ [address: string]: Token }>(

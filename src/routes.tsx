@@ -31,26 +31,27 @@ function Routes(): JSX.Element {
             {chainId === ChainId.MAINNET && (
                 <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
             )}
-            {chainId === ChainId.MAINNET && <Route exact strict path="/yield" component={MasterChefV1} />}
 
             {/* Pages */}
-            <Route exact strict path="/tradingview" component={Trade} />
+            {/*<Route exact strict path="/tradingview" component={Trade} />*/}
             <Route exact strict path="/trade" component={Swap} />
             <Route exact strict path="/swap" component={Swap} />
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
-            <Route exact strict path="/find" component={PoolFinder} />
-            <Route exact strict path="/pool" component={Pool} />
-            <Route exact strict path="/transactions" component={Transactions} />
-            <Route exact strict path="/create" component={RedirectToAddLiquidity} />
-            <Route exact path="/add" component={AddLiquidity} />
-            <Route exact path="/add/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
-            <Route exact path="/add/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
-            <Route exact path="/create" component={AddLiquidity} />
-            <Route exact path="/create/:currencyIdA" component={RedirectOldAddLiquidityPathStructure} />
-            <Route exact path="/create/:currencyIdA/:currencyIdB" component={RedirectDuplicateTokenIds} />
-            <Route exact strict path="/remove/:tokens" component={RedirectOldRemoveLiquidityPathStructure} />
-            <Route exact strict path="/remove/:currencyIdA/:currencyIdB" component={RemoveLiquidity} />
+
+            {chainId === ChainId.MAINNET && <Route exact strict path="/yield" component={MasterChefV1} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path='/find' component={PoolFinder} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path='/pool' component={Pool} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path='/transactions' component={Transactions} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path='/create' component={RedirectToAddLiquidity} />}
+            {chainId === ChainId.MAINNET && <Route exact path='/add' component={AddLiquidity} />}
+            {chainId === ChainId.MAINNET && <Route exact path='/add/:currencyIdA' component={RedirectOldAddLiquidityPathStructure} />}
+            {chainId === ChainId.MAINNET && <Route exact path='/add/:currencyIdA/:currencyIdB' component={RedirectDuplicateTokenIds} />}
+            {chainId === ChainId.MAINNET && <Route exact path='/create' component={AddLiquidity} />}
+            {chainId === ChainId.MAINNET && <Route exact path='/create/:currencyIdA' component={RedirectOldAddLiquidityPathStructure} />}
+            {chainId === ChainId.MAINNET && <Route exact path='/create/:currencyIdA/:currencyIdB' component={RedirectDuplicateTokenIds} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path='/remove/:tokens' component={RedirectOldRemoveLiquidityPathStructure} />}
+            {chainId === ChainId.MAINNET && <Route exact strict path='/remove/:currencyIdA/:currencyIdB' component={RemoveLiquidity} />}
 
             {/* Redirects for app routes */}
             <Route

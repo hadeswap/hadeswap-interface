@@ -253,20 +253,21 @@ export default function CurrencyInputPanel({
                                             className="token-symbol-container"
                                             active={Boolean(currency && currency.symbol)}
                                         > */}
-                                        <div className="text-lg md:text-2xl font-bold">
+                                        { chainId == ChainId.MAINNET && <div className='text-lg md:text-2xl font-bold'>
                                             {(currency && currency.symbol && currency.symbol.length > 20
                                                 ? currency.symbol.slice(0, 4) +
-                                                  '...' +
-                                                  currency.symbol.slice(
-                                                      currency.symbol.length - 5,
-                                                      currency.symbol.length
-                                                  )
+                                                '...' +
+                                                currency.symbol.slice(
+                                                    currency.symbol.length - 5,
+                                                    currency.symbol.length
+                                                )
                                                 : currency?.getSymbol(chainId)) || (
-                                                <div className="bg-transparent hover:bg-primary border border-low-emphesis rounded-full px-2 py-1 text-secondary text-xs font-medium mt-1 whitespace-nowrap ">
+                                                <div
+                                                    className='bg-transparent hover:bg-primary border border-low-emphesis rounded-full px-2 py-1 text-secondary text-xs font-medium mt-1 whitespace-nowrap '>
                                                     {i18n._(t`Select a token`)}
                                                 </div>
                                             )}
-                                        </div>
+                                        </div>}
                                         {/* </StyledTokenName> */}
                                         {!disableCurrencySelect && currency && <StyledDropDown selected={!!currency} />}
                                     </div>

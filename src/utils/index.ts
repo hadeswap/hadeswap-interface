@@ -415,7 +415,7 @@ export function getExplorerLink(
     type: 'transaction' | 'token' | 'address' | 'block'
 ): string {
     const chain = chains[chainId]
-    return chain.builder(chain.chainName, data, type)
+    return chain?chain.builder(chain.chainName, data, type):chains[ChainId.MAINNET].builder(chains[ChainId.MAINNET].chainName, data, type)
 }
 
 // shorten the checksummed version of the input address to have 0x + 4 characters at start and end

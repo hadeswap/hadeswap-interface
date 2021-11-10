@@ -181,7 +181,7 @@ function AppBar(): JSX.Element {
                                             )}
                                             <Web3Status />
                                         </div>
-                                        {chainId && chainId !==ChainId.MAINNET && <NetworkSwitch />}
+                                        {((chainId && chainId !==ChainId.MAINNET) || !chainId) && <NetworkSwitch />}
                                         <MoreMenu />
                                     </div>
                                 </div>
