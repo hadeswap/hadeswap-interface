@@ -26,7 +26,7 @@ import { t, Trans } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 
 const DataCard = styled(AutoColumn)<{ disabled?: boolean }>`
-    background: radial-gradient(76.02% 75.41% at 1.84% 0%, #ff007a 0%, #23AAE2 100%);
+    background: radial-gradient(76.02% 75.41% at 1.84% 0%, #040815 0%, #23AAE2 100%);
     border-radius: ${({ theme }) => theme.borderRadius};
     width: 100%;
     position: relative;
