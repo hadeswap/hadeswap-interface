@@ -46,3 +46,13 @@ input:focus {
   background: #FA52A0;
   cursor: pointer;
 }
+
+.info-modal {
+  bottom: 12;
+}
+
+@media (max-width: 700px) {
+  .info-modal {
+    top: 12;
+  }
+}
