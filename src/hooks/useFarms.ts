@@ -136,7 +136,10 @@ const useFarms = () => {
                     const balance = Number(pool.balance / 1e18) > 0 ? Number(pool.balance / 1e18) : 0.1
                     const totalSupply = pair.totalSupply > 0 ? pair.totalSupply : 0.1
                     const reserveUSD = pair.reserveUSD > 0 ? pair.reserveUSD : 0.1
-                    const balanceUSD = (balance / Number(totalSupply)) * Number(reserveUSD)
+                    // if(!isPair){
+                    //     console.log("soul ", pool.allocPoint, pool.owner.totalAllocPoint, pool.owner.soulPerBlock)
+                    // }
+                    const balanceUSD = isPair?(balance / Number(totalSupply)) * Number(reserveUSD):pair.derivedETH * ethPrice * liquidityPosition.liquidityTokenBalance
                     const rewardPerBlock =
                         ((pool.allocPoint / pool.owner.totalAllocPoint) * pool.owner.soulPerBlock) / 1e18
                     const roiPerBlock = (rewardPerBlock * soulPrice) / balanceUSD
@@ -144,6 +147,9 @@ const useFarms = () => {
                     const roiPerDay = roiPerHour * 24
                     const roiPerMonth = roiPerDay * 30
                     const roiPerYear = roiPerMonth * 12
+
+
+                    // console.log((pair.token0.symbol+"-"+pair.token1.symbol), totalSupply, balanceUSD, rewardPerBlock, roiPerBlock, roiPerHour, roiPerYear)
 
                     let tvl;
                     if(isPair) {
