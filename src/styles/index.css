@@ -51,22 +51,31 @@ input:focus {
   bottom: 12;
 }
 
+.iphone-modal {
+  bottom: 90px;
+}
+
+.menu-z {
+  height: 100vh;
+  width: 100vw;
+  position: absolute !important;
+  top: 50px;
+  background-color: #202231;
+  opacity: 1;
+  transition: opacity 5s;
+}
+
+.menu-z .menu-hidden {
+  opacity: 0;
+}
+
 @media (max-width: 700px) {
   .info-modal {
     top: 12;
   }
-  .menu-z {
-    height: 100%;
-    width: 100vw;
-    position: absolute !important;
-    top: 50px;
-    background-color: #202231;
-    
+
+  .iphone-modal {
+    bottom: 90px;
   }
 }
 
-.menu-z {
-  height: 800px;
-  position: absolute !important;
-  background-color: #202231;
-}

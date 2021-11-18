@@ -19,13 +19,31 @@ import NetworkSwitch from './NetworkSwitch'
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
     const { account, chainId, library } = useActiveWeb3React()
-    const { pathname } = useLocation()
+    const { pathname } = useLocation();
 
     const [navClassList, setNavClassList] = useState(
         'w-screen bg-transparent gradiant-border-bottom z-10 backdrop-filter backdrop-blur'
     )
 
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
+
+    const [iPhone, setIPhone] = useState(false);
+
+    useEffect(() => {
+        setIPhone(() => {
+            return [
+              'iPad Simulator',
+              'iPhone Simulator',
+              'iPod Simulator',
+              'iPad',
+              'iPhone',
+              'iPod'
+            ].includes(navigator.platform)
+            // iPad on iOS 13 detection
+            || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+          });
+          console.log(iPhone);
+    }, [])
 
     useEffect(() => {
         if (pathname === '/trade') {
@@ -41,7 +59,7 @@ function AppBar(): JSX.Element {
                 {({ open }) => (
                     <>
                         <div className="px-4 py-1.5">
-                        <div className="-mr-2 flex sm:hidden">
+                       {!iPhone&&<div className="-mr-2 flex sm:hidden">
                                     {/* Mobile menu button */}
                                     <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
                                         <span className="sr-only">{i18n._(t`Open main menu`)}</span>
@@ -51,14 +69,26 @@ function AppBar(): JSX.Element {
                                             <Burger title="Burger" className="block h-6 w-6" aria-hidden="true" />
                                         )}
                                     </Disclosure.Button>
-                                </div>
+                                </div>}
                             <div className="flex items-center justify-between h-16">
+                                {iPhone&&
+                                                        <div className="-mr-2 flex sm:hidden">
+                                                        {/* Mobile menu button */}
+                                                        <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
+                                                            <span className="sr-only">{i18n._(t`Open main menu`)}</span>
+                                                            {open ? (
+                                                                <X title="Close" className="block h-6 w-6" aria-hidden="true" />
+                                                            ) : (
+                                                                <Burger title="Burger" className="block h-6 w-6" aria-hidden="true" />
+                                                            )}
+                                                        </Disclosure.Button>
+                                                    </div>}
                                 <div className="flex items-center">
                                     <div className="flex-shrink-0">
                                         <img src={Logo} alt="Polis" className="h-10 w-auto" />
                                     </div>
-                                    <div style={{height: '800px'}} className="hidden sm:block sm:ml-4">
-                                        <div className="flex space-x-2" style={{height: '800px'}} >
+                                    <div className="hidden sm:block sm:ml-4">
+                                        <div className="flex space-x-2" >
                                             <NavLink id={`swap-nav-link`} to={'/swap'}>
                                                 {i18n._(t`Swap`)}
                                             </NavLink>
@@ -199,7 +229,7 @@ function AppBar(): JSX.Element {
                             </div>
                         </div>
 
-                        <Disclosure.Panel className="sm:hidden menu-z">
+                        <Disclosure.Panel className={`sm:hidden menu-z ${!open&&'menu-hidden'}`}>
                             <div className="flex flex-col px-4 pt-2 pb-3 space-y-1">
                             <NavLink id={`swap-nav-link`} to={'/swap'}>
                                 {i18n._(t`Swap`)}
