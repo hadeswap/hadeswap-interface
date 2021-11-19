@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { classNames } from '../functions/styling'
 import { ExternalLink } from './Link'
@@ -41,6 +41,25 @@ export default function Menu() {
     const { i18n } = useLingui()
     const solutions = items(i18n)
 
+    const [iPhone, setIPhone] = useState(false);
+
+    useEffect(() => {
+        setIPhone(() => {
+            return [
+              'iPad Simulator',
+              'iPhone Simulator',
+              'iPod Simulator',
+              'iPad',
+              'iPhone',
+              'iPod'
+            ].includes(navigator.platform)
+            // iPad on iOS 13 detection
+            || (navigator.userAgent.includes("Mac") && "ontouchend" in document)
+          });
+          console.log(iPhone);
+    }, [])
+
+
     return (
         <Popover className="relative">
             {({ open }) => (
@@ -70,7 +89,7 @@ export default function Menu() {
                     >
                         <Popover.Panel
                             static
-                            className={`absolute z-10 info-modal lg:top-12 left-full transform -translate-x-full mt-3 px-2 w-screen max-w-xs sm:px-0`}
+                            className={`absolute z-10 ${iPhone?'iphone-modal':'info-modal'}  lg:top-12 left-full transform -translate-x-full mt-3 px-2 w-screen max-w-xs sm:px-0`}
                         >
                             <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                                 <div className="relative grid gap-6 bg-dark-900 px-5 py-6 sm:gap-8 sm:p-8">
