@@ -27,7 +27,7 @@ import ConfirmSwapModal from '../../components/swap/ConfirmSwapModal'
 import CurrencyInputPanel from '../../components/CurrencyInputPanel'
 import { Field } from '../../state/swap/actions'
 import { Helmet } from 'react-helmet'
-import { INITIAL_ALLOWED_SLIPPAGE } from '../../constants'
+import { INITIAL_ALLOWED_SLIPPAGE, ACTIVE_NETWORKS } from '../../constants'
 import Loader from '../../components/Loader'
 import Lottie from 'lottie-react'
 import ProgressSteps from '../../components/ProgressSteps'
@@ -573,7 +573,7 @@ export default function Swap() {
                         )}
                         {isExpertMode && swapErrorMessage ? <SwapCallbackError error={swapErrorMessage} /> : null}
                     </BottomGrouping>
-                    {!trade && chainId && chainId === ChainId.MAINNET && (
+                    {!trade && chainId && ACTIVE_NETWORKS[chainId] && (
                         <div
                             className="hidden sm:block w-full cursor-pointer pt-4"
                             onClick={() => toggleNetworkModal()}

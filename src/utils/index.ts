@@ -312,9 +312,13 @@ const builders = {
         }
     },
 
-    heco: (chainName = '', data: string, type: 'transaction' | 'token' | 'address' | 'block') => {
-        const prefix = `https://${chainName ? `${chainName}.` : ''}hecoinfo.com`
+    iotex: (chainName = '', data: string, type: 'transaction' | 'token' | 'address' | 'block') => {
+        const prefix = `https://iotexscan.io`
         switch (type) {
+            case 'token':
+                return `${prefix}/token/${data}`
+            case 'address':
+                return `${prefix}/address/${data}`
             case 'transaction':
                 return `${prefix}/tx/${data}`
             default:
@@ -406,7 +410,11 @@ const chains: ChainObject = {
     [ChainId.BSC]: {
         chainName: '',
         builder: builders.bscscan
-    }
+    },
+    [ChainId.IOTEX] : {
+        chainName: '',
+        builder: builders.iotex
+    },
 }
 
 export function getExplorerLink(

@@ -10,7 +10,7 @@ import LatticeIcon from '../../assets/images/gridPlusWallet.png'
 import PortisIcon from '../../assets/images/portisIcon.png'
 import WalletConnectIcon from '../../assets/images/walletConnectIcon.svg'
 import { fortmatic, injected, lattice, portis, walletconnect, walletlink } from '../../connectors'
-import { NetworkContextName } from '../../constants'
+import { NetworkContextName, ACTIVE_NETWORKS } from '../../constants'
 import useENSName from '../../hooks/useENSName'
 import { useWalletModalToggle } from '../../state/application/hooks'
 import { isTransactionRecent, useAllTransactions } from '../../state/transactions/hooks'
@@ -184,7 +184,7 @@ function Web3StatusInner() {
 
     const toggleWalletModal = useWalletModalToggle()
 
-    if (chainId && chainId !== 333999) {
+    if (chainId && !ACTIVE_NETWORKS[chainId]) {
         try{
             throw new UnsupportedChainIdError(chainId, [333999])
 

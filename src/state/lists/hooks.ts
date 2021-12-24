@@ -45,6 +45,7 @@ const EMPTY_LIST: TokenAddressMap = {
     [ChainId.ETHEREUM]: {},
     [ChainId.MATIC]: {},
     [ChainId.FANTOM]: {},
+    [ChainId.IOTEX]: {},
 }
 
 const listCache: WeakMap<TokenList, TokenAddressMap> | null =
@@ -103,6 +104,7 @@ function combineMaps(map1: TokenAddressMap, map2: TokenAddressMap): TokenAddress
         1: { ...map1[1], ...map2[1] },
         250: { ...map1[250], ...map2[250] },
         137: { ...map1[137], ...map2[137] },
+        4689: { ...map1[4689], ...map2[4689] },
     }
 }
 

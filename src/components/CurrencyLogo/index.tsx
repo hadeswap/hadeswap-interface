@@ -1,4 +1,4 @@
-import { ChainId, Currency, ETHER, Token } from 'hadeswap-beta-sdk'
+import { ChainId, Currency, Token, NATIVES } from 'hadeswap-beta-sdk'
 import React, { useMemo } from 'react'
 import Logo from '../Logo'
 
@@ -7,11 +7,16 @@ import styled from 'styled-components'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import useHttpLocations from '../../hooks/useHttpLocations'
 import polis from '../../assets/networks/polis.svg'
+import iotex from '../../assets/networks/iotex.png'
 
+// TODO: another way to do it without hardcoding?
 const getTokenLogoURL = (address: string, chainId: any) => {
     let imageURL
     if (chainId === ChainId.MAINNET) {
         imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/${address}/logo.png`
+    }
+    else if (chainId === ChainId.IOTEX) {
+        imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/iotex/assets/${address}/logo.png`
     }
     else {
         imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/${address}/logo.png`
@@ -37,7 +42,8 @@ const StyledLogo = styled(Logo)<{ size: string }>`
 
 const logo: { readonly [chainId in ChainId]?: string } = {
     [ChainId.MAINNET]: polis,
-    [ChainId.SPARTA]: polis
+    [ChainId.SPARTA]: polis,
+    [ChainId.IOTEX]: iotex
 }
 
 export default function CurrencyLogo({
@@ -53,7 +59,8 @@ export default function CurrencyLogo({
     const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
 
     const srcs: string[] = useMemo(() => {
-        if (currency === ETHER) return []
+        if (NATIVES.some( native => native === currency)) return []
+
 
         if (currency instanceof Token) {
             if (currency instanceof WrappedTokenInfo) {
@@ -65,7 +72,7 @@ export default function CurrencyLogo({
         return []
     }, [chainId, currency, uriLocations])
 
-    if (currency === ETHER && chainId) {
+    if (NATIVES.some( native => native === currency) && chainId) {
         return <StyledNativeCurrencyLogo src={logo[chainId]} size={size} style={style} />
     }
 

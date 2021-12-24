@@ -23,12 +23,13 @@ import {
 import Tools from './pages/Tools'
 import MasterChefV1 from './pages/Yield/masterchefv1'
 import Transactions from './pages/Transactions'
+import {ACTIVE_NETWORKS} from './constants'
 
 function Routes(): JSX.Element {
     const { chainId } = useActiveWeb3React()
     return (
         <Switch>
-            {chainId === ChainId.MAINNET && (
+            {chainId && ACTIVE_NETWORKS[chainId] && (
                 <Route exact strict path="/claim" component={OpenClaimAddressModalAndRedirectToSwap} />
             )}
 
@@ -39,19 +40,19 @@ function Routes(): JSX.Element {
             <Route exact strict path="/swap/:outputCurrency" component={RedirectToSwap} />
             <Route exact strict path="/send" component={RedirectPathToSwapOnly} />
 
-            {chainId === ChainId.MAINNET && <Route exact strict path="/yield" component={MasterChefV1} />}
-            {chainId === ChainId.MAINNET && <Route exact strict path='/find' component={PoolFinder} />}
-            {chainId === ChainId.MAINNET && <Route exact strict path='/pool' component={Pool} />}
-            {chainId === ChainId.MAINNET && <Route exact strict path='/transactions' component={Transactions} />}
-            {chainId === ChainId.MAINNET && <Route exact strict path='/create' component={RedirectToAddLiquidity} />}
-            {chainId === ChainId.MAINNET && <Route exact path='/add' component={AddLiquidity} />}
-            {chainId === ChainId.MAINNET && <Route exact path='/add/:currencyIdA' component={RedirectOldAddLiquidityPathStructure} />}
-            {chainId === ChainId.MAINNET && <Route exact path='/add/:currencyIdA/:currencyIdB' component={RedirectDuplicateTokenIds} />}
-            {chainId === ChainId.MAINNET && <Route exact path='/create' component={AddLiquidity} />}
-            {chainId === ChainId.MAINNET && <Route exact path='/create/:currencyIdA' component={RedirectOldAddLiquidityPathStructure} />}
-            {chainId === ChainId.MAINNET && <Route exact path='/create/:currencyIdA/:currencyIdB' component={RedirectDuplicateTokenIds} />}
-            {chainId === ChainId.MAINNET && <Route exact strict path='/remove/:tokens' component={RedirectOldRemoveLiquidityPathStructure} />}
-            {chainId === ChainId.MAINNET && <Route exact strict path='/remove/:currencyIdA/:currencyIdB' component={RemoveLiquidity} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path="/yield" component={MasterChefV1} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path='/find' component={PoolFinder} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path='/pool' component={Pool} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path='/transactions' component={Transactions} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path='/create' component={RedirectToAddLiquidity} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact path='/add' component={AddLiquidity} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact path='/add/:currencyIdA' component={RedirectOldAddLiquidityPathStructure} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact path='/add/:currencyIdA/:currencyIdB' component={RedirectDuplicateTokenIds} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact path='/create' component={AddLiquidity} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact path='/create/:currencyIdA' component={RedirectOldAddLiquidityPathStructure} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact path='/create/:currencyIdA/:currencyIdB' component={RedirectDuplicateTokenIds} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path='/remove/:tokens' component={RedirectOldRemoveLiquidityPathStructure} />}
+            {chainId && ACTIVE_NETWORKS[chainId] && <Route exact strict path='/remove/:currencyIdA/:currencyIdB' component={RemoveLiquidity} />}
 
             {/* Redirects for app routes */}
             <Route

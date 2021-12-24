@@ -11,7 +11,13 @@ const getTokenLogoURL = (address: string, chainId: any) => {
         imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/${isAddress(
             address
         )}/logo.png`
-    }  else {
+    }
+    else if (chainId === ChainId.IOTEX) {
+        imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/iotex/assets/${isAddress(
+            address
+        )}/logo.png`
+    }
+    else {
         imageURL = `https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/sparta/assets/${isAddress(
             address
         )}/logo.png`

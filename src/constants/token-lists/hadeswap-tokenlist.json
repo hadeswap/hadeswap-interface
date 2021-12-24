@@ -84,6 +84,14 @@
       "symbol": "ETH.BSC",
       "decimals": 18,
       "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/olympus/assets/0xaFb66752Ad6F4cCcD92049c36C90dd00c71fA99B/logo.png"
+    },
+    {
+      "address": "0xa00744882684c3e4747faefd68d283ea44099d03",
+      "chainId": 4689,
+      "name": "Wrapped IOTX",
+      "symbol": "WIOTX",
+      "decimals": 18,
+      "logoURI": "https://raw.githubusercontent.com/hadeswap/assets/master/blockchains/iotex/assets/0xa00744882684c3e4747faefd68d283ea44099d03/logo.png"
     }
   ]
 }

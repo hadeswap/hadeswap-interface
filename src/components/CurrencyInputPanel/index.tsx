@@ -12,12 +12,11 @@ import DoubleCurrencyLogo from '../DoubleLogo'
 import { Input as NumericalInput } from '../NumericalInput'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import Button from '../Button'
-import selectCoinAnimation from '../../assets/animation/select-coin.json'
-import Lottie from 'lottie-react'
 import { useUSDCPrice } from '../../hooks'
 import { formattedNum } from '../../utils'
 import { useLingui } from '@lingui/react'
 import selectCoinImage from '../../assets/svg/select-coin.svg'
+import { ACTIVE_NETWORKS } from '../../constants'
 
 const StyledNativeCurrencyLogo = styled.img<{ size: string }>`
     width: ${({ size }) => size};
@@ -253,7 +252,7 @@ export default function CurrencyInputPanel({
                                             className="token-symbol-container"
                                             active={Boolean(currency && currency.symbol)}
                                         > */}
-                                        { chainId == ChainId.MAINNET && <div className='text-lg md:text-2xl font-bold'>
+                                        { chainId &&  ACTIVE_NETWORKS[chainId] && <div className='text-lg md:text-2xl font-bold'>
                                             {(currency && currency.symbol && currency.symbol.length > 20
                                                 ? currency.symbol.slice(0, 4) +
                                                 '...' +
@@ -320,7 +319,7 @@ export default function CurrencyInputPanel({
                                               selectedCurrencyBalance?.toSignificant(6)
                                             : ' -'}
                                     </div>
-                                    {/*{chainId === ChainId.MAINNET && (*/}
+                                    {/*{chainId &&  ACTIVE_NETWORKS[chainId] && (*/}
                                     {/*    <div className="font-medium text-xs text-secondary">≈ {valueUSDC} DAI</div>*/}
                                     {/*)}*/}
                                 </div>

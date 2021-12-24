@@ -9,7 +9,7 @@ const MULTICALL_NETWORKS: { [chainId in ChainId]: string } = {
     [ChainId.ETHEREUM]: '',
     [ChainId.FANTOM]: '',
     [ChainId.MATIC]: '',
-
+    [ChainId.IOTEX]: '0x61Cb0AdEd6fb3722cf79A0ebC54E861306f202EA'
 }
 
 

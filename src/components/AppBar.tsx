@@ -11,7 +11,7 @@ import Web3Status from './Web3Status'
 import MoreMenu from './Menu'
 import { ExternalLink, NavLink } from './Link'
 import { Disclosure } from '@headlessui/react'
-import { ANALYTICS_URL } from '../constants'
+import { ANALYTICS_URL, ACTIVE_NETWORKS } from '../constants'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import NetworkSwitch from './NetworkSwitch'
@@ -106,17 +106,18 @@ function AppBar(): JSX.Element {
                                                 {i18n._(t`Pool`)}
                                             </NavLink>
                                             {chainId && [ChainId.MAINNET].includes(chainId) && (
-                                                <NavLink id={`yield-nav-link`} to={'/yield'}>
-                                                    {i18n._(t`Yield`)}
-                                                </NavLink>
+                                                <>
+                                                    <NavLink id={`yield-nav-link`} to={'/yield'}>
+                                                        {i18n._(t`Yield`)}
+                                                    </NavLink>
+                                                    <ExternalLink
+                                                        id={`analytics-nav-link`}
+                                                        href={'https://analytics.hadesswap.finance/'}
+                                                    >
+                                                        {i18n._(t`Analytics`)}
+                                                    </ExternalLink>
+                                                </>
                                             )}
-                                            <ExternalLink
-                                                id={`analytics-nav-link`}
-                                                href={'https://analytics.hadesswap.finance/'}
-                                            >
-                                                {i18n._(t`Analytics`)}
-                                            </ExternalLink>
-
 
                                             <ExternalLink
                                                 id={`docs-nav-link`}
@@ -179,40 +180,43 @@ function AppBar(): JSX.Element {
                                         {/*            </QuestionHelper>*/}
                                         {/*        </>*/}
                                         {/*    )}*/}
-                                            <div className="hidden sm:inline-block">
-                                                <a
-                                                    className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"
-                                                    href="https://bridge.polis.tech"
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                >
-                                                    <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
-                                                        <div className="text-primary">{i18n._(t`Bridge POLIS`)}</div>
-                                                    </div>
-                                                </a>
-                                            </div>
-
-                                        <div className="hidden sm:inline-block">
-                                            <a
-                                                className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"
-                                                href="https://passport.meter.io/"
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                            >
-                                                <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
-                                                    <div className="text-primary">{i18n._(t`Bridge DAI`)}</div>
+                                        { chainId === ChainId.MAINNET &&
+                                            <>
+                                                <div className="hidden sm:inline-block">
+                                                    <a
+                                                        className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"
+                                                        href="https://bridge.polis.tech"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
+                                                            <div className="text-primary">{i18n._(t`Bridge POLIS`)}</div>
+                                                        </div>
+                                                    </a>
                                                 </div>
-                                            </a>
-                                        </div>
+                                                <div className="hidden sm:inline-block">
+                                                    <a
+                                                        className="flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto"
+                                                        href="https://passport.meter.io/"
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                    >
+                                                        <div className="grid grid-flow-col auto-cols-max items-center rounded-lg bg-dark-1000 text-sm text-secondary py-2 px-3 pointer-events-auto">
+                                                            <div className="text-primary">{i18n._(t`Bridge DAI`)}</div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </>
 
-                                        {chainId && chainId === ChainId.MAINNET && library && library.provider.isMetaMask && (
+                                        }
+                                        {chainId && ACTIVE_NETWORKS[chainId] && library && library.provider.isMetaMask && (
                                             <div className="hidden sm:inline-block">
                                                 <Web3Network />
                                             </div>
                                         )}
 
                                         <div className="w-auto flex items-center rounded bg-dark-900 hover:bg-dark-800 p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto">
-                                            {account && chainId && chainId === ChainId.MAINNET && userEthBalance && (
+                                            {account && chainId && ACTIVE_NETWORKS[chainId] && userEthBalance && (
                                                 <>
                                                     <div className="py-2 px-3 text-primary text-bold">
                                                         {userEthBalance?.toSignificant(6)}{' '}
@@ -222,7 +226,7 @@ function AppBar(): JSX.Element {
                                             )}
                                             <Web3Status />
                                         </div>
-                                        {((chainId && chainId !==ChainId.MAINNET) || !chainId) && <NetworkSwitch />}
+                                        {((chainId && !ACTIVE_NETWORKS[chainId]) || !chainId) && <NetworkSwitch />}
                                         <MoreMenu />
                                     </div>
                                 </div>
@@ -247,17 +251,21 @@ function AppBar(): JSX.Element {
                             >
                                 {i18n._(t`Pool`)}
                             </NavLink>
-                            {chainId && [ChainId.MAINNET].includes(chainId) && (
-                                <NavLink id={`yield-nav-link`} to={'/yield'}>
-                                    {i18n._(t`Yield`)}
-                                </NavLink>
+                            {chainId && [ChainId.MAINNET].includes(chainId) &&
+                            (
+                                <>
+                                    <NavLink id={`yield-nav-link`} to={'/yield'}>
+                                        {i18n._(t`Yield`)}
+                                    </NavLink>
+                                    <ExternalLink
+                                        id={`analytics-nav-link`}
+                                        href={'https://analytics.hadesswap.finance/'}
+                                    >
+                                        {i18n._(t`Analytics`)}
+                                    </ExternalLink>
+                                </>
+
                             )}
-                            <ExternalLink
-                                id={`analytics-nav-link`}
-                                href={'https://analytics.hadesswap.finance/'}
-                            >
-                                {i18n._(t`Analytics`)}
-                            </ExternalLink>
                             <ExternalLink
                                 id={`docs-nav-link`}
                                 href={'https://doc.hadesswap.finance/'}

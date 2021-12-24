@@ -3962,19 +3962,6 @@
   resolved "https://registry.yarnpkg.com/@uniswap/merkle-distributor/-/merkle-distributor-1.0.1.tgz#dc3d911f65a860fc3f0cae074bdcd08ed6a27a4d"
   integrity sha512-5gDiTI5hrXIh5UWTrxKYjw30QQDnpl8ckDSpefldNenDlYO1RKkdUYMYpvrqGi2r7YzLYTlO6+TDlNs6O7hDRw==
 
-"@uniswap/sdk@^3.0.3":
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/@uniswap/sdk/-/sdk-3.0.3.tgz#8201c7c72215d0030cb99acc7e661eff895c18a9"
-  integrity sha512-t4s8bvzaCFSiqD2qfXIm3rWhbdnXp+QjD3/mRaeVDHK7zWevs6RGEb1ohMiNgOCTZANvBayb4j8p+XFdnMBadQ==
-  dependencies:
-    "@uniswap/v2-core" "^1.0.0"
-    big.js "^5.2.2"
-    decimal.js-light "^2.5.0"
-    jsbi "^3.1.1"
-    tiny-invariant "^1.1.0"
-    tiny-warning "^1.0.3"
-    toformat "^2.0.0"
-
 "@uniswap/token-lists@^1.0.0-beta.19":
   version "1.0.0-beta.27"
   resolved "https://registry.yarnpkg.com/@uniswap/token-lists/-/token-lists-1.0.0-beta.27.tgz#8b02a979b0b0024cc96f60e694a3f6db6b2ccab2"
@@ -10671,9 +10658,9 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
 
-"graph-results-pager@git+https://github.com/LufyCZ/graph-results-pager.git":
+"graph-results-pager@https://github.com/LufyCZ/graph-results-pager":
   version "1.0.3"
-  resolved "git+https://github.com/LufyCZ/graph-results-pager.git#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
+  resolved "https://github.com/LufyCZ/graph-results-pager#9b230f05b8d79aeedc9e167ac5a1fea33e04d51f"
   dependencies:
     node-fetch "2.6.1"
 
@@ -10758,10 +10745,10 @@ hadeswap-beta-data@1.2.0:
     subscriptions-transport-ws "0.9.16"
     ws "7.2.0"
 
-hadeswap-beta-sdk@1.4.4:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/hadeswap-beta-sdk/-/hadeswap-beta-sdk-1.4.4.tgz#25eefb98739030cc61a3ed03171658238c10b786"
-  integrity sha512-bdaKXxEDogI02E/Zuubef5kWKlgnncvl1BAg0Ui6CF0Ct+pbc0y7plfxYbX4rkDC5VZshEaAmbCY8u3WKtMApw==
+hadeswap-beta-sdk@1.4.5:
+  version "1.4.5"
+  resolved "https://registry.yarnpkg.com/hadeswap-beta-sdk/-/hadeswap-beta-sdk-1.4.5.tgz#cec0d0de24092b08b6d3b4e1dddcf148a21a2b2c"
+  integrity sha512-/x8XS6vaGFA21/qAC3BjnKdvuQMJtw8bJMOPtUkoHPeTY465kvurY4G2RxSUsl5IplwvGAEKdDWUtJKF1Swm4g==
   dependencies:
     "@uniswap/v2-core" "^1.0.0"
     big.js "^5.2.2"

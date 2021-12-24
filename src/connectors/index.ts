@@ -12,7 +12,8 @@ import { Web3Provider } from '@ethersproject/providers'
 
 const RPC = {
     [ChainId.MAINNET]: 'https://rpc.polis.tech/',
-    [ChainId.SPARTA]: 'https://sparta-rpc.polis.tech'
+    [ChainId.SPARTA]: 'https://sparta-rpc.polis.tech',
+    [ChainId.IOTEX]: 'https://babel-api.mainnet.iotex.io'
 }
 
 export const network = new NetworkConnector({
@@ -54,6 +55,7 @@ export const injected = new InjectedConnector({
         42220, // celo
         11297108109, // palm
         1285, // moonriver
+        4689 // iotex
     ]
 })
 

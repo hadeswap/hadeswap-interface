@@ -42,6 +42,17 @@ const PARAMS: {
         },
         rpcUrls: ['https://rpc.polis.tech'],
         blockExplorerUrls: ['https://explorer.polis.tech']
+    },
+    [ChainId.IOTEX]: {
+        chainId: '0x1251',
+        chainName: 'IoTeX',
+        nativeCurrency: {
+            name: 'IoTeX',
+            symbol: 'IOTX',
+            decimals: 18
+        },
+        rpcUrls: ['https://babel-api.mainnet.iotex.io'],
+        blockExplorerUrls: ['https://iotexscan.io']
     }
 }
 
@@ -62,7 +73,8 @@ export default function NetworkModal(): JSX.Element | null {
 
             <div className="flex flex-col space-y-5 overflow-y-auto">
                 {[
-                    ChainId.MAINNET
+                    ChainId.MAINNET,
+                    ChainId.IOTEX
                 ].map((key: ChainId, i: number) => {
                     if (chainId === key) {
                         return (
