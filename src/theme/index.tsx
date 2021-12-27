@@ -170,13 +170,17 @@ export const TYPE = {
 }
 
 export const ThemedGlobalStyle = createGlobalStyle`
+@font-face {
+    font-family: 'HurmeGeometricSans3';
+    src: url(../assets/fonts/HurmeGeometricSans3.otf);
+}
 html {
   color: #BFBFBF;
   background-color: #040815;
 }
 
 input, textarea {
-    font-family: "DM Sans", sans-serif;
+    font-family: "HurmeGeometricSans3";
     font-display: fallback;
   }
 
