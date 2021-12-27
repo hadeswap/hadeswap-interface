@@ -13,6 +13,31 @@ input:focus {
   outline: none !important;
 }
 
+@font-face {
+  font-family: "Bold";
+  src: local("Hurmeblack"),
+    url("../assets/fonts/HurmeGeometricSans3\ Black.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Semibold";
+  src: local("Semibold"),
+    url("../assets/fonts/HurmeGeometricSans3\ SemiBold.otf") format("opentype");
+}
+@font-face {
+  font-family: "Light";
+  src: local("Light"),
+    url("../assets/fonts/HurmeGeometricSans3\ Light.otf") format("opentype");
+}
+
+*, html {
+  font-family: "Semibold";
+}
+
+p, input::-webkit-input-placeholder {
+  font-family: "Light" !important;
+}
+
 .slider {
   -webkit-appearance: none;
   width: 100%;

@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 
+
 module.exports = {
     darkMode: false, // or 'media' or 'class'
     important: true,
@@ -139,7 +140,7 @@ module.exports = {
                 ...defaultTheme.backgroundImage,
             }),
             fontFamily: {
-                sans: ['DM Sans', ...defaultTheme.fontFamily.sans]
+                HurmeGeometricSans3: ["HurmeGeometricSans3", ...defaultTheme.fontFamily.sans]
             },
             borderRadius: {
                 ...defaultTheme.borderRadius,
