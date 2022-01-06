@@ -25,6 +25,9 @@ import MasterChefV1 from './pages/Yield/masterchefv1'
 import Transactions from './pages/Transactions'
 import NewSale from './pages/NewSale'
 import NewToken from './pages/NewToken'
+import Fixed from './pages/NewToken/Fixed'
+import Mintable from './pages/NewToken/Mintable'
+import Governance from './pages/NewToken/Governance'
 
 function Routes(): JSX.Element {
     const { chainId } = useActiveWeb3React()
@@ -79,6 +82,9 @@ function Routes(): JSX.Element {
 
             <Route exact strict path="/newsale" component={NewSale}/>
             <Route exact strict path="/newtoken" component={NewToken}/>
+            <Route exact strict path="/fixed" component={Fixed}/>
+            <Route exact strict path="/mintable" component={Mintable}/>
+            <Route exact strict path="/governance" component={Governance}/>
             
 
             {/* Redirects for Legacy Hash Router paths */}
