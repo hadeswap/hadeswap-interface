@@ -7,6 +7,9 @@ import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import {ButtonLight} from '../../components/ButtonLegacy'
 import { AutoColumn } from '../../components/Column'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
+import Button from '@mui/material/Button';
 
 export default function NewToken() {
     const { i18n } = useLingui()
@@ -32,7 +35,8 @@ export default function NewToken() {
         setFix(false);
         setMint(false);
         setGov(true);
-    }  
+    }
+    
    
     return (
         <>
