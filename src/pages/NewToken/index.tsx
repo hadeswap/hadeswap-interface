@@ -2,22 +2,11 @@ import { Helmet } from 'react-helmet'
 import { t} from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import React from 'react'
-// import FormControl from 'react-bootstrap/FormControl'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import {ButtonLight} from '../../components/ButtonLegacy'
-import Column, { AutoColumn } from '../../components/Column'
-import { AutoRow, RowBetween } from '../../components/Row'
-
-import Radio from '@mui/material/Radio';
-import RadioGroup from '@mui/material/RadioGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormLabel from '@mui/material/FormLabel';
-import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom'
+import { AutoColumn } from '../../components/Column'
 
 export default function NewToken() {
     const { i18n } = useLingui()
@@ -43,10 +32,7 @@ export default function NewToken() {
         setFix(false);
         setMint(false);
         setGov(true);
-    }
-  
-    console.log("cooont: ", cont);
-    
+    }  
    
     return (
         <>
