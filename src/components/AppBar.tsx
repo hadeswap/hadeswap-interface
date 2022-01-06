@@ -138,7 +138,7 @@ function AppBar(): JSX.Element {
                                                     <ButtonLight height='10px'>Launchpad</ButtonLight>
                                                 </Dropdown.Toggle>
 
-                                                <Dropdown.Menu>
+                                                <Dropdown.Menu className="bg-dark-700  shadow-swap-blue-glow  max-w-2xl rounded">
                                                     <NavLink id={`newsale-nav-link`} to={'/newsale'}>
                                                         <Dropdown.Item href="">New Sale</Dropdown.Item>
                                                     </NavLink>
