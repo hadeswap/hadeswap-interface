@@ -142,12 +142,12 @@ function AppBar(): JSX.Element {
                                                     <NavLink id={`newsale-nav-link`} to={'/newsale'}>
                                                         <Dropdown.Item href="">New Sale</Dropdown.Item>
                                                     </NavLink>
+                                                    <br/>
                                                     <NavLink id={`newtoken-nav-link`} to={'/newtoken'}>
                                                         <Dropdown.Item href="">New Token</Dropdown.Item>
                                                     </NavLink>
                                                 </Dropdown.Menu>
                                             </Dropdown>
-
 
 
                                         </div>
@@ -296,6 +296,7 @@ function AppBar(): JSX.Element {
                 )}
             </Disclosure>
         </header>
+        
     )
 }
 

@@ -10,6 +10,8 @@ import {ButtonLight} from '../../components/ButtonLegacy'
 import Column, { AutoColumn } from '../../components/Column'
 import { AutoRow, RowBetween } from '../../components/Row'
 
+import Dropdown from 'react-bootstrap/Dropdown'
+import { ExternalLink, NavLink } from '../../components/Link'
 
 export default function NewToken() {
     const { i18n } = useLingui()
@@ -19,7 +21,10 @@ export default function NewToken() {
             <Helmet>
                 <title>{i18n._(t`NewToken`)} | Soul</title>
             </Helmet>
-            <div style={{ padding:'3rem' }}></div>
+        
+            <div style={{ padding:'2.5rem' }}></div>
+            <h1 style={{ fontSize: '1.8rem'}}>Create new token</h1>       
+            <br/>
             <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
                 <AutoColumn gap={'md'}>
 
@@ -36,6 +41,7 @@ export default function NewToken() {
                             <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                         {/* </AutoRow> */}
                     </Form.Group>
+
 
                     <ButtonLight height='10px'>Create Token </ButtonLight>
                 </AutoColumn>
