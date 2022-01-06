@@ -17,25 +17,37 @@ export default function NewToken() {
     const [mint, setMint] = React.useState(false);
     const [gov, setGov] = React.useState(false);
     const [cont, setCont] = React.useState(true);
+    const [back, setBack] = React.useState(false);
 
     const isfixed = () =>{
         setCont(false);
         setFix(true);
         setMint(false);
         setGov(false);
+        setBack(false);
     }
     const ismint = () =>{
         setCont(false);
         setFix(false);
         setMint(true);
         setGov(false);
+        setBack(false);
      }
     const isgov = () =>{
         setCont(false);
         setFix(false);
         setMint(false);
         setGov(true);
+        setBack(false);
     }
+    const isback = () =>{
+        setBack(true);
+        setCont(false);
+        setFix(false);
+        setMint(false);
+        setGov(false);
+    }
+    console.log("back? ", back);
     
    
     return (
@@ -57,9 +69,25 @@ export default function NewToken() {
                 </> 
             }
 
+            {back &&
+                <>
+                    <div style={{ padding:'2.5rem' }}></div>
+                    <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ textAlign:'center', padding:'20px'}} >
+                            <h1 style={{ fontSize: '1.8rem', padding:'5px'}}>Choose your token type</h1>        
+                            <Button style={{ fontSize: '1rem',margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isfixed}>Fixed token</Button><br/>
+                            <Button style={{ fontSize: '1rem', margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={ismint}>Mintable token</Button><br/>
+                            <Button style={{ fontSize: '1rem', margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isgov}>Governance token</Button><br/>
+                            
+                    </div>
+                </> 
+            }
+
             {fix && 
                 <>
-                <div style={{ padding:'2.5rem' }}></div>
+                <Button style={{ marginRight: "auto" }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
+                    <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
+                </Button><br/>
+                {/* <div style={{ padding:'2.5rem' }}></div> */}
                 <h1 style={{ fontSize: '1.8rem'}}>Create new fixed token</h1>       
                 <br/>
                 <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
@@ -77,7 +105,9 @@ export default function NewToken() {
             }
             {mint && 
                 <>
-                <div style={{ padding:'2.5rem' }}></div>
+                <Button style={{ marginRight: "auto" }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
+                    <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
+                </Button><br/>
                 <h1 style={{ fontSize: '1.8rem'}}>Create new mintable token</h1>       
                 <br/>
                 <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
@@ -99,7 +129,9 @@ export default function NewToken() {
             }
             {gov && 
                 <>
-                <div style={{ padding:'2.5rem' }}></div>
+                <Button style={{ marginRight: "auto" }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
+                    <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
+                </Button><br/>
                 <h1 style={{ fontSize: '1.8rem'}}>Create new governance token</h1>       
                 <br/>
                 <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
