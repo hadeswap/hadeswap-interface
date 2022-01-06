@@ -15,6 +15,10 @@ import { ANALYTICS_URL } from '../constants'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import NetworkSwitch from './NetworkSwitch'
+import {ButtonLight} from '../components/ButtonLegacy'
+import Dropdown from 'react-bootstrap/Dropdown'
+import DropdownButton from 'react-bootstrap/DropdownButton'
+import NavDropdown from 'react-bootstrap/Dropdown'
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
@@ -124,6 +128,28 @@ function AppBar(): JSX.Element {
                                             >
                                                 {i18n._(t`Docs`)}
                                             </ExternalLink>
+
+                                            {/* <NavLink id={`launchpad-nav-link`} to={'/launchpad'}>
+                                                
+                                            </NavLink> */}
+
+                                            <Dropdown>
+                                                <Dropdown.Toggle id="dropdown-basic">
+                                                    <ButtonLight height='10px'>Launchpad</ButtonLight>
+                                                </Dropdown.Toggle>
+
+                                                <Dropdown.Menu>
+                                                    <NavLink id={`newsale-nav-link`} to={'/newsale'}>
+                                                        <Dropdown.Item href="">New Sale</Dropdown.Item>
+                                                    </NavLink>
+                                                    <NavLink id={`newtoken-nav-link`} to={'/newtoken'}>
+                                                        <Dropdown.Item href="">New Token</Dropdown.Item>
+                                                    </NavLink>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+
+
+
                                         </div>
                                     </div>
 
