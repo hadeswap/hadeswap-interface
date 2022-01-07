@@ -1,14 +1,14 @@
 import { Helmet } from 'react-helmet'
 import { t} from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import React from 'react'
+// import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import {ButtonLight} from '../../components/ButtonLegacy'
 import { AutoColumn } from '../../components/Column'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-
 import Button from '@mui/material/Button';
 
 export default function NewToken() {
@@ -47,8 +47,6 @@ export default function NewToken() {
         setMint(false);
         setGov(false);
     }
-    console.log("back? ", back);
-    
    
     return (
         <>
@@ -84,9 +82,11 @@ export default function NewToken() {
 
             {fix && 
                 <>
-                <Button style={{ marginRight: "auto" }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
-                    <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
-                </Button><br/>
+                <div style={{ marginRight: "auto", paddingLeft:'30px'}}>
+                    <Button className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
+                        <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
+                    </Button><br/>
+                </div>
                 {/* <div style={{ padding:'2.5rem' }}></div> */}
                 <h1 style={{ fontSize: '1.8rem'}}>Create new fixed token</h1>       
                 <br/>
@@ -105,9 +105,11 @@ export default function NewToken() {
             }
             {mint && 
                 <>
-                <Button style={{ marginRight: "auto" }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
-                    <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
-                </Button><br/>
+                <div style={{ marginRight: "auto", paddingLeft:'30px'}}>
+                    <Button className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
+                        <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
+                    </Button><br/>
+                </div>
                 <h1 style={{ fontSize: '1.8rem'}}>Create new mintable token</h1>       
                 <br/>
                 <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
@@ -129,9 +131,11 @@ export default function NewToken() {
             }
             {gov && 
                 <>
-                <Button style={{ marginRight: "auto" }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
-                    <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
-                </Button><br/>
+                 <div style={{ marginRight: "auto", paddingLeft:'30px'}}>
+                    <Button className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
+                        <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
+                    </Button><br/>
+                </div>
                 <h1 style={{ fontSize: '1.8rem'}}>Create new governance token</h1>       
                 <br/>
                 <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
@@ -149,6 +153,7 @@ export default function NewToken() {
                         <ButtonLight height='10px'>Create Token </ButtonLight>
                     </AutoColumn>
                 </div>
+
                 </>
             }
         </>

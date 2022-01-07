@@ -18,7 +18,7 @@ import NetworkSwitch from './NetworkSwitch'
 import {ButtonLight} from '../components/ButtonLegacy'
 import Dropdown from 'react-bootstrap/Dropdown'
 import DropdownButton from 'react-bootstrap/DropdownButton'
-import NavDropdown from 'react-bootstrap/Dropdown'
+
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
@@ -30,8 +30,26 @@ function AppBar(): JSX.Element {
     )
 
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-
     const [iPhone, setIPhone] = useState(false);
+    const [selected, setSelection] = useState(false);
+
+    function expand(){
+        setSelection(true);
+        console.log("open");
+        
+    }
+    function close(){
+        setSelection(false);
+        console.log("close");
+        
+    }
+    function LaunchClick(){
+        if(!selected) setSelection(true);
+        else setSelection(false)
+    }
+
+    console.log("selected? ", selected);
+    
 
     useEffect(() => {
         setIPhone(() => {
@@ -121,7 +139,6 @@ function AppBar(): JSX.Element {
                                                 {i18n._(t`Analytics`)}
                                             </ExternalLink>
 
-
                                             <ExternalLink
                                                 id={`docs-nav-link`}
                                                 href={'https://doc.hadesswap.finance/'}
@@ -129,27 +146,31 @@ function AppBar(): JSX.Element {
                                                 {i18n._(t`Docs`)}
                                             </ExternalLink>
 
-                                            {/* <NavLink id={`launchpad-nav-link`} to={'/launchpad'}>
-                                                
-                                            </NavLink> */}
+                                            <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                                                <Dropdown drop="end">
+                                                    <Dropdown.Toggle id="dropdown-basic" >
+                                                        <ButtonLight onClick={LaunchClick} height='10px'>Launchpad</ButtonLight>
+                                                    </Dropdown.Toggle>
 
-                                            <Dropdown>
-                                                <Dropdown.Toggle id="dropdown-basic">
-                                                    <ButtonLight height='10px'>Launchpad</ButtonLight>
-                                                </Dropdown.Toggle>
-
-                                                <Dropdown.Menu className="bg-dark-700  shadow-swap-blue-glow  max-w-2xl rounded">
-                                                    <NavLink id={`newsale-nav-link`} to={'/newsale'}>
-                                                        <Dropdown.Item href="">New Sale</Dropdown.Item>
-                                                    </NavLink>
-                                                    <br/>
-                                                    <NavLink id={`newtoken-nav-link`} to={'/newtoken'}>
-                                                        <Dropdown.Item href="">New Token</Dropdown.Item>
-                                                    </NavLink>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
-
-
+                                                    {selected &&(
+                                                        <Dropdown.Menu 
+                                                            style={{
+                                                                width:'100px',
+                                                                textAlign: 'center',
+                                                                alignSelf: 'center',
+                                                                justifyContent: 'center',
+                                                                alignItems: 'center',
+                                                                alignContent: 'center'
+                                                            }}
+                                                            // className="bg-dark-700  shadow-swap-blue-glow  max-w-2xl rounded"
+                                                        >
+                                                                <Dropdown.Item onClick={close} href="/newsale">New Sale</Dropdown.Item>
+                                                                <br/>
+                                                                <Dropdown.Item onClick={close} href="/newtoken">New Token</Dropdown.Item>
+                                                        </Dropdown.Menu>
+                                                    )}
+                                                </Dropdown>
+                                            </div>                                                            
                                         </div>
                                     </div>
 
