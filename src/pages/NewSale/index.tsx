@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
@@ -7,9 +7,15 @@ import 'react-step-progress/dist/index.css';
 import AuctionStep from './auctionStep'
 import SetupStep from './setupStep'
 import SaleStep from './saleSetup'
+import './styles.css'
 
 export default function NewSale() {
     const { i18n } = useLingui()
+    const [auctionType, setAuctionType] = useState<string>("");
+    const [balance, setBalance] = useState<number>(0);
+    const [allowance, setAllowance] = useState<number>(0);
+    const [amount, setAmount] = useState<number>(0);
+    const [approve, setApprove] = useState<boolean>(true);
 
     const onFormSubmit = () => {
         console.log("onSubmit StepProgressBar :D");
@@ -27,24 +33,49 @@ export default function NewSale() {
         return true
     }
 
+    useEffect(() => {
+        console.log("the auctionType is: ", auctionType)
+    }, [auctionType])
+
+    useEffect(() => {
+        console.log("the amount is: ", amount)
+    }, [amount]);
+
+    useEffect(() => {
+        console.log("the approve is: ", approve)
+    }, [approve])
+
     const saleSteps = [
         {
             label: 'Auction',
             name: 'auction',
-            content: <AuctionStep />,
-            validator: auctionStepValidator
+            validator: auctionStepValidator,
+            content: <AuctionStep
+                auctionType={auctionType}
+                setAuctionType={setAuctionType}
+            />
         },
         {
             label: 'Setup',
             name: 'setup',
-            content: <SetupStep />,
-            validator: setupStepValidator
+            validator: setupStepValidator,
+            content: <SetupStep 
+                balance={balance}
+                setBalance={setBalance}
+                allowance={allowance}
+                setAllowance={setAllowance}
+                amount={amount}
+                setAmount={setAmount}
+            />,
         },
         {
             label: 'Sale',
             name: 'sale',
-            content: <SaleStep />,
-            validator: saleStepValidator
+            validator: saleStepValidator,
+            content: <SaleStep
+                approve={approve}
+                setApprove={setApprove}
+            />
         }
     ]
 
@@ -59,6 +90,7 @@ export default function NewSale() {
                     startingStep={0}
                     onSubmit={onFormSubmit}
                     steps={saleSteps}
+                    primaryBtnClass='spb-submit-btn'
                 />
             </div>
         </>
