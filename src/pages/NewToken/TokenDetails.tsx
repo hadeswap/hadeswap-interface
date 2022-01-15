@@ -8,15 +8,12 @@ import Row from 'react-bootstrap/Row'
 import {ButtonLight} from '../../components/ButtonLegacy'
 import { AutoColumn } from '../../components/Column'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Button from '@mui/material/Button';
-import StepProgressBar from 'react-step-progress';
 import 'react-step-progress/dist/index.css';
-
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel';
+
 
 export default function TokenDetails() {
     const { i18n } = useLingui()
@@ -80,6 +77,28 @@ export default function TokenDetails() {
         }
     ]
 
+
+    const [name, setName] = useState('');
+    const [symbol, setSymbol] = useState('');
+    const [err, setErr] = useState(false);
+    const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const n = e.target.value.replace(/\D/g, "");
+        console.log(n);
+        setName(n);
+    };
+
+    const ownerHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setSymbol(e.target.value);
+    };
+
+    // if(name.length === 0){
+    //     setErr(true);
+    //     console.log("empty");
+        
+    // }
+    // console.log("name: ", name.length);
+    // console.log("symbol: ", symbol);
+
     return (
         <>
             <Helmet>
@@ -91,7 +110,7 @@ export default function TokenDetails() {
                 <RadioGroup row aria-label="tokentype" name="row-radio-buttons-group" defaultValue='Mintable'>
                     <FormControlLabel onChange={isfixed} value="Fixed" control={<Radio />} label="Fixed" />
                     <FormControlLabel onChange={ismint} value="Mintable" control={<Radio />} label="Mintable" />
-                    <FormControlLabel onChange={isgov} color="success" value="Governance" control={<Radio />} label="Governance"  />
+                    <FormControlLabel onChange={isgov} value="Governance" control={<Radio />} label="Governance"  />
                 </RadioGroup>
             </FormControl>
 
@@ -102,11 +121,16 @@ export default function TokenDetails() {
                     <AutoColumn gap={'md'}>
                         <Form.Group as={Row} className="mb-3" >
                                 <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Name</h5>
-                                <Col sm="5"> <Form.Control style={{ marginBottom:'15px'}} type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                <Col sm="5"> <Form.Control aria-label='name' onChange={nameHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                {err && (
+                                    <>
+                                        <h5 style={{marginBottom:'10px', marginLeft:'3px', color:'red'}}>Token name field required</h5>
+                                    </>
+                                )}
                                 <h5 style={{marginBottom:'10px'}}>Symbol</h5>
                                 {!fix && (
                                     <>
-                                        <Col sm="5"> <Form.Control style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                        <Col sm="5"> <Form.Control onChange={ownerHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                         <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Owner</h5>
                                     </>
                                  )

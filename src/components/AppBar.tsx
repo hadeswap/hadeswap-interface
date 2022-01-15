@@ -17,8 +17,6 @@ import { useLingui } from '@lingui/react'
 import NetworkSwitch from './NetworkSwitch'
 import {ButtonLight} from '../components/ButtonLegacy'
 import Dropdown from 'react-bootstrap/Dropdown'
-import DropdownButton from 'react-bootstrap/DropdownButton'
-
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
@@ -48,7 +46,7 @@ function AppBar(): JSX.Element {
         else setSelection(false)
     }
 
-    console.log("selected? ", selected);
+    // console.log("selected? ", selected);
     
 
     useEffect(() => {
@@ -162,7 +160,6 @@ function AppBar(): JSX.Element {
                                                                 alignItems: 'center',
                                                                 alignContent: 'center'
                                                             }}
-                                                            // className="bg-dark-700  shadow-swap-blue-glow  max-w-2xl rounded"
                                                         >
                                                                 <Dropdown.Item onClick={close} href="/newsale">New Sale</Dropdown.Item>
                                                                 <br/>

@@ -179,6 +179,7 @@
         "hadeswap-beta-data": "1.2.0",
         "hadeswap-beta-sdk": "1.4.4",
         "react-bootstrap": "^2.1.0",
+        "react-loading-icons": "^1.0.8",
         "react-step-progress": "^1.0.3"
     }
 }
