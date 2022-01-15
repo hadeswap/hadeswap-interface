@@ -80,24 +80,22 @@ export default function TokenDetails() {
 
     const [name, setName] = useState('');
     const [symbol, setSymbol] = useState('');
-    const [err, setErr] = useState(false);
+    const [num, setNum] = useState('');
+
     const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const n = e.target.value.replace(/\D/g, "");
-        console.log(n);
-        setName(n);
+        setName(e.target.value)
     };
 
     const ownerHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSymbol(e.target.value);
     };
 
-    // if(name.length === 0){
-    //     setErr(true);
-    //     console.log("empty");
-        
-    // }
-    // console.log("name: ", name.length);
-    // console.log("symbol: ", symbol);
+    const numHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const re = /^[0-9\b]+$/;
+        if (e.target.value === '' || re.test(e.target.value)) {
+            setNum(e.target.value)
+        }
+    };
 
     return (
         <>
@@ -119,14 +117,10 @@ export default function TokenDetails() {
                 <br/>
                 <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
                     <AutoColumn gap={'md'}>
-                        <Form.Group as={Row} className="mb-3" >
+                        <Form.Group as={Row} className="mb-3">
                                 <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Name</h5>
-                                <Col sm="5"> <Form.Control aria-label='name' onChange={nameHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                {err && (
-                                    <>
-                                        <h5 style={{marginBottom:'10px', marginLeft:'3px', color:'red'}}>Token name field required</h5>
-                                    </>
-                                )}
+                                <Col sm="5"> <Form.Control  aria-label='name' onChange={nameHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                
                                 <h5 style={{marginBottom:'10px'}}>Symbol</h5>
                                 {!fix && (
                                     <>
@@ -135,12 +129,12 @@ export default function TokenDetails() {
                                     </>
                                  )
                                 }
-                                <Col sm="5"> <Form.Control style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                <Col sm="5"> <Form.Control  style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                 {fix
                                     ? <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Total Supply</h5>
                                     : <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Initial Supply</h5>
                                 }
-                                <Col sm="5"> <Form.Control style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                <Col sm="5"> <Form.Control value={num}  onChange={numHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                         </Form.Group>
                         {/* <ButtonLight height='10px'>Create Token </ButtonLight> */}
                     </AutoColumn>

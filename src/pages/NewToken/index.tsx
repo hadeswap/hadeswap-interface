@@ -60,6 +60,7 @@ export default function NewToken() {
                     startingStep={0}
                     onSubmit={onFormSubmit}
                     steps={Steps}
+                    submitBtnName='Create token'
                 />
         
             </div>
