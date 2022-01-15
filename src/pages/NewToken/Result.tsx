@@ -15,12 +15,11 @@ export default function Result() {
             </Helmet>
 
             <hr style={{marginTop:'30px'}} />
-
             <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
                 <Card className="bg-dark-700 shadow-swap-blue-glow rounded" style={{ width: '18rem', marginTop:'30px', padding:'2rem'}}>
                     <Card.Body>
                         <Card.Title style={{fontSize:'1.3rem',display: 'flex',  justifyContent:'center', alignItems:'center'}}><b>Transaction ID</b></Card.Title>
-                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> [insert token ID] </Card.Text>
+                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> [insert transaction ID] </Card.Text>
                     </Card.Body>
                 </Card>
             </div>
