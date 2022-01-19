@@ -169,7 +169,14 @@ export default function TokenDetails() {
                               const data = await getTokenData(name, symbol, owner, num.toString())
                              await createToken(template, data, name, symbol)
                              setPendingTx(false)
-                         }}>Create Token</ButtonLight>
+                         }}
+                          disabled={
+                              pendingTx ||
+                              name === '' ||
+                              symbol === '' ||
+                              Number(num) <= 0
+                          }
+                         >Create Token</ButtonLight>
                     </AutoColumn>
                 </div>
 
