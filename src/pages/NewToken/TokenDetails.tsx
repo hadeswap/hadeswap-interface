@@ -149,14 +149,14 @@ export default function TokenDetails() {
                                 <Col sm="5"> <Form.Control  aria-label='name' onChange={nameHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                 
                                 <h5 style={{marginBottom:'10px'}}>Symbol</h5>
+                                <Col sm="5"> <Form.Control onChange={symbolHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                 {!fix && (
                                     <>
-                                        <Col sm="5"> <Form.Control onChange={ownerHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                         <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Owner</h5>
+                                        <Col sm="5"> <Form.Control onChange={ownerHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                     </>
-                                 )
+                                )
                                 }
-                                <Col sm="5"> <Form.Control onChange={symbolHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                 {fix
                                     ? <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Total Supply</h5>
                                     : <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Initial Supply</h5>
