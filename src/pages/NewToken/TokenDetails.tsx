@@ -13,6 +13,12 @@ import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
+import { useHistory } from 'react-router-dom'
+import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
+import { isAddressString } from '../../utils'
+import { TOKEN_FACTORY_ADDRESS } from '../../constants'
+import useMasterChef from '../../hooks/useMasterChef'
+import useHadesLauncher from '../../hooks/useHadesLauncher'
 
 
 export default function TokenDetails() {
@@ -20,24 +26,31 @@ export default function TokenDetails() {
     const [fix, setFix] = React.useState(false);
     const [mint, setMint] = React.useState(false);
     const [gov, setGov] = React.useState(false);
+    const [template, setTemplate] = useState('1');
+
 
     const isfixed = () =>{
         console.log("isfixed");
         setFix(true);
         setMint(false);
         setGov(false);
+        setTemplate('2');
     }
     const ismint = () =>{
         console.log("ismint");
         setFix(false);
         setMint(true);
         setGov(false);
-     }
+        setTemplate('1');
+
+    }
     const isgov = () =>{
         console.log("isgov");
         setFix(false);
         setMint(false);
         setGov(true);
+        setTemplate('3');
+
     }
 
     const TokenValidator = () => {
@@ -80,14 +93,28 @@ export default function TokenDetails() {
 
     const [name, setName] = useState('');
     const [symbol, setSymbol] = useState('');
+    const [owner, setOwner] = useState('');
     const [num, setNum] = useState('');
+
+    const history = useHistory()
+    const { account, chainId } = useActiveWeb3React()
+    const [pendingTx, setPendingTx] = useState(false)
+    const [depositValue, setDepositValue] = useState('')
+    const [withdrawValue, setWithdrawValue] = useState('')
+
+    const { createToken, getTokenData } = useHadesLauncher()
+
 
     const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
     };
 
-    const ownerHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const symbolHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSymbol(e.target.value);
+    };
+
+    const ownerHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setOwner(e.target.value);
     };
 
     const numHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -129,14 +156,20 @@ export default function TokenDetails() {
                                     </>
                                  )
                                 }
-                                <Col sm="5"> <Form.Control  style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                                <Col sm="5"> <Form.Control onChange={symbolHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                                 {fix
                                     ? <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Total Supply</h5>
                                     : <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Initial Supply</h5>
                                 }
                                 <Col sm="5"> <Form.Control value={num}  onChange={numHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                         </Form.Group>
-                        {/* <ButtonLight height='10px'>Create Token </ButtonLight> */}
+                         <ButtonLight height='10px'
+                          onClick={async () => {
+                             setPendingTx(true)
+                              const data = await getTokenData(name, symbol, owner, num.toString())
+                             await createToken(template, data, name, symbol)
+                             setPendingTx(false)
+                         }}>Create Token</ButtonLight>
                     </AutoColumn>
                 </div>
 
