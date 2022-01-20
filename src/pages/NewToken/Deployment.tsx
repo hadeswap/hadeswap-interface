@@ -5,9 +5,23 @@ import React, { useEffect, useState } from 'react'
 import 'react-step-progress/dist/index.css';
 import { TailSpin  } from 'react-loading-icons'
 
-
-export default function Deployment() {
+interface FuncProps {
+    pendingTx: number;
+    handleNext: () => void;
+}
+export default function Deployment(props: FuncProps) {
     const { i18n } = useLingui()
+
+
+    useEffect(() => {
+        console.log(props.pendingTx)
+        if(props.pendingTx === 2){
+            props.handleNext()
+        }
+        if(props.pendingTx === 0){
+            console.log("invalid transaction or error")
+        }
+    }, [props.pendingTx])
 
     return (
         <>

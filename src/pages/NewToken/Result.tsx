@@ -4,8 +4,14 @@ import { useLingui } from '@lingui/react'
 import React, { useEffect, useState } from 'react'
 import 'react-step-progress/dist/index.css';
 import Card from 'react-bootstrap/Card'
+import Button from '@mui/material/Button'
 
-export default function Result() {
+
+interface FuncProps {
+    tx: any;
+    handleFinish: () => void;
+}
+export default function Result(props: FuncProps) {
     const { i18n } = useLingui()
 
     return (
@@ -19,7 +25,7 @@ export default function Result() {
                 <Card className="bg-dark-700 shadow-swap-blue-glow rounded" style={{ width: '18rem', marginTop:'30px', padding:'2rem'}}>
                     <Card.Body>
                         <Card.Title style={{fontSize:'1.3rem',display: 'flex',  justifyContent:'center', alignItems:'center'}}><b>Transaction ID:</b></Card.Title>
-                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> [insert transaction ID] </Card.Text>
+                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> {props.tx? props.tx.transactionHash : 'tx_id'}  </Card.Text>
                     </Card.Body>
                 </Card>
             </div>
@@ -27,11 +33,10 @@ export default function Result() {
                 <Card className="bg-dark-700 shadow-swap-blue-glow rounded" style={{ width: '18rem', marginTop:'30px', padding:'2rem'}}>
                     <Card.Body>
                         <Card.Title style={{fontSize:'1.3rem',display: 'flex',  justifyContent:'center', alignItems:'center'}}><b>Token ID:</b></Card.Title>
-                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> [insert token ID] </Card.Text>
+                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> {props.tx? props.tx.events[1].args[1] : 'token_id'} </Card.Text>
                     </Card.Body>
                 </Card>
             </div>
-                
         </>
     )
 }

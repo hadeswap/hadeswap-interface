@@ -31,11 +31,11 @@ const useHadesLauncher = () => {
                 const receipt =  addTransaction(tx, { summary: `Created Token ${symbol}` })
                 // wait 1 block to get the created token address
                 const tx_data = await tx.wait()
-                console.log('token address', tx_data.events[1].args[1])
-                return receipt
+                console.log('token address', tx_data)
+                return tx_data
             } catch (e) {
                 console.error(e)
-                return e
+                return undefined
             }
         },
         [addTransaction, tokenFactoryContract]

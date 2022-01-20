@@ -20,8 +20,13 @@ import { TOKEN_FACTORY_ADDRESS } from '../../constants'
 import useMasterChef from '../../hooks/useMasterChef'
 import useHadesLauncher from '../../hooks/useHadesLauncher'
 
+interface FuncProps {
+    handleNext: () => void;
+    setPendingTx: (value: number) => void;
+    setTx: (value: any) => void;
 
-export default function TokenDetails() {
+}
+export default function TokenDetails(props: FuncProps) {
     const { i18n } = useLingui()
     const [fix, setFix] = React.useState(false);
     const [mint, setMint] = React.useState(false);
@@ -53,43 +58,6 @@ export default function TokenDetails() {
 
     }
 
-    const TokenValidator = () => {
-        return true
-    }
-
-    const DeploymentValidator = () => {
-        return true
-    }
-
-    const ResultValidator = () => {
-        return true
-    }
-
-    const onFormSubmit = () => {
-        console.log("form submit");
-    }
-
-    const Steps = [
-        {
-            label: 'Details',
-            name: 'details',
-            content: "",
-            validator: TokenValidator
-        },
-        {
-            label: 'Deployment',
-            name: 'deploy',
-            content: "",
-            validator: DeploymentValidator
-        },
-        {
-            label: 'Result',
-            name: 'result',
-            content: "",
-            validator: ResultValidator
-        }
-    ]
-
 
     const [name, setName] = useState('');
     const [symbol, setSymbol] = useState('');
@@ -98,7 +66,6 @@ export default function TokenDetails() {
 
     const history = useHistory()
     const { account, chainId } = useActiveWeb3React()
-    const [pendingTx, setPendingTx] = useState(false)
     const [depositValue, setDepositValue] = useState('')
     const [withdrawValue, setWithdrawValue] = useState('')
 
@@ -165,13 +132,21 @@ export default function TokenDetails() {
                         </Form.Group>
                          <ButtonLight height='10px'
                           onClick={async () => {
-                             setPendingTx(true)
+                              props.handleNext()
+                             props.setPendingTx(1)
                               const data = await getTokenData(name, symbol, owner, num.toString())
-                             await createToken(template, data, name, symbol)
-                             setPendingTx(false)
+                             const tx = await createToken(template, data, name, symbol)
+                              props.setTx(tx);
+                              // const tx = undefined
+                              // if tx object is not valid, we go back to step1 or error?
+                              if(tx !== undefined){
+                                  props.setPendingTx(2)
+                              }
+                              else{
+                                  props.setPendingTx(0)
+                              }
                          }}
                           disabled={
-                              pendingTx ||
                               name === '' ||
                               symbol === '' ||
                               Number(num) <= 0
