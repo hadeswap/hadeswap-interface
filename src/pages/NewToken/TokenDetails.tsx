@@ -5,8 +5,9 @@ import React, { useEffect, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import {ButtonLight} from '../../components/ButtonLegacy'
+import { ButtonLight, ButtonPrimary } from '../../components/ButtonLegacy'
 import { AutoColumn } from '../../components/Column'
+import {RowBetween} from '../../components/Row'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import 'react-step-progress/dist/index.css';
 import Radio from '@mui/material/Radio';
@@ -15,10 +16,16 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import { useHistory } from 'react-router-dom'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
-import { isAddressString } from '../../utils'
-import { TOKEN_FACTORY_ADDRESS } from '../../constants'
+import { getRouterAddress, isAddressString } from '../../utils'
+import { SOUL, TOKEN_FACTORY_ADDRESS } from '../../constants'
 import useMasterChef from '../../hooks/useMasterChef'
 import useHadesLauncher from '../../hooks/useHadesLauncher'
+import { useCurrency } from '../../hooks/Tokens'
+import { ChainId, Currency, CurrencyAmount } from 'hadeswap-beta-sdk'
+import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
+import { Field } from '../../state/mint/actions'
+import { tryParseAmount } from '../../state/swap/hooks'
+import { Dots } from '../Pool/styleds'
 
 interface FuncProps {
     handleNext: () => void;
@@ -28,10 +35,22 @@ interface FuncProps {
 }
 export default function TokenDetails(props: FuncProps) {
     const { i18n } = useLingui()
+    const [name, setName] = useState('');
+    const [symbol, setSymbol] = useState('');
+    const [owner, setOwner] = useState('');
+    const [num, setNum] = useState('');
+
     const [fix, setFix] = React.useState(false);
     const [mint, setMint] = React.useState(false);
     const [gov, setGov] = React.useState(false);
     const [template, setTemplate] = useState('1');
+
+    const { account, chainId } = useActiveWeb3React()
+    const soul = SOUL[ChainId.MAINNET]
+
+    const { createToken, getTokenData, tokenFeeCost } = useHadesLauncher()
+    const independentAmount: CurrencyAmount | undefined = tryParseAmount(tokenFeeCost, soul)
+    const [approval, approveCallback] = useApproveCallback(independentAmount, TOKEN_FACTORY_ADDRESS)
 
 
     const isfixed = () =>{
@@ -59,18 +78,6 @@ export default function TokenDetails(props: FuncProps) {
     }
 
 
-    const [name, setName] = useState('');
-    const [symbol, setSymbol] = useState('');
-    const [owner, setOwner] = useState('');
-    const [num, setNum] = useState('');
-
-    const history = useHistory()
-    const { account, chainId } = useActiveWeb3React()
-    const [depositValue, setDepositValue] = useState('')
-    const [withdrawValue, setWithdrawValue] = useState('')
-
-    const { createToken, getTokenData } = useHadesLauncher()
-
 
     const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -88,6 +95,22 @@ export default function TokenDetails(props: FuncProps) {
         const re = /^[0-9\b]+$/;
         if (e.target.value === '' || re.test(e.target.value)) {
             setNum(e.target.value)
+        }
+    };
+
+    const createTokenHandler = async() => {
+        props.handleNext()
+        props.setPendingTx(1)
+        const data = await getTokenData(name, symbol, owner, num.toString())
+        const tx = await createToken(template, data, name, symbol)
+        props.setTx(tx);
+        // const tx = undefined
+        // if tx object is not valid, we go back to step1 or error?
+        if(tx !== undefined){
+            props.setPendingTx(2)
+        }
+        else{
+            props.setPendingTx(0)
         }
     };
 
@@ -130,28 +153,40 @@ export default function TokenDetails(props: FuncProps) {
                                 }
                                 <Col sm="5"> <Form.Control value={num}  onChange={numHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
                         </Form.Group>
-                         <ButtonLight height='10px'
-                          onClick={async () => {
-                              props.handleNext()
-                             props.setPendingTx(1)
-                              const data = await getTokenData(name, symbol, owner, num.toString())
-                             const tx = await createToken(template, data, name, symbol)
-                              props.setTx(tx);
-                              // const tx = undefined
-                              // if tx object is not valid, we go back to step1 or error?
-                              if(tx !== undefined){
-                                  props.setPendingTx(2)
-                              }
-                              else{
-                                  props.setPendingTx(0)
-                              }
-                         }}
-                          disabled={
-                              name === '' ||
-                              symbol === '' ||
-                              Number(num) <= 0
-                          }
-                         >Create Token</ButtonLight>
+                        <RowBetween>
+                            {approval !== ApprovalState.APPROVED && (
+                                <ButtonPrimary
+                                    onClick={approveCallback}
+                                    disabled={approval === ApprovalState.PENDING}
+                                    width={'48%'}
+                                >
+                                    {approval === ApprovalState.PENDING ? (
+                                        <Dots>
+                                            {t`Approving ${soul?.getSymbol(
+                                                chainId
+                                            )}`}
+                                        </Dots>
+                                    ) : (
+                                        i18n._(
+                                            t`Approve ${soul?.getSymbol(
+                                                chainId
+                                            )}`
+                                        )
+                                    )}
+                                </ButtonPrimary>
+                            )}
+                            <ButtonPrimary
+                                onClick={createTokenHandler}
+                                disabled={
+                                    name === '' ||
+                                    symbol === '' ||
+                                    Number(num) <= 0 ||
+                                    approval !== ApprovalState.APPROVED
+                                }
+                                width={approval !== ApprovalState.APPROVED ? '48%' : '100%'}
+                            >Create Token
+                            </ButtonPrimary>
+                        </RowBetween>
                     </AutoColumn>
                 </div>
 

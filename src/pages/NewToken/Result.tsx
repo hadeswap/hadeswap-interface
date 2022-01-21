@@ -33,7 +33,7 @@ export default function Result(props: FuncProps) {
                 <Card className="bg-dark-700 shadow-swap-blue-glow rounded" style={{ width: '18rem', marginTop:'30px', padding:'2rem'}}>
                     <Card.Body>
                         <Card.Title style={{fontSize:'1.3rem',display: 'flex',  justifyContent:'center', alignItems:'center'}}><b>Token ID:</b></Card.Title>
-                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> {props.tx? props.tx.events[1].args[1] : 'token_id'} </Card.Text>
+                        <Card.Text style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}> {props.tx? props.tx.events[3].args[1] : 'token_id'} </Card.Text>
                     </Card.Body>
                 </Card>
             </div>

@@ -1,15 +1,16 @@
-import { Contract, ethers } from 'ethers'
+import { BigNumber, Contract, ethers } from 'ethers'
 import {
     useTokenFactoryContract,
     useAuctionFactoryContract,
     useLiquidityFactoryContract,
     useTokenTemplateContract
 } from 'hooks/useContract'
-import { useCallback } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useTransactionAdder } from '../state/transactions/hooks'
 import useActiveWeb3React from './useActiveWeb3React'
 
 const useHadesLauncher = () => {
+    const [tokenFeeCost, setTokenFeeCost] = useState('0');
     const addTransaction = useTransactionAdder()
     const tokenFactoryContract = useTokenFactoryContract()
     const tokenContract = useTokenTemplateContract()
@@ -24,14 +25,14 @@ const useHadesLauncher = () => {
     // Create Token
     const createToken = useCallback(
         async (tid: string , data: string, name: string, symbol: string) => {
-            console.log('creating...', tid, data, name, symbol)
+            // console.log('creating...', tid, data, name, symbol)
             try {
                 const feeCost = await tokenFactoryContract?.minimumFee()
                 const tx = await tokenFactoryContract?.createToken(tid, zero_address, data, {value: feeCost})
                 const receipt =  addTransaction(tx, { summary: `Created Token ${symbol}` })
                 // wait 1 block to get the created token address
                 const tx_data = await tx.wait()
-                console.log('token address', tx_data)
+                console.log('tx', tx_data)
                 return tx_data
             } catch (e) {
                 console.error(e)
@@ -59,8 +60,24 @@ const useHadesLauncher = () => {
         }
     }
 
+    const getTokenFeeCost = async (
+    ) => {
+        try {
+            const fee =  await tokenFactoryContract?.minimumFee()
+            setTokenFeeCost(ethers.utils.formatUnits(fee, 18))
+        } catch (e) {
+            console.log(e)
+            setTokenFeeCost('0')
+        }
+    }
 
-    return { createToken, getTokenData }
+    useEffect(() => {
+        getTokenFeeCost()
+
+    }, [account, tokenFactoryContract])
+
+
+    return { createToken, getTokenData, tokenFeeCost }
 }
 
 export default useHadesLauncher
