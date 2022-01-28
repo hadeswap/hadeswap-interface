@@ -11,7 +11,6 @@ export default function NewSale() {
             <Helmet>
                 <title>{i18n._(t`NewSale`)} | Soul</title>
             </Helmet>
-           
         </>
     )
 }

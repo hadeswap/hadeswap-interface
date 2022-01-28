@@ -12,9 +12,8 @@ interface FuncProps {
 export default function Deployment(props: FuncProps) {
     const { i18n } = useLingui()
 
-
     useEffect(() => {
-        console.log(props.pendingTx)
+        console.log("prop: ",props.pendingTx)
         if(props.pendingTx === 2){
             props.handleNext()
         }

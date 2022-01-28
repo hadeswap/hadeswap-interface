@@ -54,14 +54,12 @@ export default function TokenDetails(props: FuncProps) {
 
 
     const isfixed = () =>{
-        console.log("isfixed");
         setFix(true);
         setMint(false);
         setGov(false);
         setTemplate('2');
     }
     const ismint = () =>{
-        console.log("ismint");
         setFix(false);
         setMint(true);
         setGov(false);
@@ -69,12 +67,10 @@ export default function TokenDetails(props: FuncProps) {
 
     }
     const isgov = () =>{
-        console.log("isgov");
         setFix(false);
         setMint(false);
         setGov(true);
         setTemplate('3');
-
     }
 
 

@@ -25,7 +25,7 @@ const useHadesLauncher = () => {
     // Create Token
     const createToken = useCallback(
         async (tid: string , data: string, name: string, symbol: string) => {
-            // console.log('creating...', tid, data, name, symbol)
+            console.log('creating...', tid, data, name, symbol)
             try {
                 const feeCost = await tokenFactoryContract?.minimumFee()
                 const tx = await tokenFactoryContract?.createToken(tid, zero_address, data, {value: feeCost})
