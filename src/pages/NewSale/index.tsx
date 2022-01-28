@@ -8,6 +8,7 @@ import AuctionStep from './auctionStep'
 import SetupStep from './setupStep'
 import SaleStep from './saleSetup'
 import './styles.css'
+import { useLocation } from 'react-router-dom';
 
 export default function NewSale() {
     const { i18n } = useLingui()
@@ -16,6 +17,7 @@ export default function NewSale() {
     const [allowance, setAllowance] = useState<number>(0);
     const [amount, setAmount] = useState<number>(0);
     const [approve, setApprove] = useState<boolean>(true);
+    const location = useLocation();
 
     const onFormSubmit = () => {
         console.log("onSubmit StepProgressBar :D");
@@ -35,6 +37,7 @@ export default function NewSale() {
 
     useEffect(() => {
         console.log("the auctionType is: ", auctionType)
+        console.log("the location.state is: ", location.state);
     }, [auctionType])
 
     useEffect(() => {
