@@ -26,6 +26,8 @@ import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallbac
 import { Field } from '../../state/mint/actions'
 import { tryParseAmount } from '../../state/swap/hooks'
 import { Dots } from '../Pool/styleds'
+import { useCurrencyBalance } from '../../state/wallet/hooks'
+import { BigNumber } from '@ethersproject/bignumber'
 
 interface FuncProps {
     handleNext: () => void;
@@ -51,7 +53,7 @@ export default function TokenDetails(props: FuncProps) {
     const { createToken, getTokenData, tokenFeeCost } = useHadesLauncher()
     const independentAmount: CurrencyAmount | undefined = tryParseAmount(tokenFeeCost, soul)
     const [approval, approveCallback] = useApproveCallback(independentAmount, TOKEN_FACTORY_ADDRESS)
-
+    const soulBalance = useCurrencyBalance(account ?? undefined, soul ?? undefined)
 
     const isfixed = () =>{
         console.log("isfixed");
@@ -76,8 +78,6 @@ export default function TokenDetails(props: FuncProps) {
         setTemplate('3');
 
     }
-
-
 
     const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value)
@@ -181,10 +181,20 @@ export default function TokenDetails(props: FuncProps) {
                                     name === '' ||
                                     symbol === '' ||
                                     Number(num) <= 0 ||
-                                    approval !== ApprovalState.APPROVED
+                                    approval !== ApprovalState.APPROVED ||
+                                    Number(soulBalance?.toFixed(18)) < Number(tokenFeeCost)
                                 }
                                 width={approval !== ApprovalState.APPROVED ? '48%' : '100%'}
-                            >Create Token
+                            >
+                                {Number(soulBalance?.toFixed(18)) >= Number(tokenFeeCost) ? (
+                                    i18n._(
+                                        t`Create Token`
+                                    )
+                                ) : (
+                                    i18n._(
+                                        t`Not enough SOUL balance`
+                                    )
+                                )}
                             </ButtonPrimary>
                         </RowBetween>
                     </AutoColumn>
