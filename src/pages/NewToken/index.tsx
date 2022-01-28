@@ -1,161 +1,77 @@
 import { Helmet } from 'react-helmet'
 import { t} from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-// import React from 'react'
-import React, { useEffect, useState } from 'react'
-import Form from 'react-bootstrap/Form'
-import Col from 'react-bootstrap/Col'
-import Row from 'react-bootstrap/Row'
-import {ButtonLight} from '../../components/ButtonLegacy'
-import { AutoColumn } from '../../components/Column'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Button from '@mui/material/Button';
+import React, { useState } from 'react'
+import StepProgressBar from 'react-step-progress';
+import 'react-step-progress/dist/index.css';
+import TokenDetails from './TokenDetails'
+import Deployment from './Deployment'
+import Result from './Result'
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+
+const steps = ['Details', 'Deployment', 'Result'];
 
 export default function NewToken() {
     const { i18n } = useLingui()
-    const [fix, setFix] = React.useState(false);
-    const [mint, setMint] = React.useState(false);
-    const [gov, setGov] = React.useState(false);
-    const [cont, setCont] = React.useState(true);
-    const [back, setBack] = React.useState(false);
+    const [activeStep, setActiveStep] = React.useState(0);
+    // 0 for nothing, 1 for initiated, 2 for finished
+    const [pendingTx, setPendingTx] = useState(0)
+    const [tx, setTx] = useState(undefined)
 
-    const isfixed = () =>{
-        setCont(false);
-        setFix(true);
-        setMint(false);
-        setGov(false);
-        setBack(false);
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
+
+    const handleBack = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep - 1);
+    };
+    const handleReset = () => {
+        setActiveStep(0);
+    };
+
+    const onFormSubmit = () => {
+        console.log("form submit");
     }
-    const ismint = () =>{
-        setCont(false);
-        setFix(false);
-        setMint(true);
-        setGov(false);
-        setBack(false);
-     }
-    const isgov = () =>{
-        setCont(false);
-        setFix(false);
-        setMint(false);
-        setGov(true);
-        setBack(false);
-    }
-    const isback = () =>{
-        setBack(true);
-        setCont(false);
-        setFix(false);
-        setMint(false);
-        setGov(false);
-    }
-   
+
+    const Steps = [
+        {
+            label: 'Details',
+            name: 'details',
+            content: <TokenDetails handleNext={handleNext} setPendingTx ={setPendingTx} setTx = {setTx}/>,
+        },
+        {
+            label: 'Deployment',
+            name: 'deploy',
+            content: <Deployment handleNext= {handleNext} pendingTx = {pendingTx}/>,
+        },
+        {
+            label: 'Result',
+            name: 'result',
+            content: <Result tx = {tx} handleFinish= {onFormSubmit} />,
+        }
+    ]
+
     return (
         <>
             <Helmet>
                 <title>{i18n._(t`NewToken`)} | Soul</title>
             </Helmet>
 
-            {cont &&
-                <>
-                    <div style={{ padding:'2.5rem' }}></div>
-                    <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ textAlign:'center', padding:'20px'}} >
-                            <h1 style={{ fontSize: '1.8rem', padding:'5px'}}>Choose your token type</h1>        
-                            <Button style={{ fontSize: '1rem',margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isfixed}>Fixed token</Button><br/>
-                            <Button style={{ fontSize: '1rem', margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={ismint}>Mintable token</Button><br/>
-                            <Button style={{ fontSize: '1rem', margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isgov}>Governance token</Button><br/>
-                            
-                    </div>
-                </> 
-            }
-
-            {back &&
-                <>
-                    <div style={{ padding:'2.5rem' }}></div>
-                    <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ textAlign:'center', padding:'20px'}} >
-                            <h1 style={{ fontSize: '1.8rem', padding:'5px'}}>Choose your token type</h1>        
-                            <Button style={{ fontSize: '1rem',margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isfixed}>Fixed token</Button><br/>
-                            <Button style={{ fontSize: '1rem', margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={ismint}>Mintable token</Button><br/>
-                            <Button style={{ fontSize: '1rem', margin:'10px' }} className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isgov}>Governance token</Button><br/>
-                            
-                    </div>
-                </> 
-            }
-
-            {fix && 
-                <>
-                <div style={{ marginRight: "auto", paddingLeft:'30px'}}>
-                    <Button className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
-                        <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
-                    </Button><br/>
-                </div>
-                {/* <div style={{ padding:'2.5rem' }}></div> */}
-                <h1 style={{ fontSize: '1.8rem'}}>Create new fixed token</h1>       
-                <br/>
-                <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-                    <AutoColumn gap={'md'}>
-                        <Form.Group as={Row} className="mb-3" >
-                                <Form.Label  column sm="2"> Name </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Initial Supply </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                        </Form.Group>
-                        <ButtonLight height='10px'>Create Token </ButtonLight>
-                    </AutoColumn>
-                </div>
-                </>
-            }
-            {mint && 
-                <>
-                <div style={{ marginRight: "auto", paddingLeft:'30px'}}>
-                    <Button className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
-                        <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
-                    </Button><br/>
-                </div>
-                <h1 style={{ fontSize: '1.8rem'}}>Create new mintable token</h1>       
-                <br/>
-                <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-                    <AutoColumn gap={'md'}>
-                        <Form.Group as={Row} className="mb-3" >
-                                <Form.Label  column sm="2"> Name </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Symbol </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Owner </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Initial Supply </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                        </Form.Group>
-                        <ButtonLight height='10px'>Create Token </ButtonLight>
-                    </AutoColumn>
-                </div>
-                </>
-            }
-            {gov && 
-                <>
-                 <div style={{ marginRight: "auto", paddingLeft:'30px'}}>
-                    <Button className="bg-dark-700 shadow-swap-blue-glow max-w-2xl rounded" onClick={isback}>
-                        <ArrowBackIcon style={{ fontSize:'2rem', justifyContent: "flex-start", alignItems: "flex-start" }}/>
-                    </Button><br/>
-                </div>
-                <h1 style={{ fontSize: '1.8rem'}}>Create new governance token</h1>       
-                <br/>
-                <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-                    <AutoColumn gap={'md'}>
-                        <Form.Group as={Row} className="mb-3" >
-                                <Form.Label  column sm="2"> Name </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Symbol </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Owner </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                                <Form.Label column sm="2"> Initial Supply </Form.Label>
-                                <Col sm="5"> <Form.Control type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
-                        </Form.Group>
-                        <ButtonLight height='10px'>Create Token </ButtonLight>
-                    </AutoColumn>
-                </div>
-
-                </>
-            }
+            <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
+            <h1 style={{ fontSize: '1.8rem', marginBottom:'10px', marginTop:'-15px', display: 'flex',  justifyContent:'center', alignItems:'center', height:'10vh'}}>Create new token</h1>
+                <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+                    <React.Fragment>
+                        {Steps[activeStep].content}
+                    </React.Fragment>
+            </div>
         </>
     )
 }
