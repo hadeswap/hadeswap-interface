@@ -43,7 +43,7 @@ export default function Result(props: FuncProps) {
                 <ButtonPrimary style={{width:'30rem'}}>
                     <NavLink 
                         to={{
-                            state: { data: ':D' },
+                            state: { data: props.tx.events[3].args[1] },
                             pathname: '/newsale',
                         }}>
                         {i18n._(t`New Sale`)}

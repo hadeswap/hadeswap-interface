@@ -13,11 +13,12 @@ import { useLocation } from 'react-router-dom';
 export default function NewSale() {
     const { i18n } = useLingui()
     const [auctionType, setAuctionType] = useState<string>("");
-    const [balance, setBalance] = useState<number>(0);
-    const [allowance, setAllowance] = useState<number>(0);
+    const [address, setAddress] = useState<string | any>("AaA");
     const [amount, setAmount] = useState<number>(0);
+    const [payment, setPayment] = useState<string>("");
     const [approve, setApprove] = useState<boolean>(true);
     const location = useLocation();
+    let locationState: any;
 
     const onFormSubmit = () => {
         console.log("onSubmit StepProgressBar :D");
@@ -37,8 +38,15 @@ export default function NewSale() {
 
     useEffect(() => {
         console.log("the auctionType is: ", auctionType)
-        console.log("the location.state is: ", location.state);
     }, [auctionType])
+
+    useEffect(() => {
+        console.log("the address is: ", address)
+    }, [address]);
+
+    useEffect(() => {
+        console.log("the payment is: ", payment)
+    }, [payment]);
 
     useEffect(() => {
         console.log("the amount is: ", amount)
@@ -47,6 +55,14 @@ export default function NewSale() {
     useEffect(() => {
         console.log("the approve is: ", approve)
     }, [approve])
+
+    // useEffect(() => {
+    //     // console.log("the location.state is: ", location.state);
+    //     if (location.state !== undefined) {
+    //         locationState = location.state;
+    //         setAddress(locationState.data); 
+    //     }
+    // }, [])
 
     const saleSteps = [
         {
@@ -63,10 +79,10 @@ export default function NewSale() {
             name: 'setup',
             validator: setupStepValidator,
             content: <SetupStep 
-                balance={balance}
-                setBalance={setBalance}
-                allowance={allowance}
-                setAllowance={setAllowance}
+                address={address}
+                setAddress={setAddress}
+                payment={payment}
+                setPayment={setPayment}
                 amount={amount}
                 setAmount={setAmount}
             />,
@@ -88,14 +104,25 @@ export default function NewSale() {
                 <title>{i18n._(t`New Sale`)} | Soul</title>
             </Helmet>
 
-            <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-                <StepProgressBar
-                    startingStep={0}
-                    onSubmit={onFormSubmit}
-                    steps={saleSteps}
-                    primaryBtnClass='spb-submit-btn'
-                />
-            </div>
+            {location.state ?
+                <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
+                    <StepProgressBar
+                        startingStep={1}
+                        onSubmit={onFormSubmit}
+                        steps={saleSteps}
+                        primaryBtnClass='spb-submit-btn'
+                    />
+                </div>
+                :
+                <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
+                    <StepProgressBar
+                        startingStep={0}
+                        onSubmit={onFormSubmit}
+                        steps={saleSteps}
+                        primaryBtnClass='spb-submit-btn'
+                    />
+                </div>
+            }
         </>
     )
 }

@@ -28,6 +28,7 @@ import { tryParseAmount } from '../../state/swap/hooks'
 import { Dots } from '../Pool/styleds'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import { BigNumber } from '@ethersproject/bignumber'
+import { NavLink } from '../../../src/components/Link'
 
 interface FuncProps {
     handleNext: () => void;
@@ -194,6 +195,18 @@ export default function TokenDetails(props: FuncProps) {
                             </ButtonPrimary>
                         </RowBetween>
                     </AutoColumn>
+                </div>
+
+                <div style={{padding:'25px',display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                    <ButtonPrimary style={{width:'30rem'}}>
+                        <NavLink 
+                            to={{
+                                state: { data: ':D' },
+                                pathname: '/newsale',
+                            }}>
+                            {i18n._(t`New Sale`)}
+                        </NavLink>
+                    </ButtonPrimary>
                 </div>
 
         </>
