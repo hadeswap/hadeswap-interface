@@ -39,7 +39,7 @@ import { BORING_HELPER_ADDRESS, TOKEN_FACTORY_ADDRESS, AUCTION_FACTORY_ADDRESS, 
 FIXEDTOKEN_TEMPLATE, MINTABLETOKEN_TEMPLATE, SOULTOKEN_TEMPLATE, CROWDSALE_TEMPLATE, LAUNCHER_TEMPLATE} from '../constants'
 
 // returns null on errors
-export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
+export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true, name?: string): Contract | null {
     const { library, account } = useActiveWeb3React()
 
     return useMemo(() => {
@@ -47,7 +47,7 @@ export function useContract(address: string | undefined, ABI: any, withSignerIfP
         try {
             return getContract(address, ABI, library, withSignerIfPossible && account ? account : undefined)
         } catch (error) {
-            console.error('Failed to get contract', error)
+            console.error('Failed to get contract from ', name, "\n", error)
             return null
         }
     }, [address, ABI, library, withSignerIfPossible, account])
@@ -55,7 +55,7 @@ export function useContract(address: string | undefined, ABI: any, withSignerIfP
 
 
 export function useTokenContract(tokenAddress?: string, withSignerIfPossible?: boolean): Contract | null {
-    return useContract(tokenAddress, ERC20_ABI, withSignerIfPossible)
+    return useContract(tokenAddress, ERC20_ABI, withSignerIfPossible, 'ERC20_ABI')
 }
 
 export function useWETHContract(withSignerIfPossible?: boolean): Contract | null {
@@ -131,7 +131,7 @@ export function useBoringHelperContract(): Contract | null {
 
 // mainnet only (change if not)
 export function useTokenFactoryContract(): Contract | null {
-    return useContract(TOKEN_FACTORY_ADDRESS, TOKEN_FACTORY_ABI, true)
+    return useContract(TOKEN_FACTORY_ADDRESS, TOKEN_FACTORY_ABI, true, 'TOKEN_FACTORY_ABI')
 }
 
 export function useTokenTemplateContract() : Contract | null {
@@ -139,7 +139,7 @@ export function useTokenTemplateContract() : Contract | null {
 }
 
 export function useAuctionFactoryContract(): Contract | null {
-    return useContract(AUCTION_FACTORY_ADDRESS, AUCTION_FACTORY_ABI, true)
+    return useContract(AUCTION_FACTORY_ADDRESS, AUCTION_FACTORY_ABI, true, 'AUCTION_FACTORY_ABI')
 }
 
 export function useLiquidityFactoryContract(): Contract | null {
@@ -147,5 +147,5 @@ export function useLiquidityFactoryContract(): Contract | null {
 }
 
 export function useCrowdsaleContract(): Contract | null {
-    return useContract(CROWDSALE_TEMPLATE, CROWDSALE_ABI, true)
+    return useContract(CROWDSALE_TEMPLATE, CROWDSALE_ABI, true, 'CROWDSALE_ABI')
 }
