@@ -44,9 +44,7 @@ export default function SetupStep({
                 setAddress(locationState?.data);
             }, 1000);
             console.log("s: ", value);
-            
         }
-        
         setLocationState();
     }, [address])
 

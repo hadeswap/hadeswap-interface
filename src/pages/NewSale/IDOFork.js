@@ -126,17 +126,17 @@ contract('IDO v1', ([alice, bob, carol, feer, operator, wato, admin, deployer, d
         // console.log((await token.allowance(carol, this.auctionFactory.address)).toString());
 
         // STEP3: Deploy Crowdsale
-        // get template id
+        // get template id //llamada a blockchain, se va a harcodear
         tid = await this.auctionFactory.getTemplateId(this.crowdsale.address);
         console.log("crowdsale template id: ", tid.toString());
         // get init data
         data = await this.crowdsale.getCrowdsaleInitData(this.auctionFactory.address, tokenAddress, '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE',
             '1000000000000000000000', timestamp, timestamp5, '10000000000000000', '1000000000000000000', carol, this.zeroAddress,
-            carol);
+            carol); //lo devuelve en otro formato
         await this.token.approve(this.auctionFactory.address, '1000000000000000000', {from: carol})
         // create
         tx = await this.auctionFactory.createMarket(tid, tokenAddress, '1000000000000000000000', this.zeroAddress, data, {from: carol});
-        let crowdsaleAddress = tx.logs[0].args.addr;
+        let crowdsaleAddress = tx.logs[0].args.addr; //create token, create market crea 
 
 
         // STEP: Approve to liquidityFactory

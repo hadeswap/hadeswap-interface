@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Col, Row } from 'react-bootstrap'
 import { ButtonLight } from '../../components/ButtonLegacy'
+import useHadesSale from '../../hooks/useHadesSale'
 
 type Props = {
     approve: boolean;
@@ -8,9 +9,14 @@ type Props = {
 }
 
 export default function SaleStep({ approve, setApprove }: Props) {
+    const { createSale } = useHadesSale();
+
     const handleApprove = () => {
         console.log("approving...");
-        setApprove(!approve);
+        // setApprove(!approve);
+
+        const tx = createSale();
+        console.log("lo que regresa en tx es:\n", tx)
     }
 
     return (
