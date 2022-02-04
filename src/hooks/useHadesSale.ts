@@ -16,10 +16,11 @@ const useHadesSale = () => {
     // let tokenAddress = sara 
     // let tknTx = '0x2cf3d53581fb657d85a6b490ab47a3aee0506ed52859daa3df18bd5bdb499a29' // token
 
-    const sara = '0x0AF4366C25c49C46b4816c42fEe25a0cf67dF2aB' // wallet
-    const tokenAddress = '0xFF16E9a627B8cDb4cA72b6aD9508A62a5B1B121f' // token
+    const sara = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720' // wallet
+    const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340' // token
     
     const tokenContract = useTokenContract(tokenAddress)
+    const soulContract = useTokenContract('0xf1498e8103359fD96c5E08fb34b4C249B619025a')
     const auctionFactoryContract = useAuctionFactoryContract()
     const crowdsaleContract = useCrowdsaleContract();
 
@@ -45,11 +46,10 @@ const useHadesSale = () => {
                                  timestamp, timestamp5, '10000000000000000', '1000000000000000000',
                                  sara, zero_address, sara);
                 console.log("data: ", data);                
-                await tokenContract?.approve(auctionFactoryContract?.address, '10000000000000000000000000', {from: sara})
+                await soulContract?.approve(auctionFactoryContract?.address, '10000000000000000000000000', {from: sara})
                 console.log("try 4");
-                let tx = await auctionFactoryContract?.createMarket(tid, tokenAddress, '1000000000000000000', zero_address, data, {from: sara});
+                let tx = await auctionFactoryContract?.createMarket(tid, tokenAddress, '1000000000000000000000', zero_address, data, {from: sara});
                 console.log("try 5");
-                
                 let crowdsaleAddress = tx.logs[0].args.addr; // create token, create market crea 
                 console.log('crowdsaleAddress: ', crowdsaleAddress)
 
