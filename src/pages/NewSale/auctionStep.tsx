@@ -1,39 +1,52 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form } from 'react-bootstrap'
+import { useLingui } from '@lingui/react'
+import { t } from '@lingui/macro'
+import { Helmet } from 'react-helmet'
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import RadioGroup from '@mui/material/RadioGroup';
+import Radio from '@mui/material/Radio';
 
-type Props = {
-    auctionType: string;
-    setAuctionType: (auctionType: string) => void;
+interface FuncProps {
+    handleNext: () => void;
+    setAuctionType: (value: string) => void;
 }
 
-export default function SetupStep({ auctionType, setAuctionType }: Props) {
+export default function SetupStep(props: FuncProps) {
+    const { i18n } = useLingui();
+    const [template, setTemplate] = useState('1');
+
+    const isCrowdsale = () => {
+        setTemplate('1');
+        props.handleNext()
+    }
+
     const auctionTypes = [
         {
-            name: 'CROWDSALE',
+            name: 'Crowdsale',
+            func: isCrowdsale,
             description: 'Token owner puts X amount of tokens at sale at a fixed price P. Sale with end if a min goal is reached, else all funds are returned.'
         },
     ]
 
     return (
         <>
-            <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-                <div className="grid gap-4">
-                    {auctionTypes.map((at, index) => {
-                        return <>
-                            <Form.Label key={index} column sm="2">
-                                <Form.Check
-                                    name='auction-group'
-                                    value="dutch"
-                                    type="radio"
-                                    label={" " + at.name}
-                                    onChange={(e: any) => setAuctionType(e.target.value)}
-                                />
-                                <span>{at.description}</span>
-                            </Form.Label>
-                        </>
-                    })}
-                </div>
-            </div>
+            <Helmet>
+                <title>{i18n._(t`NewSale`)} | Soul</title>
+            </Helmet>
+            <hr style={{marginTop:'30px'}} />
+            <h1 style={{color:'grey', fontSize: '1.3rem', marginTop:'20px', display: 'flex',  justifyContent:'center', alignItems:'center'}}>Auction type</h1>
+            <FormControl component="fieldset" style={{ display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+                <RadioGroup row aria-label="auctionType" name="row-radio-buttons-group" >
+                {/* <RadioGroup row aria-label="auctionType" name="row-radio-buttons-group" defaultValue='Crowdsale'> */}
+                    {auctionTypes &&
+                        auctionTypes.map((type, index) => {
+                            return <FormControlLabel key={index} onChange={type.func} value={type.name} control={<Radio />} label={type.name} />
+                        })
+                    }
+                </RadioGroup>
+            </FormControl>
         </>
     )
 }

@@ -3,97 +3,53 @@ import { Helmet } from 'react-helmet'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import 'react-step-progress/dist/index.css';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
 import AuctionStep from './auctionStep'
 import SetupStep from './setupStep'
 import SaleStep from './saleSetup'
-import './styles.css'
 import { useLocation } from 'react-router-dom';
+
+const steps = ['Auction', 'Setup', 'Sale'];
 
 export default function NewSale() {
     const { i18n } = useLingui()
-    const [auctionType, setAuctionType] = useState<string>("");
-    const [address, setAddress] = useState<string | any>("AaA");
-    const [amount, setAmount] = useState<number>(0);
-    const [payment, setPayment] = useState<string>("");
-    const [approve, setApprove] = useState<boolean>(true);
+    const [activeStep, setActiveStep] = React.useState(0);
     const location = useLocation();
-    let locationState: any;
+
+    const [auctionType, setAuctionType] = useState('');
+    const [tokenInfo, setTokenInfo] = useState<any>(undefined);
+
+    const handleNext = () => {
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+    };
 
     const onFormSubmit = () => {
-        console.log("onSubmit StepProgressBar :D");
-    }
-
-    const auctionStepValidator = () => {
-        return true
-    }
-
-    const setupStepValidator = () => {
-        return true
-    }
-
-    const saleStepValidator = () => {
-        return true
+        console.log("form sale submit");
     }
 
     useEffect(() => {
-        console.log("the auctionType is: ", auctionType)
-    }, [auctionType])
+        if (location.state !== undefined) {
+            setTokenInfo(location.state);
+        }
+    }, [])
 
-    useEffect(() => {
-        console.log("the address is: ", address)
-    }, [address]);
-
-    useEffect(() => {
-        console.log("the payment is: ", payment)
-    }, [payment]);
-
-    useEffect(() => {
-        console.log("the amount is: ", amount)
-    }, [amount]);
-
-    useEffect(() => {
-        console.log("the approve is: ", approve)
-    }, [approve])
-
-    // useEffect(() => {
-    //     // console.log("the location.state is: ", location.state);
-    //     if (location.state !== undefined) {
-    //         locationState = location.state;
-    //         setAddress(locationState.data); 
-    //     }
-    // }, [])
-
-    const saleSteps = [
+    const Steps = [
         {
             label: 'Auction',
             name: 'auction',
-            validator: auctionStepValidator,
-            content: <AuctionStep
-                auctionType={auctionType}
-                setAuctionType={setAuctionType}
-            />
+            content: <AuctionStep handleNext={handleNext} setAuctionType={setAuctionType} />,
         },
         {
             label: 'Setup',
             name: 'setup',
-            validator: setupStepValidator,
-            content: <SetupStep 
-                address={address}
-                setAddress={setAddress}
-                payment={payment}
-                setPayment={setPayment}
-                amount={amount}
-                setAmount={setAmount}
-            />,
+            content: <SetupStep handleNext={handleNext} tokenInfo={tokenInfo} />,
         },
         {
             label: 'Sale',
             name: 'sale',
-            validator: saleStepValidator,
-            content: <SaleStep
-                approve={approve}
-                setApprove={setApprove}
-            />
+            content: <SaleStep handleFinish={onFormSubmit} />,
         }
     ]
 
@@ -102,6 +58,20 @@ export default function NewSale() {
             <Helmet>
                 <title>{i18n._(t`New Sale`)} | Soul</title>
             </Helmet>
+
+            <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
+            <h1 style={{ fontSize: '1.8rem', marginBottom:'10px', marginTop:'-15px', display: 'flex',  justifyContent:'center', alignItems:'center', height:'10vh'}}>Create new sale</h1>
+                <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map((label) => (
+                        <Step key={label}>
+                            <StepLabel>{label}</StepLabel>
+                        </Step>
+                    ))}
+                </Stepper>
+                    <React.Fragment>
+                        {Steps[activeStep].content}
+                    </React.Fragment>
+            </div>
         </>
     )
 }

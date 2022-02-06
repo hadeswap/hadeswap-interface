@@ -3,12 +3,11 @@ import { Form, Col, Row } from 'react-bootstrap'
 import { ButtonLight } from '../../components/ButtonLegacy'
 import useHadesSale from '../../hooks/useHadesSale'
 
-type Props = {
-    approve: boolean;
-    setApprove: (amount: boolean) => void;
+interface FuncProps {
+    handleFinish: () => void;
 }
 
-export default function SaleStep({ approve, setApprove }: Props) {
+export default function SaleStep(props: FuncProps) {
     const { createSale } = useHadesSale();
 
     const handleApprove = () => {
