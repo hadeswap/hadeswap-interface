@@ -10,12 +10,7 @@ import { useTransactionAdder } from '../state/transactions/hooks'
 import useActiveWeb3React from './useActiveWeb3React'
 import { CROWDSALE_TEMPLATE } from '../constants'
 
-// const useHadesSale = (tokenAddress: string) => {
 const useHadesSale = () => {
-    // const [approval, approveCallback] = useApproveCallback(independentAmount, TOKEN_FACTORY_ADDRESS)
-    // let tokenAddress = sara 
-    // let tknTx = '0x2cf3d53581fb657d85a6b490ab47a3aee0506ed52859daa3df18bd5bdb499a29' // token
-
     const sara = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720' // wallet
     const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340' // token
     
@@ -23,7 +18,6 @@ const useHadesSale = () => {
     const soulContract = useTokenContract('0xf1498e8103359fD96c5E08fb34b4C249B619025a')
     const auctionFactoryContract = useAuctionFactoryContract()
     const crowdsaleContract = useCrowdsaleContract();
-
 
     const zero_address = '0x0000000000000000000000000000000000000000';
     const zero_data = '0x000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000';

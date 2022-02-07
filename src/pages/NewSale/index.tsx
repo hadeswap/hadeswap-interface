@@ -5,10 +5,11 @@ import { useLingui } from '@lingui/react'
 import 'react-step-progress/dist/index.css';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import AuctionStep from './auctionStep'
-import SetupStep from './setupStep'
-import SaleStep from './saleSetup'
+import { styled } from "@mui/material/styles";
+import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
+import AuctionStep from './auctionStep';
+import SetupStep from './setupStep';
+import SaleStep from './saleSetup';
 import { useLocation } from 'react-router-dom';
 
 const steps = ['Auction', 'Setup', 'Sale'];
@@ -35,6 +36,18 @@ export default function NewSale() {
         }
     }, [])
 
+    const ColorlibStepLabel = styled(StepLabel)(() => ({
+        [`& .${stepLabelClasses.label}`]: {
+            [`&.${stepLabelClasses.completed}`]: {
+                color: 'rgba(255, 255, 255, 1)',
+            },
+            [`&.${stepLabelClasses.active}`]: {
+                color: 'rgba(255, 255, 255, 1)',
+            },
+            color: 'rgba(255, 255, 255, 0.3)',
+        },
+    }));
+
     const Steps = [
         {
             label: 'Auction',
@@ -60,17 +73,17 @@ export default function NewSale() {
             </Helmet>
 
             <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-            <h1 style={{ fontSize: '1.8rem', marginBottom:'10px', marginTop:'-15px', display: 'flex',  justifyContent:'center', alignItems:'center', height:'10vh'}}>Create new sale</h1>
+                <h1 style={{ fontSize: '1.8rem', marginBottom:'10px', marginTop:'-15px', display: 'flex',  justifyContent:'center', alignItems:'center', height:'10vh'}}>Create new sale</h1>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
                         <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
+                            <ColorlibStepLabel>{label}</ColorlibStepLabel>
                         </Step>
                     ))}
                 </Stepper>
-                    <React.Fragment>
-                        {Steps[activeStep].content}
-                    </React.Fragment>
+                <React.Fragment>
+                    {Steps[activeStep].content}
+                </React.Fragment>
             </div>
         </>
     )

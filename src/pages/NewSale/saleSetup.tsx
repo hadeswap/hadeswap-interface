@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Form, Col, Row } from 'react-bootstrap'
 import { ButtonLight } from '../../components/ButtonLegacy'
 import useHadesSale from '../../hooks/useHadesSale'
@@ -9,6 +9,7 @@ interface FuncProps {
 
 export default function SaleStep(props: FuncProps) {
     const { createSale } = useHadesSale();
+    const [coin, setCoin] = useState('');
 
     const handleApprove = () => {
         console.log("approving...");
@@ -16,6 +17,10 @@ export default function SaleStep(props: FuncProps) {
 
         const tx = createSale();
         console.log("lo que regresa en tx es:\n", tx)
+    }
+
+    const handleCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setCoin(e.target.value);
     }
 
     return (
@@ -30,7 +35,7 @@ export default function SaleStep(props: FuncProps) {
                                 value="ethereum"
                                 type="radio"
                                 label=" ETHEREUM"
-                                // onChange={(e: any) => console.log(e.target.value)}
+                                onChange={handleCoin}
                             />
                         </Form.Label>
                     </Form.Group>
@@ -45,21 +50,21 @@ export default function SaleStep(props: FuncProps) {
                                     value="dai"
                                     type="radio"
                                     label=" DAI"
-                                    // onChange={(e: any) => console.log(e.target.value)}
+                                    onChange={handleCoin}
                             />
                             <Form.Check
                                     name='currency-group'
                                     value="usdc"
                                     type="radio"
                                     label=" USDC"
-                                    // onChange={(e: any) => console.log(e.target.value)}
+                                    onChange={handleCoin}
                             />
                             <Form.Check
                                     name='currency-group'
                                     value="usdt"
                                     type="radio"
                                     label=" USDT"
-                                    // onChange={(e: any) => console.log(e.target.value)}
+                                    onChange={handleCoin}
                             />
                         </Form.Label>
                     </Form.Group>
@@ -74,7 +79,7 @@ export default function SaleStep(props: FuncProps) {
                                 value="custom"
                                 type="radio"
                                 label=" CUSTOM"
-                                // onChange={(e: any) => console.log(e.target.value)}
+                                onChange={handleCoin}
                             />
                         </Form.Label>
                     </Form.Group>
@@ -107,10 +112,10 @@ export default function SaleStep(props: FuncProps) {
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                     <Col sm="5">
-                        <Form.Control required type="number" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/>
+                        <Form.Control required type="number" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/>
                     </Col>
                     <Col sm="5">
-                        <Form.Control required type="number" className="bg-dark-700  shadow-swap-blue-glow w-full max-w-2xl rounded"/>
+                        <Form.Control required type="number" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/>
                     </Col>
                 </div>
                 <br />

@@ -9,7 +9,8 @@ import Deployment from './Deployment'
 import Result from './Result'
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
+import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
+import { styled } from "@mui/material/styles";
 
 const steps = ['Details', 'Deployment', 'Result'];
 
@@ -34,6 +35,18 @@ export default function NewToken() {
     const onFormSubmit = () => {
         console.log("form submit");
     }
+
+    const ColorlibStepLabel = styled(StepLabel)(() => ({
+        [`& .${stepLabelClasses.label}`]: {
+            [`&.${stepLabelClasses.completed}`]: {
+                color: 'rgba(255, 255, 255, 1)',
+            },
+            [`&.${stepLabelClasses.active}`]: {
+                color: 'rgba(255, 255, 255, 1)',
+            },
+            color: 'rgba(255, 255, 255, 0.3)',
+        },
+    }));
 
     const Steps = [
         {
@@ -64,7 +77,7 @@ export default function NewToken() {
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
                         <Step key={label}>
-                            <StepLabel>{label}</StepLabel>
+                            <ColorlibStepLabel>{label}</ColorlibStepLabel>
                         </Step>
                     ))}
                 </Stepper>
