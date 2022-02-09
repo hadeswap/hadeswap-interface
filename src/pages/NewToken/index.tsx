@@ -11,6 +11,7 @@ import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel, { stepLabelClasses } from '@mui/material/StepLabel';
 import { styled } from "@mui/material/styles";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const steps = ['Details', 'Deployment', 'Result'];
 
@@ -73,7 +74,9 @@ export default function NewToken() {
             </Helmet>
 
             <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
+            {activeStep ? <ArrowBackIcon style={{fontSize:'2.3rem'}} onClick={handleBack}/> :<p></p>}
             <h1 style={{ fontSize: '1.8rem', marginBottom:'10px', marginTop:'-15px', display: 'flex',  justifyContent:'center', alignItems:'center', height:'10vh'}}>Create new token</h1>
+            
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (
                         <Step key={label}>

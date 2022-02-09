@@ -21,6 +21,8 @@ interface FuncProps {
     tokenInfo: any;
 }
 
+
+
 export default function SetupStep(props: FuncProps) {
     const location = useLocation();
     const { i18n } = useLingui();
