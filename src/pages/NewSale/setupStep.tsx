@@ -22,7 +22,6 @@ interface FuncProps {
 }
 
 
-
 export default function SetupStep(props: FuncProps) {
     const location = useLocation();
     const { i18n } = useLingui();
@@ -39,6 +38,7 @@ export default function SetupStep(props: FuncProps) {
 
     const addressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAddress(e.target.value);
+        globalThis.token.address = address;
     }
 
     const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +47,7 @@ export default function SetupStep(props: FuncProps) {
 
     const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(e.target.valueAsNumber);
+        globalThis.token.amount = amount.toString();
     };
 
     const createSaleHandler = async() => {

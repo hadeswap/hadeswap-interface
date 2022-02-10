@@ -35,12 +35,13 @@ export default function SaleStep(props: FuncProps) {
         console.log("approving...");
         // setApprove(!approve);
 
-        const tx = createSale();
-        console.log("lo que regresa en tx es:\n", tx)
+        // const tx = createSale();
+        // console.log("lo que regresa en tx es:\n", tx)
     }
 
     const handleCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCoin(e.target.value);
+        console.log("global token: ", globalThis.token);
     }
     const handleStart = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStart(e.target.value);
@@ -65,7 +66,7 @@ export default function SaleStep(props: FuncProps) {
     const createSaleHandler = async () => {
         // props.setPendingTx(1)
         // const data = await getTokenData(name, symbol, owner, num.toString())
-        // const tx = await createSale(template, data, name, symbol)
+        // const tx = await createSale(template, data, name, symbol, start, end)
         // props.setTx(tx);
         // // const tx = undefined
         // // if tx object is not valid, we go back to step1 or error?

@@ -19,6 +19,7 @@ export default function SetupStep(props: FuncProps) {
 
     const isCrowdsale = () => {
         setTemplate('1');
+        globalThis.token.template = template;
         props.handleNext()
     }
 

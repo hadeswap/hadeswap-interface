@@ -16,6 +16,12 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const steps = ['Auction', 'Setup', 'Sale'];
 
+globalThis.token = {
+    address: '',
+    template: '',
+    amount: '',
+};
+
 export default function NewSale() {
     const { i18n } = useLingui()
     const [activeStep, setActiveStep] = React.useState(0);
@@ -79,7 +85,7 @@ export default function NewSale() {
             </Helmet>
 
             <div className="bg-dark-900 shadow-swap-blue-glow w-full max-w-2xl rounded" style={{ padding: '1rem 1rem' }} >
-            {activeStep ? <ArrowBackIcon style={{fontSize:'2.3rem'}} onClick={handleBack}/> :<p></p>}
+            {activeStep ? <ArrowBackIcon style={{ fontSize:'2.3rem', cursor: 'pointer' }} onClick={handleBack}/> :<p></p>}
                 <h1 style={{ fontSize: '1.8rem', marginBottom:'10px', marginTop:'-15px', display: 'flex',  justifyContent:'center', alignItems:'center', height:'10vh'}}>Create new sale</h1>
                 <Stepper activeStep={activeStep} alternativeLabel>
                     {steps.map((label) => (

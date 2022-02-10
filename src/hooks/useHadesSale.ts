@@ -9,14 +9,13 @@ import React, { useCallback, useEffect, useState } from 'react'
 import useActiveWeb3React from './useActiveWeb3React'
 
 const useHadesSale = () => {
-    // const sara = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720' // wallet
-    // const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340' // token
+    const sara = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720' // wallet
+    const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340' // token
     const [tokenFeeCost, setTokenFeeCost] = useState('0');
-    
+
     const tokenContract = useTokenContract(tokenAddress)
-    const soulContract = useTokenContract('0xf1498e8103359fD96c5E08fb34b4C249B619025a')
     const auctionFactoryContract = useAuctionFactoryContract()
-    const {account} = useActiveWeb3React()
+    const { account } = useActiveWeb3React()
     const crowdsaleContract = useCrowdsaleContract();
 
     const zero_address = '0x0000000000000000000000000000000000000000';
@@ -24,9 +23,8 @@ const useHadesSale = () => {
 
     // Create Sale
     const createSale = useCallback(
-        async (tid: string , data: string, name: string, symbol: string) => {
+        async (tid: string , data: string) => {
             console.log('creating sale...')
-
             try {
                 const tx = await auctionFactoryContract?.createMarket(tid, tokenAddress, '1000000000000000000000', zero_address, data, {from: sara});
                 // let crowdsaleAddress = tx.logs[0].args.addr;
@@ -71,8 +69,8 @@ const useHadesSale = () => {
 
     const getTokenFeeCost = async () => {
         try {
-            const fee =  await tokenFactoryContract?.minimumFee()
-            setTokenFeeCost(ethers.utils.formatUnits(fee, 18))
+            // const fee =  await tokenFactoryContract?.minimumFee()
+            // setTokenFeeCost(ethers.utils.formatUnits(fee, 18))
         } catch (e) {
             console.log(e)
             setTokenFeeCost('0')
@@ -82,7 +80,7 @@ const useHadesSale = () => {
     useEffect(() => {
         getTokenFeeCost()
 
-    }, [account, tokenFactoryContract])
+    }, [account])
 
     return { createSale, getCrowdsaleData, getTokenFeeCost }
 }
