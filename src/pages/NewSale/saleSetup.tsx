@@ -19,29 +19,20 @@ interface FuncProps {
 
 export default function SaleStep(props: FuncProps) {
     const { i18n } = useLingui();
-    const { createSale } = useHadesSale();
+    const { createSale, getCrowdsaleData } = useHadesSale();
     const [coin, setCoin] = useState('');
     const [start, setStart] = useState('');
     const [end, setEnd] = useState('');
-    const [price, setPrice] = useState(0);
-    const [goal, setGoal] = useState(0);
+    const [price, setPrice] = useState('');
+    const [goal, setGoal] = useState('');
     const [address, setAddress] = useState('');
     const [approval, approveCallback] = useApproveCallback(undefined, '');
     const { account, chainId } = useActiveWeb3React();
     const soul = SOUL[ChainId.MAINNET];
     const [customAddress, setCustomAddress] = useState('');
 
-    const handleApprove = () => {
-        console.log("approving...");
-        // setApprove(!approve);
-
-        // const tx = createSale();
-        // console.log("lo que regresa en tx es:\n", tx)
-    }
-
     const handleCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCoin(e.target.value);
-        console.log("global token: ", globalThis.token);
     }
     const handleStart = (e: React.ChangeEvent<HTMLInputElement>) => {
         setStart(e.target.value);
@@ -50,11 +41,10 @@ export default function SaleStep(props: FuncProps) {
         setEnd(e.target.value);
     }
     const handlePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPrice(e.target.valueAsNumber);
+        setPrice(e.target.value);
     }
     const handleGoal = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log("goal: ", goal)
-        setGoal(e.target.valueAsNumber);
+        setGoal(e.target.value);
     }
     const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAddress(e.target.value);
@@ -65,8 +55,11 @@ export default function SaleStep(props: FuncProps) {
 
     const createSaleHandler = async () => {
         // props.setPendingTx(1)
-        // const data = await getTokenData(name, symbol, owner, num.toString())
-        // const tx = await createSale(template, data, name, symbol, start, end)
+        console.log('creating sale...');
+        console.log("global token: ", globalThis.token);
+        const data = await getCrowdsaleData(start, end, price, goal, address, globalThis.token.address);
+        
+        const tx = await createSale(globalThis.token.template, data, globalThis.token.address, address);
         // props.setTx(tx);
         // // const tx = undefined
         // // if tx object is not valid, we go back to step1 or error?
@@ -76,7 +69,6 @@ export default function SaleStep(props: FuncProps) {
         // else{
         //     props.setPendingTx(0)
         // }
-        console.log('creating sale...');
     };
 
     return (
@@ -220,8 +212,8 @@ export default function SaleStep(props: FuncProps) {
                                 end === '' ||
                                 coin === '' ||
                                 address === '' ||
-                                price <= 0 ||
-                                goal <= 0 || goal === null
+                                price === '' ||
+                                goal === ''
                                 // approval !== ApprovalState.APPROVED
                                 // Number(soulBalance?.toFixed(18)) < Number(tokenFeeCost)
                             }

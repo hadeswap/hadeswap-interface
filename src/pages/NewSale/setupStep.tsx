@@ -38,7 +38,7 @@ export default function SetupStep(props: FuncProps) {
 
     const addressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAddress(e.target.value);
-        globalThis.token.address = address;
+        globalThis.token.address = e.target.value;
     }
 
     const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,23 +47,11 @@ export default function SetupStep(props: FuncProps) {
 
     const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAmount(e.target.valueAsNumber);
-        globalThis.token.amount = amount.toString();
+        globalThis.token.amount = e.target.value;
     };
 
-    const createSaleHandler = async() => {
-        // props.setPendingTx(1)
-        // const data = await getTokenData(name, symbol, owner, num.toString())
-        // const tx = await createSale(template, data, name, symbol)
-        // props.setTx(tx);
-        // // const tx = undefined
-        // // if tx object is not valid, we go back to step1 or error?
-        // if(tx !== undefined){
-        //     props.setPendingTx(2)
-        // }
-        // else{
-        //     props.setPendingTx(0)
-        // }
-        console.log('creating sale...');
+    const handleApprove = () => {
+        approveCallback();
         props.handleNext();
     };
 
@@ -91,7 +79,7 @@ export default function SetupStep(props: FuncProps) {
                     <RowBetween>
                         {approval !== ApprovalState.APPROVED && (
                             <ButtonPrimary
-                                onClick={approveCallback}
+                                onClick={handleApprove}
                                 disabled={approval === ApprovalState.PENDING}
                                 width={'48%'}
                             >
@@ -110,31 +98,6 @@ export default function SetupStep(props: FuncProps) {
                                 )}
                             </ButtonPrimary>
                         )}
-
-                        <ButtonPrimary
-                            onClick={createSaleHandler}
-                            // disabled={
-                            //     address === '' ||
-                            //     paymentAddress === '' ||
-                            //     amount <= 0 ||
-                            //     approval !== ApprovalState.APPROVED
-                            //     // Number(soulBalance?.toFixed(18)) < Number(tokenFeeCost)
-                            // }
-                            width={approval !== ApprovalState.APPROVED ? '48%' : '100%'}
-                        >
-                            {/* {Number(soulBalance?.toFixed(18)) >= Number(tokenFeeCost) ? (
-                                i18n._(
-                                    t`Create Sale`
-                                )
-                            ) : (
-                                i18n._(
-                                    t`Not enough SOUL balance`
-                                )
-                            )} */}
-                            {i18n._(
-                                    t`Not enough SOUL balance`
-                            )}
-                        </ButtonPrimary>
                     </RowBetween>
                 </AutoColumn>
             </div>
