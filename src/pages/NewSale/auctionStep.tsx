@@ -15,12 +15,10 @@ interface FuncProps {
 
 export default function SetupStep(props: FuncProps) {
     const { i18n } = useLingui();
-    const [template, setTemplate] = useState('1');
 
     const isCrowdsale = () => {
-        setTemplate('1');
-        globalThis.token.template = template;
-        props.handleNext()
+        globalThis.token.template = '1';
+        props.handleNext();
     }
 
     const auctionTypes = [

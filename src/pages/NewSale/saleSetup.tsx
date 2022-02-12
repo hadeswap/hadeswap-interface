@@ -57,9 +57,8 @@ export default function SaleStep(props: FuncProps) {
         // props.setPendingTx(1)
         console.log('creating sale...');
         console.log("global token: ", globalThis.token);
-        const data = await getCrowdsaleData(start, end, price, goal, address, globalThis.token.address);
-        
-        const tx = await createSale(globalThis.token.template, data, globalThis.token.address, address);
+        const data = await getCrowdsaleData(start, end, price, goal, address, globalThis.token.address, globalThis.token.amount);
+        const tx = await createSale(globalThis.token.template, data, globalThis.token.address, address, globalThis.token.amount);
         // props.setTx(tx);
         // // const tx = undefined
         // // if tx object is not valid, we go back to step1 or error?

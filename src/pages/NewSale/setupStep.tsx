@@ -34,8 +34,6 @@ export default function SetupStep(props: FuncProps) {
     const [paymentAddress, setPaymentAddress] = useState('');
     const [amount, setAmount] = useState(0);
 
-    const { createSale } = useHadesSale();
-
     const addressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         setAddress(e.target.value);
         globalThis.token.address = e.target.value;
@@ -51,7 +49,7 @@ export default function SetupStep(props: FuncProps) {
     };
 
     const handleApprove = () => {
-        approveCallback();
+        // approveCallback();
         props.handleNext();
     };
 
