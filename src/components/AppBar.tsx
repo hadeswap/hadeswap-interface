@@ -164,6 +164,9 @@ function AppBar(): JSX.Element {
                                                                 <Dropdown.Item onClick={close} href="/newsale">New Sale</Dropdown.Item>
                                                                 <br/>
                                                                 <Dropdown.Item onClick={close} href="/newtoken">New Token</Dropdown.Item>
+                                                                <br/>
+                                                                <Dropdown.Item onClick={close} href="/launcher">Launcher</Dropdown.Item>
+                                                                <br/>
                                                         </Dropdown.Menu>
                                                     )}
                                                 </Dropdown>
