@@ -11,7 +11,7 @@ import AuctionStep from './auctionStep';
 import SetupStep from './setupStep';
 import SaleStep from './saleSetup';
 import { useLocation } from 'react-router-dom';
-import {ButtonLight} from '../../components/ButtonLegacy';
+import { ButtonLight } from '../../components/ButtonLegacy';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const steps = ['Auction', 'Setup', 'Sale'];
@@ -28,7 +28,9 @@ export default function NewSale() {
     const location = useLocation();
 
     const [auctionType, setAuctionType] = useState('');
-    const [tokenInfo, setTokenInfo] = useState<any>(undefined);
+    // 0 for nothing, 1 for initiated, 2 for finished
+    const [pendingTx, setPendingTx] = useState(0)
+    const [tx, setTx] = useState(undefined)
 
     const handleNext = () => {
         setActiveStep((prevActiveStep) => prevActiveStep + 1);
@@ -41,12 +43,6 @@ export default function NewSale() {
     const onFormSubmit = () => {
         console.log("form sale submit");
     }
-
-    useEffect(() => {
-        if (location.state !== undefined) {
-            setTokenInfo(location.state);
-        }
-    }, [])
 
     const ColorlibStepLabel = styled(StepLabel)(() => ({
         [`& .${stepLabelClasses.label}`]: {
@@ -69,12 +65,12 @@ export default function NewSale() {
         {
             label: 'Setup',
             name: 'setup',
-            content: <SetupStep handleNext={handleNext} tokenInfo={tokenInfo} />,
+            content: <SetupStep handleNext={handleNext} />,
         },
         {
             label: 'Sale',
             name: 'sale',
-            content: <SaleStep handleFinish={onFormSubmit} />,
+            content: <SaleStep handleFinish={onFormSubmit} setPendingTx ={setPendingTx} setTx = {setTx} />,
         }
     ]
 

@@ -15,6 +15,8 @@ import { SOUL } from '../../constants'
 
 interface FuncProps {
     handleFinish: () => void;
+    setPendingTx: (value: number) => void;
+    setTx: (value: any) => void;
 }
 
 export default function SaleStep(props: FuncProps) {
@@ -25,7 +27,7 @@ export default function SaleStep(props: FuncProps) {
     const [end, setEnd] = useState('');
     const [price, setPrice] = useState('');
     const [goal, setGoal] = useState('');
-    const [address, setAddress] = useState('');
+    const [receiver, setReceiver] = useState('');
     const [approval, approveCallback] = useApproveCallback(undefined, '');
     const { account, chainId } = useActiveWeb3React();
     const soul = SOUL[ChainId.MAINNET];
@@ -46,28 +48,25 @@ export default function SaleStep(props: FuncProps) {
     const handleGoal = (e: React.ChangeEvent<HTMLInputElement>) => {
         setGoal(e.target.value);
     }
-    const handleAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAddress(e.target.value);
+    const handleReceiver = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setReceiver(e.target.value);
     }
     const handleCustomAddress = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCustomAddress(e.target.value);
     }
 
     const createSaleHandler = async () => {
-        // props.setPendingTx(1)
-        console.log('creating sale...');
-        console.log("global token: ", globalThis.token);
-        const data = await getCrowdsaleData(start, end, price, goal, address, globalThis.token.address, globalThis.token.amount);
-        const tx = await createSale(globalThis.token.template, data, globalThis.token.address, address, globalThis.token.amount);
-        // props.setTx(tx);
-        // // const tx = undefined
-        // // if tx object is not valid, we go back to step1 or error?
-        // if(tx !== undefined){
-        //     props.setPendingTx(2)
-        // }
-        // else{
-        //     props.setPendingTx(0)
-        // }
+        props.setPendingTx(1)
+        const { template, amount, address } = globalThis.token;
+        const data = await getCrowdsaleData(start, end, price, goal, receiver, address, amount);
+        const tx = await createSale(template, address, data, amount, receiver);
+        props.setTx(tx);
+        if(tx !== undefined){
+            props.setPendingTx(2)
+        }
+        else{
+            props.setPendingTx(0)
+        }
     };
 
     return (
@@ -177,7 +176,7 @@ export default function SaleStep(props: FuncProps) {
                 <Form.Group as={Row} className="mb-3" >
                     <Form.Label column sm="2">Address that receives funds raised</Form.Label>
                     <Col sm="5">
-                        <Form.Control required onChange={handleAddress} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/>
+                        <Form.Control required onChange={handleReceiver} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/>
                     </Col>
                 </Form.Group>
                 
@@ -210,7 +209,7 @@ export default function SaleStep(props: FuncProps) {
                                 start === '' ||
                                 end === '' ||
                                 coin === '' ||
-                                address === '' ||
+                                receiver === '' ||
                                 price === '' ||
                                 goal === ''
                                 // approval !== ApprovalState.APPROVED

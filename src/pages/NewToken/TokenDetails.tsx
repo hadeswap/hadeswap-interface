@@ -95,6 +95,11 @@ export default function TokenDetails(props: FuncProps) {
         }
     };
 
+    const newTokenSaleHandler = () => {
+        globalThis.token.address = '0xNEW_TOKEN_ADDRESS';
+        globalThis.token.template = '_1_';
+    }
+
     const createTokenHandler = async() => {
         props.handleNext()
         props.setPendingTx(1)
@@ -198,12 +203,8 @@ export default function TokenDetails(props: FuncProps) {
                 </div>
 
                 <div style={{padding:'25px',display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-                    <ButtonPrimary style={{width:'30rem'}}>
-                        <NavLink 
-                            to={{
-                                state: { data: ':D' },
-                                pathname: '/newsale',
-                            }}>
+                    <ButtonPrimary style={{width:'30rem'}} onClick={newTokenSaleHandler}>
+                        <NavLink to='/newsale' >
                             {i18n._(t`New Sale`)}
                         </NavLink>
                     </ButtonPrimary>

@@ -18,7 +18,6 @@ import useHadesSale from 'hooks/useHadesSale'
 
 interface FuncProps {
     handleNext: () => void;
-    tokenInfo: any;
 }
 
 
@@ -29,22 +28,16 @@ export default function SetupStep(props: FuncProps) {
     const { account, chainId } = useActiveWeb3React();
     const soul = SOUL[ChainId.MAINNET];
     // const soulBalance = useCurrencyBalance(account ?? undefined, soul ?? undefined);
-
-    const [address, setAddress] = useState('');
-    const [paymentAddress, setPaymentAddress] = useState('');
-    const [amount, setAmount] = useState(0);
+    // const [paymentAddress, setPaymentAddress] = useState('');
+    // const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     setPaymentAddress(e.target.value);
+    // };
 
     const addressHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAddress(e.target.value);
         globalThis.token.address = e.target.value;
     }
 
-    const paymentHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setPaymentAddress(e.target.value);
-    };
-
     const amountHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setAmount(e.target.valueAsNumber);
         globalThis.token.amount = e.target.value;
     };
 
@@ -67,8 +60,8 @@ export default function SetupStep(props: FuncProps) {
                         <h5 style={{marginBottom:'10px', marginLeft:'3px'}}>Token address</h5>
                         <Col sm="5"> <Form.Control required onChange={addressHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded" aria-label='name' /></Col>
                         
-                        <h5 style={{marginBottom:'10px'}}>Token of payment</h5>
-                        <Col sm="5"> <Form.Control required onChange={paymentHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
+                        {/* <h5 style={{marginBottom:'10px'}}>Token of payment</h5>
+                        <Col sm="5"> <Form.Control required onChange={paymentHandler} style={{ marginBottom:'15px'}} type="text" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col> */}
                         
                         <h5 style={{marginBottom:'10px'}}>Token amount</h5>
                         <Col sm="5"> <Form.Control required onChange={amountHandler} style={{ marginBottom:'15px'}} type="number" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/></Col>
