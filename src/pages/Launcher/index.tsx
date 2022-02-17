@@ -47,17 +47,17 @@ export default function Launcher() {
 
     const Steps = [
         {
-            label: 'Details',
+            label: 'Auction',
             name: 'details',
             content: <LauncherDetails />,
         },
         {
-            label: 'Deployment',
+            label: 'Setup',
             name: 'deploy',
             // content: <Deployment handleNext= {handleNext} pendingTx = {pendingTx}/>,
         },
         {
-            label: 'Result',
+            label: 'Sale',
             name: 'result',
             // content: <Result tx = {tx} handleFinish= {onFormSubmit} />,
         }
