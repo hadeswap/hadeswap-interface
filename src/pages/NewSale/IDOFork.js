@@ -145,6 +145,8 @@ contract('IDO v1', ([alice, bob, carol, feer, operator, wato, admin, deployer, d
 
         // STEP: Create Launcher
         // get template id
+
+        ///////
         tid = await this.liquidityFactory.getTemplateId(this.postauctionlauncher.address);
         console.log("launcher template id: ", tid.toString());
         // get init data
@@ -154,7 +156,7 @@ contract('IDO v1', ([alice, bob, carol, feer, operator, wato, admin, deployer, d
         tx = await this.liquidityFactory.createLauncher(tid, tokenAddress, '1000000000000000000000', this.zeroAddress, data, {from: carol});
         let launcherAddress = tx.logs[0].args.addr;
         console.log('2', (await this.token.balanceOf(divi)).toString() )
-
+        ///////
 
         // STEP: Set Crowdsale wallet to launcher
         let crowdsale = await Crowdsale.at(crowdsaleAddress);
