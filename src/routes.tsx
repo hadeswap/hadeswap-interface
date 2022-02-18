@@ -23,6 +23,9 @@ import {
 import Tools from './pages/Tools'
 import MasterChefV1 from './pages/Yield/masterchefv1'
 import Transactions from './pages/Transactions'
+import NewSale from './pages/NewSale'
+import NewToken from './pages/NewToken'
+import Launcher from './pages/Launcher'
 
 function Routes(): JSX.Element {
     const { chainId } = useActiveWeb3React()
@@ -74,6 +77,11 @@ function Routes(): JSX.Element {
                     }
                 }) => <Redirect to={`/pool`} />}
             />
+
+            <Route exact strict path="/newsale" component={NewSale}/>
+            <Route exact strict path="/newtoken" component={NewToken}/>
+            <Route exact strict path="/launcher" component={Launcher}/>
+            
 
             {/* Redirects for Legacy Hash Router paths */}
             <Route exact strict path="/" component={RedirectHashRoutes} />

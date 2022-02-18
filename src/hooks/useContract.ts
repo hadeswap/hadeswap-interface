@@ -15,6 +15,13 @@ import { MULTICALL_ABI, MULTICALL_NETWORKS } from '../constants/multicall'
 
 import { Contract } from '@ethersproject/contracts'
 import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
+import CROWDSALE_ABI from '../constants/abis/crowdsale.json';
+import TOKEN_FACTORY_ABI from '../constants/abis/token-factory.json'
+import AUCTION_FACTORY_ABI from '../constants/abis/auction-factory.json'
+import LIQUIDITY_FACTORY_ABI from '../constants/abis/liquidity-factory.json'
+import FIXED_TOKEN_ABI from '../constants/abis/fixed-token.json'
+import MINTABLE_TOKEN_ABI from '../constants/abis/mintable-token.json'
+import GOVERNANCE_TOKEN_ABI from '../constants/abis/governance-token.json'
 import ENS_ABI from '../constants/abis/ens-registrar.json'
 import ENS_PUBLIC_RESOLVER_ABI from '../constants/abis/ens-public-resolver.json'
 import ERC20_ABI from '../constants/abis/erc20.json'
@@ -28,7 +35,8 @@ import WETH_ABI from '../constants/abis/weth.json'
 import { getContract } from '../utils'
 import { useActiveWeb3React } from './useActiveWeb3React'
 import { useMemo } from 'react'
-import { BORING_HELPER_ADDRESS } from '../constants'
+import { BORING_HELPER_ADDRESS, TOKEN_FACTORY_ADDRESS, AUCTION_FACTORY_ADDRESS, LIQUIDITY_FACTORY_ADDRESS,
+FIXEDTOKEN_TEMPLATE, MINTABLETOKEN_TEMPLATE, SOULTOKEN_TEMPLATE, CROWDSALE_TEMPLATE, LAUNCHER_TEMPLATE} from '../constants'
 
 // returns null on errors
 export function useContract(address: string | undefined, ABI: any, withSignerIfPossible = true): Contract | null {
@@ -119,4 +127,25 @@ export function useTimelockContract(): Contract | null {
 export function useBoringHelperContract(): Contract | null {
     const { chainId } = useActiveWeb3React()
     return useContract(chainId && BORING_HELPER_ADDRESS[chainId], BORING_HELPER_ABI, false)
+}
+
+// mainnet only (change if not)
+export function useTokenFactoryContract(): Contract | null {
+    return useContract(TOKEN_FACTORY_ADDRESS, TOKEN_FACTORY_ABI, true)
+}
+
+export function useTokenTemplateContract() : Contract | null {
+    return useContract(FIXEDTOKEN_TEMPLATE, FIXED_TOKEN_ABI, false);
+}
+
+export function useAuctionFactoryContract(): Contract | null {
+    return useContract(AUCTION_FACTORY_ADDRESS, AUCTION_FACTORY_ABI, true)
+}
+
+export function useLiquidityFactoryContract(): Contract | null {
+    return useContract(LIQUIDITY_FACTORY_ADDRESS, LIQUIDITY_FACTORY_ABI, true)
+}
+
+export function useCrowdsaleContract(): Contract | null {
+    return useContract(CROWDSALE_TEMPLATE, CROWDSALE_ABI, true)
 }

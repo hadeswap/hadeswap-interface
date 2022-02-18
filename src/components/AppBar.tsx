@@ -15,6 +15,8 @@ import { ANALYTICS_URL } from '../constants'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import NetworkSwitch from './NetworkSwitch'
+import {ButtonLight} from '../components/ButtonLegacy'
+import Dropdown from 'react-bootstrap/Dropdown'
 
 function AppBar(): JSX.Element {
     const { i18n } = useLingui()
@@ -26,8 +28,26 @@ function AppBar(): JSX.Element {
     )
 
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
-
     const [iPhone, setIPhone] = useState(false);
+    const [selected, setSelection] = useState(false);
+
+    function expand(){
+        setSelection(true);
+        console.log("open");
+        
+    }
+    function close(){
+        setSelection(false);
+        console.log("close");
+        
+    }
+    function LaunchClick(){
+        if(!selected) setSelection(true);
+        else setSelection(false)
+    }
+
+    // console.log("selected? ", selected);
+    
 
     useEffect(() => {
         setIPhone(() => {
@@ -117,13 +137,40 @@ function AppBar(): JSX.Element {
                                                 {i18n._(t`Analytics`)}
                                             </ExternalLink>
 
-
                                             <ExternalLink
                                                 id={`docs-nav-link`}
                                                 href={'https://doc.hadesswap.finance/'}
                                             >
                                                 {i18n._(t`Docs`)}
                                             </ExternalLink>
+
+                                            <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+                                                <Dropdown drop="end">
+                                                    <Dropdown.Toggle id="dropdown-basic" >
+                                                        <ButtonLight onClick={LaunchClick} height='10px'>Launchpad</ButtonLight>
+                                                    </Dropdown.Toggle>
+
+                                                    {selected &&(
+                                                        <Dropdown.Menu 
+                                                            style={{
+                                                                width:'100px',
+                                                                textAlign: 'center',
+                                                                alignSelf: 'center',
+                                                                justifyContent: 'center',
+                                                                alignItems: 'center',
+                                                                alignContent: 'center'
+                                                            }}
+                                                        >
+                                                                <Dropdown.Item onClick={close} href="/newsale">New Sale</Dropdown.Item>
+                                                                <br/>
+                                                                <Dropdown.Item onClick={close} href="/newtoken">New Token</Dropdown.Item>
+                                                                <br/>
+                                                                <Dropdown.Item onClick={close} href="/launcher">Launcher</Dropdown.Item>
+                                                                <br/>
+                                                        </Dropdown.Menu>
+                                                    )}
+                                                </Dropdown>
+                                            </div>                                                            
                                         </div>
                                     </div>
 
@@ -270,6 +317,7 @@ function AppBar(): JSX.Element {
                 )}
             </Disclosure>
         </header>
+        
     )
 }
 

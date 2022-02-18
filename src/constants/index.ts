@@ -13,6 +13,18 @@ export const BORING_HELPER_ADDRESS = {
     [ChainId.FANTOM]: ''
 }
 
+// this will suffice for MAINNET. in we add more chains to launchpad, we'll have to add them to sdk
+export const TOKEN_FACTORY_ADDRESS = '0xf61be11417984BAED6F63012E4d7ee9D488Cc747';
+export const AUCTION_FACTORY_ADDRESS = '0x42378601C498BdA84a1a1C380d9049f06eF6bDE0';
+export const LIQUIDITY_FACTORY_ADDRESS = '0xA0781fba8D24550e18D55b4fcd02B9C23fB20445';
+export const FIXEDTOKEN_TEMPLATE = '0x031624Cc961Ef187FF7C0E4E9D66ebc3437F3Bd3';
+export const MINTABLETOKEN_TEMPLATE = '0x89DdC94081e9Fc752965CCeDCaD0203f7D524427';
+export const SOULTOKEN_TEMPLATE = '0xD3521f69F207Fb3a521e3139D4802D4B76A392a9';
+export const CROWDSALE_TEMPLATE = '0x77c8B9a2613f95f2cF08AFeD23b11aFaDF3b1a5F';
+export const LAUNCHER_TEMPLATE = '0xFBA7E29D0A28a65b0a4FDBb263aC97fb63586fb0';
+
+
+
 // a list of tokens by chain
 type ChainTokenList = {
     readonly [chainId in ChainId]: Token[]
