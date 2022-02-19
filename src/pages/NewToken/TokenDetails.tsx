@@ -19,7 +19,7 @@ import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { getRouterAddress, isAddressString } from '../../utils'
 import { SOUL, TOKEN_FACTORY_ADDRESS } from '../../constants'
 import useMasterChef from '../../hooks/useMasterChef'
-import useHadesLauncher from '../../hooks/useHadesLauncher'
+import useHadesToken from '../../hooks/useHadesToken'
 import { useCurrency } from '../../hooks/Tokens'
 import { ChainId, Currency, CurrencyAmount } from 'hadeswap-beta-sdk'
 import { ApprovalState, useApproveCallback } from '../../hooks/useApproveCallback'
@@ -51,7 +51,7 @@ export default function TokenDetails(props: FuncProps) {
     const { account, chainId } = useActiveWeb3React()
     const soul = SOUL[ChainId.MAINNET]
 
-    const { createToken, getTokenData, tokenFeeCost } = useHadesLauncher()
+    const { createToken, getTokenData, tokenFeeCost } = useHadesToken()
     const independentAmount: CurrencyAmount | undefined = tryParseAmount(tokenFeeCost, soul)
     const [approval, approveCallback] = useApproveCallback(independentAmount, TOKEN_FACTORY_ADDRESS)
     const soulBalance = useCurrencyBalance(account ?? undefined, soul ?? undefined)

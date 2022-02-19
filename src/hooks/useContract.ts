@@ -18,6 +18,7 @@ import BORING_HELPER_ABI from '../constants/abis/boring-helper.json'
 import CROWDSALE_ABI from '../constants/abis/crowdsale.json';
 import TOKEN_FACTORY_ABI from '../constants/abis/token-factory.json'
 import AUCTION_FACTORY_ABI from '../constants/abis/auction-factory.json'
+import LIQUIDITY_LAUNCHER_ABI from '../constants/abis/liquidity-launcher.json'
 import LIQUIDITY_FACTORY_ABI from '../constants/abis/liquidity-factory.json'
 import FIXED_TOKEN_ABI from '../constants/abis/fixed-token.json'
 import MINTABLE_TOKEN_ABI from '../constants/abis/mintable-token.json'
@@ -148,4 +149,8 @@ export function useLiquidityFactoryContract(): Contract | null {
 
 export function useCrowdsaleContract(): Contract | null {
     return useContract(CROWDSALE_TEMPLATE, CROWDSALE_ABI, true)
+}
+
+export function useLiquidityLauncherContract(): Contract | null {
+    return useContract(LAUNCHER_TEMPLATE, LIQUIDITY_LAUNCHER_ABI, true)
 }

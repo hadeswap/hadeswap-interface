@@ -45,10 +45,10 @@ const useHadesSale = () => {
         supply: string | undefined,
     ): Promise<string> => {
         try {
-            // const startTime = Math.floor(Date.parse(startDate) / 1000);
-            // const endTime = Math.floor(Date.parse(endDate) / 1000);
-            const startTime = Math.floor(Date.now() / 1000) + 100;
-            const endTime = Math.floor(Date.now() / 1000) + 1000;
+            const startTime = Math.floor(Date.parse(startDate) / 1000) + 100;
+            const endTime = Math.floor(Date.parse(endDate) / 1000);
+            // const startTime = Math.floor(Date.now() / 1000) + 100;
+            // const endTime = Math.floor(Date.now() / 1000) + 1000;
             const iSupply = ethers.utils.parseUnits(supply??'0', 18) 
             const iPrice = ethers.utils.parseUnits(price??'0', 18);
             const iGoal = ethers.utils.parseUnits(goal??'0', 18);
@@ -61,7 +61,7 @@ const useHadesSale = () => {
             const data = await crowdsaleContract?.getCrowdsaleInitData(auctionFactoryContract?.address,
                 tokenAddress, '0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE', iSupply,
                 startTime, endTime, iPrice, iGoal,
-                owner, zero_address, owner);
+                iOwner, zero_address, iOwner);
 
             return data
         } catch (e) {

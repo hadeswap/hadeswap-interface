@@ -1,29 +1,51 @@
 import { Helmet } from 'react-helmet'
-import { t} from '@lingui/macro'
+import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import { ButtonPrimary } from '../../components/ButtonLegacy'
+import useHadesLauncher from 'hooks/useHadesLauncher'
 
-export default function TokenDetails() {
+export default function LauncherDetails() {
     const { i18n } = useLingui()
+    const { createLauncher, getLauncherData } = useHadesLauncher()
 
     // const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
+
+    const handleCreateLauncher = async () => {
+        const owner = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720'
+        const crowdAddress = '0x0EcC7AF75206776a5EBAFF3551f500eb7B9dC45C'
+        const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340'
+        const supply = '1000000000000000000000'
+
+        const data = await getLauncherData(owner, crowdAddress, 0, 0)
+        const tx = await createLauncher(owner, supply, tokenAddress, data)
+
+        console.log('tx from createLauncher hook:\n', tx);
+    }
+
+    const handleApprove = () => {
+        console.log('approve token');
+    }
+
+    const handleTransfer = () => {
+        console.log('Transfer token');
+    }
 
     const ButtonStates = [
         {
             btnName: 'Approve token',
-            onClickHandler: ''
+            onClickHandler: handleApprove
         },
         {
             btnName: 'Create launcher',
-            onClickHandler: ''
+            onClickHandler: handleCreateLauncher
         },
         {
             btnName: 'Transfer',
-            onClickHandler: ''
+            onClickHandler: handleTransfer
         },
     ]
 
@@ -59,7 +81,7 @@ export default function TokenDetails() {
                 {ButtonStates.map((state, index) => {
                     return (
                         <>
-                            <ButtonPrimary key={index} width={'100%'}>
+                            <ButtonPrimary onClick={state.onClickHandler} key={index} width={'100%'}>
                                 {state.btnName}
                             </ButtonPrimary>
                             <br />
