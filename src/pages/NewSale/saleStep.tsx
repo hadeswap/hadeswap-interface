@@ -12,6 +12,12 @@ import { Dots } from '../Pool/styleds'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { ChainId } from 'hadeswap-beta-sdk'
 import { SOUL } from '../../constants'
+import TextField from '@mui/material/TextField';
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import DesktopDateTimePicker from '@mui/lab/DesktopDateTimePicker'
+import { type } from 'os';
 
 interface FuncProps {
     handleFinish: () => void;
@@ -149,12 +155,32 @@ export default function SaleStep(props: FuncProps) {
                 <div className="grid grid-cols-2 gap-4">
                     <Form.Group as={Row} className="mb-3" >
                         <Col sm="5">
-                            <Form.Control required onChange={handleStart} type="date" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/>
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DateTimePicker
+                                    label="DateTimePicker"
+                                    renderInput={(props) => <TextField {...props} />}
+                                    value=''
+                                    onChange={(newValue) => {
+                                        console.log('newValue: ', newValue)
+                                    }}
+                                    minDateTime={Date.now()}
+                                />
+                            </LocalizationProvider>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" >
                         <Col sm="5">
-                            <Form.Control required onChange={handleEnd} type="date" className="bg-dark-700 shadow-swap-blue-glow w-full max-w-2xl rounded"/>
+                            <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                <DateTimePicker
+                                    label="DateTimePicker"
+                                    renderInput={(props) => <TextField {...props} />}
+                                    value=''
+                                    onChange={(newValue) => {
+                                        console.log('newValue: ', typeof(newValue))
+                                    }}
+                                    // minDate={new Date('2020-02-14')}
+                                />
+                            </LocalizationProvider>
                         </Col>
                     </Form.Group>
                 </div>
