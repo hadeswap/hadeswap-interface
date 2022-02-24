@@ -36,8 +36,8 @@ const useHadesSale = () => {
     )
 
     const getCrowdsaleData = async (
-        startDate: string,
-        endDate: string,
+        startDate: number,
+        endDate: number,
         price: string | undefined,
         goal: string | undefined,
         owner: string | undefined,
@@ -45,10 +45,8 @@ const useHadesSale = () => {
         supply: string | undefined,
     ): Promise<string> => {
         try {
-            const startTime = Math.floor(Date.parse(startDate) / 1000) + 100;
-            const endTime = Math.floor(Date.parse(endDate) / 1000);
-            // const startTime = Math.floor(Date.now() / 1000) + 100;
-            // const endTime = Math.floor(Date.now() / 1000) + 1000;
+            const startTime = Math.floor(startDate / 1000) + 100;
+            const endTime = Math.floor(endDate / 1000) + 1000;
             const iSupply = ethers.utils.parseUnits(supply??'0', 18) 
             const iPrice = ethers.utils.parseUnits(price??'0', 18);
             const iGoal = ethers.utils.parseUnits(goal??'0', 18);

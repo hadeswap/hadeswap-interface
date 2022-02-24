@@ -10,20 +10,22 @@ import useHadesLauncher from 'hooks/useHadesLauncher'
 
 export default function LauncherDetails() {
     const { i18n } = useLingui()
-    const { createLauncher, getLauncherData } = useHadesLauncher()
+    const { getLauncherData } = useHadesLauncher()
+    const [perc, setPerc] = useState(0);
+    const [time, setTime] = useState(0);
 
     // const nameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {};
 
     const handleCreateLauncher = async () => {
-        const owner = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720'
-        const crowdAddress = '0x0EcC7AF75206776a5EBAFF3551f500eb7B9dC45C'
-        const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340'
+        const owner = '0xDB8fD34B637a14c8DacF9ECfF51a6A7E5387B720' // wallet Paty
+        const crowdAddress = '0xdEFBca679C7123A8377e113f20F0Aa6B8ccC0BB2'
+        const tokenAddress = '0x74Eb00a3631096d2DBC4a9bE1f6A24B89cFF6340' // PATY
         const supply = '1000000000000000000000'
 
-        const data = await getLauncherData(owner, crowdAddress, 0, 0)
-        const tx = await createLauncher(owner, supply, tokenAddress, data)
+        const data = await getLauncherData(owner, crowdAddress, perc, time)
+        // const tx = await createLauncher(owner, supply, tokenAddress, data)
 
-        console.log('tx from createLauncher hook:\n', tx);
+        // console.log('tx from createLauncher hook:\n', tx);
     }
 
     const handleApprove = () => {

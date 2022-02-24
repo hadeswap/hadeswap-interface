@@ -29,8 +29,8 @@ export default function SaleStep(props: FuncProps) {
     const { i18n } = useLingui();
     const { createSale, getCrowdsaleData } = useHadesSale();
     const [coin, setCoin] = useState('');
-    const [start, setStart] = useState('');
-    const [end, setEnd] = useState('');
+    const [start, setStart] = useState(0);
+    const [end, setEnd] = useState(0);
     const [price, setPrice] = useState('');
     const [goal, setGoal] = useState('');
     const [receiver, setReceiver] = useState('');
@@ -42,11 +42,11 @@ export default function SaleStep(props: FuncProps) {
     const handleCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCoin(e.target.value);
     }
-    const handleStart = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setStart(e.target.value);
+    const handleStart = (value: number) => {
+        setStart(value);
     }
-    const handleEnd = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setEnd(e.target.value);
+    const handleEnd = (value: number) => {
+        setEnd(value);
     }
     const handlePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(e.target.value);
@@ -157,11 +157,13 @@ export default function SaleStep(props: FuncProps) {
                         <Col sm="5">
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DateTimePicker
-                                    label="DateTimePicker"
-                                    renderInput={(props) => <TextField {...props} />}
-                                    value=''
+                                    renderInput={(props) => <TextField fullWidth {...props} />}
+                                    value={start}
                                     onChange={(newValue) => {
-                                        console.log('newValue: ', newValue)
+                                        console.log('start newValue: ', newValue)
+                                        if (newValue !== null) {
+                                            handleStart(newValue)
+                                        }
                                     }}
                                     minDateTime={Date.now()}
                                 />
@@ -172,13 +174,15 @@ export default function SaleStep(props: FuncProps) {
                         <Col sm="5">
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DateTimePicker
-                                    label="DateTimePicker"
-                                    renderInput={(props) => <TextField {...props} />}
-                                    value=''
+                                    renderInput={(props) => <TextField fullWidth {...props} />}
+                                    value={end}
                                     onChange={(newValue) => {
-                                        console.log('newValue: ', typeof(newValue))
+                                        console.log('end newValue: ', newValue)
+                                        if (newValue !== null) {
+                                            handleEnd(newValue)
+                                        }
                                     }}
-                                    // minDate={new Date('2020-02-14')}
+                                    minDateTime={start}
                                 />
                             </LocalizationProvider>
                         </Col>
@@ -232,8 +236,8 @@ export default function SaleStep(props: FuncProps) {
                         <ButtonPrimary
                             onClick={createSaleHandler}
                             disabled={
-                                start === '' ||
-                                end === '' ||
+                                start === 0 ||
+                                end === 0 ||
                                 coin === '' ||
                                 receiver === '' ||
                                 price === '' ||
