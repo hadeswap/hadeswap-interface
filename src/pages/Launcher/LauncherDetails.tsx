@@ -10,7 +10,7 @@ import useHadesLauncher from 'hooks/useHadesLauncher'
 
 export default function LauncherDetails() {
     const { i18n } = useLingui()
-    const { getLauncherData } = useHadesLauncher()
+    const { createLauncher, getLauncherData } = useHadesLauncher()
     const [perc, setPerc] = useState(0);
     const [time, setTime] = useState(0);
 
@@ -23,7 +23,8 @@ export default function LauncherDetails() {
         const supply = '1000000000000000000000'
 
         const data = await getLauncherData(owner, crowdAddress, perc, time)
-        // const tx = await createLauncher(owner, supply, tokenAddress, data)
+        console.log("data :D ", data)
+        const tx = await createLauncher(owner, supply, tokenAddress, data)
 
         // console.log('tx from createLauncher hook:\n', tx);
     }
