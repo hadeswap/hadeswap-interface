@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
-import { ButtonPrimary } from '../../components/ButtonLegacy'
+import { ButtonLight, ButtonPrimary } from '../../components/ButtonLegacy'
 import useHadesLauncher from 'hooks/useHadesLauncher'
 
 export default function LauncherDetails() {
@@ -84,9 +84,14 @@ export default function LauncherDetails() {
                 {ButtonStates.map((state, index) => {
                     return (
                         <>
-                            <ButtonPrimary onClick={state.onClickHandler} key={index} width={'100%'}>
-                                {state.btnName}
-                            </ButtonPrimary>
+                            {state.btnName == 'Approve token'
+                                    ?<ButtonLight onClick={state.onClickHandler} key={index} width={'100%'}>
+                                        {state.btnName}
+                                    </ButtonLight>
+                                    : <ButtonPrimary onClick={state.onClickHandler} key={index} width={'100%'}>
+                                        {state.btnName}
+                                    </ButtonPrimary>
+                            }
                             <br />
                         </>
                     )

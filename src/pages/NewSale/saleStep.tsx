@@ -38,6 +38,7 @@ export default function SaleStep(props: FuncProps) {
     const { account, chainId } = useActiveWeb3React();
     const soul = SOUL[ChainId.MAINNET];
     const [customAddress, setCustomAddress] = useState('');
+    const color = '#FFFFFF'
 
     const handleCoin = (e: React.ChangeEvent<HTMLInputElement>) => {
         setCoin(e.target.value);
@@ -157,7 +158,16 @@ export default function SaleStep(props: FuncProps) {
                         <Col sm="5">
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DateTimePicker
-                                    renderInput={(props) => <TextField fullWidth {...props} />}
+                        
+                                    renderInput={(props) => 
+                                            <TextField 
+                                                fullWidth {...props} 
+                                                sx={{
+                                                    svg: { color },
+                                                    input: { color },
+                                                    label: { color }
+                                                  }}
+                                            />}
                                     value={start}
                                     onChange={(newValue) => {
                                         console.log('start newValue: ', newValue)
@@ -174,7 +184,15 @@ export default function SaleStep(props: FuncProps) {
                         <Col sm="5">
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                                 <DateTimePicker
-                                    renderInput={(props) => <TextField fullWidth {...props} />}
+                                    renderInput={(props) => 
+                                        <TextField 
+                                            fullWidth {...props} 
+                                            sx={{
+                                                svg: { color },
+                                                input: { color },
+                                                label: { color }
+                                              }}
+                                        />}
                                     value={end}
                                     onChange={(newValue) => {
                                         console.log('end newValue: ', newValue)

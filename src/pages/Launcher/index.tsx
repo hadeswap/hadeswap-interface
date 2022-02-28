@@ -9,7 +9,7 @@ import { styled } from "@mui/material/styles";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import LauncherDetails from './LauncherDetails'
 
-const steps = ['Details', 'Deployment', 'Result'];
+const steps = ['Details', 'Result'];
 
 export default function Launcher() {
     const { i18n } = useLingui()
@@ -50,11 +50,6 @@ export default function Launcher() {
             label: 'Details',
             name: 'details',
             content: <LauncherDetails />,
-        },
-        {
-            label: 'Deployment',
-            name: 'deploy',
-            // content: <Deployment handleNext= {handleNext} pendingTx = {pendingTx}/>,
         },
         {
             label: 'Result',
